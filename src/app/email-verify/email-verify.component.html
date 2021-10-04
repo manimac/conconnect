@@ -1,0 +1,37 @@
+
+
+<!--<div *ngIf="!errorMessage">
+  <div class="alert alert-danger" role="alert">
+    Email not validated properly. Please use recent code for activating the account.
+  </div>
+</div>
+<div *ngIf="errorMessage">
+  <div class="alert alert-success" role="alert">
+    Email validation success.
+  </div>
+</div>-->
+
+<div class="continer">
+  <div class="background">
+    <img src="./assets/img/login-background.png">
+  </div>
+  <div style="background:transparent linear-gradient(90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;padding-top:100px;" class="cocon-spinner" *ngIf="!IsShow">
+    <div class="spinner-border d-flex justify-content-center">
+      <div class="text-center" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-signin my-4" style="width: 400px;
+    margin: auto;" *ngIf="IsShow">
+    <div class="card-body text-center" *ngIf="statusCode">
+      <p>Please click to redirect to login page to use conconnect services. Thank you.</p>
+      <button class="btn btn-warning" (click)="onLogin()">Login</button>
+    </div>
+    <div class="card-body text-center" *ngIf="!statusCode">
+      <p class="alert-danger" style="padding: 20px; border-radius: 20px;">Please use recent activation code to activate the account.</p>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,483 @@
+
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+  <app-header></app-header>
+
+  <div class="boarding-page res-border-page">
+    <div class="boarding-content container mx-auto" aria-label="User boarding page division" style="margin-top: 40px;">
+      <h1 class="boarding-page-hdr my-3 text-center text-md-left d-block" style="padding-top: 10px;">Connection Onboarding</h1>
+      <!-- Page body content layout - Grid layout with two panels with column gap 96px -->
+      <div class="boarding-page-layout d-md-grid">
+        <!-- Profile display picture division -->
+        <div class="boarding-pro-pic-div mb-5" aria-label="User profile picture division">
+          <div style="height: auto; background: white; padding: 10px 0px 10px 0px !important; border: 2px solid #fff; box-shadow: 0 0 2px #9b9a9a; border-radius: 10px;">
+            <div class="boarding-pro-img-div mx-auto">
+              <!--<img class="boarding-pro-img" src="{{imageUpload}}" id="boarding-user-img" alt="User profile pic" />-->
+              <img src="{{_user.profilePic}}" alt="profile pic" class="boarding-pro-img img-fluid" *ngIf="!defaultImageFlag" />
+
+              <div *ngIf="defaultImageFlag">
+                <img [src]="compressResultImage" alt="profile pic" class="boarding-pro-img img-fluid" />
+              </div>
+            </div>
+            <div class="fileUpload fileupload-responsive">
+              <input type="file" (change)="onChange($event)" class="upload w-100 pro-pic-chng-pic mx-auto" />
+              <span>Upload</span>
+            </div>
+            <!--<input type="file" (change)="onChange($event)" class="w-100 pro-pic-chng-pic mx-auto" />-->
+            <button *ngIf="saveImageFlag" class="pro-pic-rmv-pic fileupload-responsive" value="Save Picture" (click)="saveImage()"> Save Picture </button>
+            <div class="text-center mt-3" *ngIf="saveImageSubmitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END: Profile display picture division -->
+        <!-- Profile Information division -->
+        <div class="boarding-pro-info-div" aria-label="User's Personal Information">
+
+          <!--<div style="font-weight: 600;
+    text-align: center;
+    padding: 4px !important;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px #9b9a9a;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px !important;">
+            <a routerLink="/feed">Skip and go to feed page</a>
+          </div>-->
+
+          <form class="p-0 m-0 d-lg-grid" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px;margin-bottom:20px !important;">
+
+            <!--{{myForm.value |json}}-->
+         
+            <h2 class="boarding-pro-info-hdr">Personal Information</h2>
+            <hr class="w-100 boarding-pro-info-hr my-0" />
+            <!-- Name Fields -->
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg" aria-label="User's name">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">First Name</label> <br />
+                <input type="text"
+                       placeholder="Enter first name"
+                       maxlength="50"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       id="pro-first-name"
+                       aria-labelledby="first-name-lbl"
+                       #firstName="ngModel"
+                       [class.is-invalid]="firstName.invalid && firstName.touched"
+                       value="{{_user.firstName}}"
+                       name="firstName"
+                       [(ngModel)]="_user.firstName"
+                       required />
+                <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">
+                  First Name is Required
+                </small>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Last Name</label> <br />
+                <input type="text"
+                       placeholder="Enter last name"
+                       #lastName="ngModel"
+                       maxlength="50"
+                       [class.is-invalid]="lastName.invalid && lastName.touched"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{_user.lastName}}" name="lastName" [(ngModel)]="_user.lastName" required />
+                <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">
+                  Last Name is Required
+                </small>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg" aria-label="User's Email address">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="email-lbl ">Email</label> <br />
+                <input type="email"
+                       placeholder="Enter email"
+                       maxlength="50"
+                       #email="ngModel"
+                       [class.is-invalid]="email.invalid && email.touched"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                       class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                       id="pro-user-email"
+                       aria-labelledby="email-lbl"
+                       value="{{_user.email}}"
+                       name="userName"
+                       [(ngModel)]="_user.email"
+                       required />
+                <div *ngIf="email.errors && (email.invalid && email.touched)">
+                  <small class="text-danger" *ngIf="email.errors.pattern">Email is Invalid</small>
+                  <small class="text-danger" *ngIf="email.errors.required">Email is Required</small>
+                </div>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Phone</label> <br />
+                <input type="text"
+                       placeholder="Enter phone number"
+                       pattern="[0-9]+"
+                       maxlength="10"
+                       #phone="ngModel"
+                       [class.is-invalid]="phone.invalid && phone.dirty"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{_user.phone}}" name="phone" [(ngModel)]="_user.phone" required />
+                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
+                  Phone number is required and its valid numbers
+                </small>
+              </div>
+            </div>
+
+            <div class="my-3 d-md-grid h-auto" *ngIf="!submitted">
+              <button [disabled]="myForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+            </div>
+            <div class="text-center mt-3" *ngIf="submitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </form>
+
+          <!-- END: Profile Information division -->
+
+          <form class="p-0 m-0 d-lg-grid" #CompanyForm="ngForm" (ngSubmit)="onCompanySubmit(CompanyForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px; margin-bottom:20px !important;">
+            <h2 class="boarding-pro-info-hdr">Company Information</h2>
+            <hr class="w-100 boarding-pro-info-hr my-0" />
+            <div class="w-100 d-sm-grid boarding-pro-info-flex-cg">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">Company Name</label> <br />
+                <input type="text"
+                       placeholder="Enter company name"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       id="pro-first-name"
+                       maxlength="100"
+                       aria-labelledby="first-name-lbl"
+                       #companyName="ngModel"
+                       [class.is-invalid]="companyName.invalid && companyName.touched"
+                       value="{{company.CompanyName}}"
+                       name="CompanyName"
+                       [(ngModel)]="company.CompanyName"
+                       required />
+                <small class="text-danger" [class.d-none]="companyName.valid || companyName.untouched">
+                  Company Name is Required
+                </small>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Email</label> <br />
+                <input type="text"
+                       maxlength="60"
+                       placeholder="Enter email"
+                       #contactNumber="ngModel"
+                       [class.is-invalid]="contactNumber.invalid && contactNumber.touched"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{company.Email}}" name="contactNumber" [(ngModel)]="company.Email" required />
+                <small class="text-danger" [class.d-none]="contactNumber.valid || contactNumber.untouched">
+                  Email is Required
+                </small>
+              </div>
+            </div>
+            <div class="w-100 d-sm-grid boarding-pro-info-flex-cg">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">Industry</label> <br />
+                <!--<input type="text"
+                maxlength="50"
+                placeholder="Enter industry type"
+                class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                id="pro-first-name"
+                aria-labelledby="first-name-lbl"
+                #industryName="ngModel"
+                [class.is-invalid]="industryName.invalid && industryName.touched"
+                value="{{company.industry}}"
+                name="industryName"
+                [(ngModel)]="company.industry"
+                required />-->
+              <select #industryName="ngModel"
+                      (blur)="validateIndustryHasError(industryName.value)"
+                      (change)="validateIndustryHasError(industryName.value)"
+                      [class.is-invalid]="industryHasError && industryName.touched"
+                      class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                      id="industryName"
+                      aria-labelledby="industry-lbl"
+                      name="industryName"
+                      [(ngModel)]="company.industry" value="{{company.industry}}" required>
+                <!--<option class="questionnaire-option" value="0">Choose any industry</option>-->
+                <option value="null" selected disabled hidden>Choose any industry</option>
+                <option class="questionnaire-option" value="IT">IT</option>
+                <option class="questionnaire-option" value="Marketing">Marketing</option>
+                <option class="questionnaire-option" value="Telecommunications">Telecommunications</option>
+                <option class="questionnaire-option" value="Education">Education</option>
+                <option class="questionnaire-option" value=" Manufacturing"> Manufacturing</option>
+                <option class="questionnaire-option" value="Healthcare">Healthcare</option>
+                <option class="questionnaire-option" value="Logistics">Logistics</option>
+                <option class="questionnaire-option" value="Transportation">Transportation</option>
+                <option class="questionnaire-option" value="Travel">Travel</option>
+                <option class="questionnaire-option" value="other">Other</option>
+              </select>
+                <small class="text-danger" [class.d-none]="industryName.valid || industryName.untouched">
+                  Industry Type is Required
+                </small>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <!--<label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Company Size</label> <br />
+                <input type="text"
+                       placeholder="Enter company size"
+                       min="0"
+                       max="999999"
+                       maxlength="6"
+                       pattern="[0-9]+"
+                       #companySize="ngModel"
+                       [class.is-invalid]="companySize.invalid && companySize.touched"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{company.Size}}" name="companySize" [(ngModel)]="company.Size" required />
+                <small class="text-danger" [class.d-none]="companySize.valid || companySize.untouched">
+                  Please give proper value
+                </small>-->
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Company Size</label> <br />
+                <select #companySize="ngModel"
+                        (blur)="validateIndustryHasError(companySize.value)"
+                        (change)="validateIndustryHasError(companySize.value)"
+                        [class.is-invalid]="industryHasError && companySize.touched"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="companySize"
+                        aria-labelledby="industry-lbl"
+                        name="companySize"
+                        [(ngModel)]="company.Size" value="{{company.Size}}" required>
+                  <!--<option class="questionnaire-option" value="0">Choose any industry</option>-->
+                  <option value="null" selected disabled hidden>Choose any option</option>
+                  <option class="questionnaire-option" value="100">< 100</option>
+                  <option class="questionnaire-option" value="500">100 to 500</option>
+                  <option class="questionnaire-option" value="1000">500 to 1000</option>
+                  <option class="questionnaire-option" value="2000">1000 to 2000</option>
+                  <option class="questionnaire-option" value="5000">> 2000</option>
+                </select>
+                <small class="text-danger" [class.d-none]="industryName.valid || companySize.untouched">
+                  Company size is Required
+                </small>
+              </div>
+            </div>
+
+            <div class="w-100 float-left mt-2">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="industry-lbl">Company Roles</label> <br />
+                <select #companyRole="ngModel"
+                        (blur)="validateIndustryHasError(companyRole.value)"
+                        (change)="validateIndustryHasError(companyRole.value)"
+                        [class.is-invalid]="industryHasError && companyRole.touched"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-user-industry"
+                        aria-labelledby="industry-lbl"
+                        name="UserCompanyRole"
+                        [(ngModel)]="company.UserCompanyRole" value="{{company.UserCompanyRole}}" required>
+                  <!--<option class="questionnaire-option" value="0">Choose any role</option>-->
+                  <option value="0" selected disabled hidden>Choose any role</option>
+                  <option *ngFor="let x of GetUserCompanyRoles | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                </select>
+                <small class="text-danger" [class.d-none]="!industryHasError || companyRole.untouched">
+                  Please choose any role
+                </small>
+              </div>
+              <div class="w-md-48 float-right mt-2 text-center">
+                <div class="boarding-pro-img-div mx-auto text-center">
+                  <!--<img class="boarding-pro-img" src="{{imageUpload}}" id="boarding-user-img" alt="User profile pic" />-->
+
+                  <img src="{{company.Logo}}" alt="Company Logo" class="img-fluid" *ngIf="!defaultImageFlag_logo && company.Logo!=null" style="object-fit: cover; width: 170px;border-radius: 15px;" />
+
+                  <div *ngIf="defaultImageFlag_logo">
+                    <img [src]="compressResultImage_logo" alt="profile pic" class="img-fluid" style="object-fit: cover; width: 170px;border-radius: 15px;" />
+                  </div>
+                </div>
+                <br />
+                <div class="fileUpload fileupload-responsive text-center" style="margin:0 auto">
+                  <input type="file" (change)="onCompanyLogo($event)" class="upload w-100 pro-pic-chng-pic mx-auto" />
+                  <span>Upload Logo</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+              <div class="w-100 mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="user-bio-lbl">About</label> <br />
+
+                <textarea type="text"
+                          placeholder="Enter Bio"
+                          maxlength="1000"
+                          #about="ngModel"
+                          [class.is-invalid]="about.invalid && about.touched"
+                          class="questionnaire-input-font boarding-pro-info-input w-100 boarding-pro-user-bio form-control font-size-12"
+                          id="pro-user-bio"
+                          aria-labelledby="user-bio-lbl"
+                          name="about" [(ngModel)]="company.About" style="height: 63px !important;" required>{{company.About}}</textarea>
+                <small class="text-danger" [class.d-none]="about.valid || about.untouched">
+                  About is Required
+                </small>
+              </div>
+            </div>
+
+            <div class="w-100 float-right mt-2">
+              <div class="my-3 d-md-grid h-auto" *ngIf="!companyDetailsSubmitted">
+                <button [disabled]="CompanyForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+              </div>
+              <div class="text-center mt-3" *ngIf="companyDetailsSubmitted">
+                <div class="spinner-border text-center" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <!-- questionnaire section:  -->
+
+          <form class="p-0 m-0 d-lg-grid" #questionnaireForm="ngForm" (ngSubmit)="onQuestionnaireSubmit(questionnaireForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px;margin-bottom:20px !important;">
+            <div class="pt-3">
+              <p class="boarding-questionnaire-hdr">
+                Welcome To ConConnect. We ask these questions to understand better out partners and how we can have them optimize their time on ConConnect. More importantly, we use this data to advance our mission of creating a professional network for the formerly incarcerated.
+
+              </p>
+              <fieldset>
+                <legend class="questionnaire-legend pt-3">
+                  Employer Questionnaire
+
+                </legend>
+                <hr class="w-100 boarding-pro-info-hr my-2" />
+
+                <!--<div class="pt-2" *ngFor="let questVal of questionnaire; let i = index;">
+                  <label class="questionnaire-ques w-100" for="boarding-questionnaire-1">{{questVal.Question}}</label>
+                  <input class="questionnaire-input mt-1 w-100 form-control font-size-12" maxlength="500" placeholder="Enter the answer" type="text" [(ngModel)]="questVal.Answer"
+                         name="{{questVal.QuestionID}}" />
+                </div>-->
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">1.What is your purpose for using ConConnect? Recruit, Employ, Mentor, Provide Other Service, ConCourses</label>
+                  <select #qAnswer2="ngModel"
+                          maxlength="50"
+                          (change)="validateStateHasError(qAnswer2.value)"
+                          [class.is-invalid]="stateHasError && qAnswer2.touched"
+                          class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                          id="qA2"
+                          aria-labelledby="industry-lbl"
+                          name="qA2"
+                          [(ngModel)]="qAnsers.qA2" value="{{qAnsers.qA2}}">
+                    <option value="" selected disabled hidden>Choose any option</option>
+                    <option class="questionnaire-option" value="Recruit">Recruit</option>
+                    <option class="questionnaire-option" value="Employ">Employ</option>
+                    <option class="questionnaire-option" value="Provide Other Service">Provide Other Service</option>
+                    <option class="questionnaire-option" value="ConCourses">ConCourses</option>
+                  </select>
+                  <small class="text-danger" [class.d-none]="!stateHasError || qAnswer2.untouched">
+                    Please choose any option
+                  </small>
+                </div>
+
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">2. What are your company's values in accordance with the formerly incarcerated?</label>
+                  <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                         min="0"
+                         max="999999"
+                         maxlength="500"
+                         placeholder="Enter the answer"
+                         #qAnswer3="ngModel"
+                         [class.is-invalid]="qAnswer3.invalid && qAnswer3.touched"
+                         id="qA3" aria-labelledby="last-name-lbl" value="{{qAnsers.qA3}}" name="qA3" [(ngModel)]="qAnsers.qA3" />
+                  <small class="text-danger" [class.d-none]="qAnswer3.valid || qAnswer3.untouched">
+                    Please give proper answer.
+                  </small>
+                </div>
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">3. Is it your company's sole mission to advance the formerly incarcerated?</label>
+                  <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                         min="0"
+                         max="999999"
+                         maxlength="500"
+                         placeholder="Enter the answer"
+                         #qAnswer4="ngModel"
+                         [class.is-invalid]="qAnswer4.invalid && qAnswer4.touched"
+                         id="qA4" aria-labelledby="last-name-lbl" value="{{qAnsers.qA4}}" name="qA4" [(ngModel)]="qAnsers.qA4" />
+                  <small class="text-danger" [class.d-none]="qAnswer4.valid || qAnswer4.untouched">
+                    Please give proper answer.
+                  </small>
+                </div>
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">4. Does your company have or provide additional resources for these individuals?</label>
+                  <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                         min="0"
+                         max="999999"
+                         maxlength="500"
+                         placeholder="Enter the answer"
+                         #qAnswer5="ngModel"
+                         [class.is-invalid]="qAnswer5.invalid && qAnswer5.touched"
+                         id="qA5" aria-labelledby="last-name-lbl" value="{{qAnsers.qA5}}" name="qA5" [(ngModel)]="qAnsers.qA5" />
+                  <small class="text-danger" [class.d-none]="qAnswer5.valid || qAnswer5.untouched">
+                    Please give proper answer.
+                  </small>
+                </div>
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">5. Would you like additional tools and resource's to understand these individuals better?</label>
+                  <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                         min="0"
+                         max="999999"
+                         maxlength="500"
+                         placeholder="Enter the answer"
+                         #qAnswer6="ngModel"
+                         [class.is-invalid]="qAnswer6.invalid && qAnswer6.touched"
+                         id="qA6" aria-labelledby="last-name-lbl" value="{{qAnsers.qA6}}" name="qA6" [(ngModel)]="qAnsers.qA6" />
+                  <small class="text-danger" [class.d-none]="qAnswer6.valid || qAnswer6.untouched">
+                    Please give proper answer.
+                  </small>
+                </div>
+
+                <div class="pt-2">
+                  <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">6. What features would you like to see on ConConnect, the first professional social network for the formerly incarcerated?</label>
+                  <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                         min="0"
+                         max="999999"
+                         maxlength="500"
+                         placeholder="Enter the answer"
+                         #qAnswer7="ngModel"
+                         [class.is-invalid]="qAnswer7.invalid && qAnswer7.touched"
+                         id="qA7" aria-labelledby="last-name-lbl" value="{{qAnsers.qA7}}" name="qA7" [(ngModel)]="qAnsers.qA7" />
+                  <small class="text-danger" [class.d-none]="qAnswer7.valid || qAnswer7.untouched">
+                    Please give proper answer.
+                  </small>
+                </div>
+              </fieldset>
+            </div>
+            <div class="my-3 d-md-grid h-auto" *ngIf="!questionnarySubmitted">
+              <button [disabled]="questionnaireForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+            </div>
+            <div class="text-center mt-3" *ngIf="questionnarySubmitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- END: Page body content layout -->
+      </div>
+      <!-- END: Page body content layout -->
+    </div>
+  </div>
+  <!-- END: Body markup -->
+  <!-- Footer -->
+  <app-footer></app-footer>
+  <!-- END: Footer -->
+</body>
+

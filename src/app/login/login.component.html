@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<div class="continer" *ngIf="!spinner">
+  <div class="background">
+    <img src="./assets/img/login-background.png">
+  </div>
+  <div class="row">
+    <div class="col-sm-8 col-md-5 col-lg-4 mx-auto">
+      <div class="row">
+        <div class="col-xl-9 text-center col-sm-9 col-md-7 col-lg-5 mx-auto mt-4">
+          <img width="250" src="./assets/img/logo copy.png" routerLink="/" style="cursor:pointer">
+        </div>
+      </div>
+      <div class="card card-signin my-4">
+        <div class="card-body" style="text-align:center">
+          <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+          <form class="form-signin" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" novalidate>
+            <div style="text-align: center;margin-bottom: 20px;">
+              <div class="btn-group btn-group-toggle responsive-toggle-button" data-toggle="buttons">
+                <label id="RoleButton" class="btn btn-secondary active" style="height: 40px;
+                              padding: 6px;width:140px">
+                  <input class="btn-candidate " #Role="ngModel" type="radio" name="Role" id="option2" value="1" autocomplete="off" checked [(ngModel)]=signUpModel.Role> <span style="font-size: 16px;
+                                  font-weight: lighter;">Candidate</span>
+                </label>
+                <label id="RoleButton1" class="btn btn-secondary" style="height: 40px;
+                              padding: 6px;width:140px">
+                  <input class="btn-connection" #Role="ngModel" type="radio" name="Role" id="option3" value="2" autocomplete="off" [(ngModel)]=signUpModel.Role><span style="font-size: 16px;
+                                  font-weight: lighter;">Connections</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" name="UserName" #email="ngModel" maxlength="50" [class.is-invalid]="email.invalid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" placeholder="Email address*" required [(ngModel)]="signUpModel.UserName">
+              <div *ngIf="email.errors && (email.invalid && email.touched)" style="text-align:left">
+                <small class="text-danger" *ngIf="email.errors.pattern">Email is Invalid</small>
+                <small class="text-danger" *ngIf="email.errors.required">Email is Required</small>
+
+              </div>
+            </div>
+            <div class="form-label-group">
+              <input [type]="fieldTextType ? 'text' : 'password'" id="inputPassword" name="Password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" minlength="8" maxlength="30" class="form-control" placeholder="Password*" required [(ngModel)]="signUpModel.Password">
+              <i class="bi"
+                 [ngClass]="{
+          'bi-eye-slash-fill': !fieldTextType,
+          'bi-eye-fill': fieldTextType
+        }"
+                 (click)="toggleFieldTextType()" style="position: absolute; right: 9px; top: 7px;"></i>
+              <!--<div class="input-group-append input-group-append-1 ">
+    <span class="input-group-text">
+
+    </span>
+  </div>-->
+              <small class="text-danger" [class.d-none]="password.valid || password.untouched" style="text-align:left">
+                Please enter password minimum 8 characters length.
+              </small>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 text-right"><a routerLink="/passwordreset">
+  <label class="forgotPassword" for="customCheck1">Forgot Password?</label>
+</a>
+      </div>
+            <button *ngIf="!submitted" class="btn btn-signin btn-block btn-sm" type="submit" [disabled]="myForm.form.invalid"><span style="color:#fff">LOGIN</span></button>
+
+            <div class="text-center" *ngIf="submitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+
+            <p class="text-center mt-3 mb-3">or</p>
+
+            <!--<app-social-login></app-social-login>-->
+          </form>
+          <button class="btn btn-lg btn-soc text-uppercase responsive-google-button" (click)="signInWithGoogle()"><img style="width: 12px;margin-top: -2px;" src="./assets/img/google.svg"> Login with Google</button>
+          <!--<button class="btn btn-lg btn-soc text-uppercase" (click)="onLinkedinSubmit()"><img style="width: 13px;margin-top: -5px;" src="./assets/img/linkedin.svg"> Login with linkedin</button>-->
+        </div>
+        <!--<div class="row" style="margin-bottom:20px;">
+    <div class="col-xl-8 text-center col-sm-8 col-md-8 col-lg-8 mx-auto">
+      <span class="newmsg">New to ConConnect? </span> <br>
+
+    </div>
+    <div class="col-md-4 text-center">  <span class="signuptxt"><a routerLink="/signup">Sign Up</a> </span></div>
+  </div>-->
+
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-xl-9 text-center col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <span class="newmsg">New to ConConnect? &nbsp;<a routerLink="/signup">Sign Up</a> </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="spinner" style="background:transparent linear-gradient(90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;padding-top:100px;" class="cocon-spinner">
+  <div class="spinner-border d-flex justify-content-center">
+    <div class="text-center" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<!--<router-outlet></router-outlet>-->

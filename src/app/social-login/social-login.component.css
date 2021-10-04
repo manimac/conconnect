@@ -1,0 +1,8 @@
+.cocon-spinner {
+  height: 100vh
+}
+.spinner-border {
+  width: 4em;
+  height: 4em;
+  margin: auto;
+}

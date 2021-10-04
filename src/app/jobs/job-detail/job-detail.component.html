@@ -1,0 +1,174 @@
+<!-- Page Content Start -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+  <app-header></app-header>
+  <div class="height-10"></div>
+  <div class="detail-block detail-block-res-cus" *ngIf="isJobDetailLoaded">
+    <div class="border-top bg-white">
+      <div class="container">
+        <div class="row" style="padding:24px;">
+          <div class="col-md-3 mt-3">
+            <img class="logo_s" src="{{_jobDetail.company.logo}}" alt="Logo" *ngIf="_jobDetail.company.logo!='undefined'" style="width: 179px; object-fit: cover;">
+            <img class="logo_s" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="Logo" *ngIf="_jobDetail.company.logo=='undefined'"  style=" width: 179px; object-fit: cover;">
+          </div>
+          <div class="col-md-6 mt-3">
+            <h4 class="" style="word-break:break-word">{{_jobDetail.job.title}}</h4>
+
+            <p class="" style="word-break:break-word"><b>Location: </b>{{_jobDetail.job.location}}, <b>City: </b>{{_jobDetail.job.city}}, <b>State: </b>{{_jobDetail.job.state}}, <b>Zip: </b> {{_jobDetail.job.zip}}</p>
+            <p class="" style="word-break:break-word"><b>Job Type: </b>{{_jobDetail.job.jobType}}</p>
+          </div>
+          <div class="col-md-3 text-center">
+            <button type="button" class="btn btn-primary btn-block mt-3" [routerLink]="['/jobApply', _jobDetail.job.id]" *ngIf="_jobDetail.isJobApplied==false">Apply</button>        
+            <span *ngIf="_jobDetail.isJobApplied==true" style=" margin-top: 20px; font-weight: 500; background: green; padding: 10px; border-radius: 4px; color: #fff; display: block;">Applied</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 bg-white p-4 mb-4">
+          <div class="d-flex bd-highlight mb-3">
+            <div class="mr-auto p-2 bd-highlight">  <p class="bd-highlight"><b>Industry :</b> {{_jobDetail.company.industry}}</p></div>
+            <div class="p-2 bd-highlight">
+              <p class="flex-shrink-1 bd-highlight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                </svg>&nbsp;{{_jobDetail.job.dateCreatedOn | dateAgo}}
+              </p>
+            </div>
+
+          </div>
+          <h4 class="text-left">Job Description :</h4>
+          <div class="row text-left">
+            <div class="col-md-12">
+              <p style="word-break:break-word">{{_jobDetail.job.description}}</p>
+            </div>
+          </div>
+          <!--<h4 class="text-left">Key Objectives :</h4>
+          <div class="row text-left">
+            <div class="col-md-12">
+              <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>-->
+          <!--<h4 class="text-left">Responsibilities :</h4>
+          <div class="row text-left">
+            <div class="col-md-12">
+              <ul>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+              </ul>
+            </div>
+          </div>
+          <h4 class="text-left">Skils :</h4>
+          <div class="row text-left">
+            <div class="col-md-12">
+              <ul>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+              </ul>
+            </div>
+          </div>-->
+          <!--<h4 class="text-left">Tags :</h4>
+          <div class="row mb-5 mt-3 d-flex flex-wrap">
+            <button type="button" class="btn btn-secondary m-2">Office Admin</button>
+            <button type="button" class="btn btn-secondary m-2">Assistant</button>
+            <button type="button" class="btn btn-secondary m-2">Admin</button>
+            <button type="button" class="btn btn-secondary m-2">Office Assistent</button>
+            <button type="button" class="btn btn-secondary m-2">Office Admin</button>
+            <button type="button" class="btn btn-secondary m-2">Assistant</button>
+            <button type="button" class="btn btn-secondary m-2">Admin</button>
+            <button type="button" class="btn btn-secondary m-2">Office Assistent</button>
+          </div>
+          <hr />
+          <div class="row text-center">
+            <div class="col-md-12 text-center">
+              <button type="button" class="btn btn-outline-primary btn-block">Apply</button>
+            </div>
+          </div>-->
+        </div>
+        <div class="col-md-4">
+          <div class="bg-white" style="padding: 10px;text-align:center;">
+            <img class="" src="{{_jobDetail.company.logo}}" alt="Logo" style="padding: 20px; object-fit: cover; " *ngIf="_jobDetail.company.logo!='undefined'">
+              <img class="" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="Logo" style="padding: 20px; object-fit: cover; height: 120px;" *ngIf="_jobDetail.company.logo=='undefined'">
+            <p class="p-5 text-justify" style="word-break:break-word"><b>About : </b>{{_jobDetail.company.about}}</p>
+            <!--<a href="mailto:info@apple.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+              </svg>&nbsp; info@apple.com
+            </a><hr />
+            <a href="www.apple.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+              </svg>&nbsp;www.applecareers.com
+            </a><hr />
+            <div class="pb-4">
+              <a href="#" class="fa fa-facebook"></a>
+              <a href="#" class="fa fa-twitter"></a>
+              <a href="#" class="fa fa-google"></a>
+              <a href="#" class="fa fa-linkedin"></a>
+              <a href="#" class="fa fa-youtube"></a>
+              <a href="#" class="fa fa-instagram"></a>
+            </div>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-3" *ngIf="!isJobDetailLoaded">
+    <div class="spinner-border text-center" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <br />
+  <h2 class="text-center">Latest Jobs</h2>
+  <div class="detail-block" *ngIf="isLatestJobDetailLoaded">
+    <br />
+    <div class="container">
+
+      <div class="row icon-boxes">
+
+        <div class="col-md-4 mb-5" *ngFor="let jobData of _recentJobsList">
+          <div class="card">
+            <div class="text-center">
+              <img class="card-img-top w-50 pt-4 img-h" src="{{jobData.company.logo}}" alt="Company Logo" style="object-fit:cover;" *ngIf="jobData.company.logo!='undefined'">
+
+              <img class="card-img-top w-50 pt-4 img-h" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="Company Logo" style="object-fit:cover;" *ngIf="jobData.company.logo=='undefined'">        
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title limit_char_show"><b>Job Title: </b>{{jobData.job.title}}</h5>
+              <p class="card-text limit_char_show"><b>Job Description: </b>{{jobData.job.description}}</p>
+              <p class="card-text limit_char_show"><b>Job Type: </b>{{jobData.job.jobType}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item limit_char_show"><b>Location: </b>{{jobData.job.location}}, <b>City: </b>{{jobData.job.city}}, <b>State: </b>{{jobData.job.state}}, <b>Zip: </b> {{jobData.job.zip}}</li>
+            </ul>
+            <div class="card-body text-center d-flex justify-content-around">
+              <a class="card-link btn btn-primary" [routerLink]="['/jobApply', jobData.job.id]" *ngIf="jobData.isJobApplied==false">Apply Job</a>
+              <span *ngIf="jobData.isJobApplied==true" style="font-weight: 500; background: green; padding: 10px; border-radius: 4px; color: #fff;">Applied</span>
+              <a class="card-link btn btn-warning" [routerLink]="['/job-detail', jobData.job.id]">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-3" *ngIf="!isLatestJobDetailLoaded">
+    <div class="spinner-border text-center" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</body>
+

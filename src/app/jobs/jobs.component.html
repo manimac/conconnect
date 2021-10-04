@@ -1,0 +1,191 @@
+<!-- Page Content Start -->
+
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+
+  <!--<body class="body-container text-center mx-auto">-->
+  <!-- Header -->
+
+  <app-header></app-header>
+
+  <div class="container-fluid main-section">
+    <div class="container">
+      <div class="row mt-4" *ngIf="isConnect">
+        <div class="col-md-4"></div><div class="col-md-5"></div><div class="col-lg-3 col-md-3 col-sm-3 p-0 text-right">
+          <button type="button" class="btn btn-primary wrn-btn service-btn" routerLink="/addjob">Add New Job</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="landing-bnr-h2 d-flex justify-content-center align-items-en">Over 1000+ jobs are waiting for you.</p>
+
+    <div class="centered container">
+      <section class="search-sec">
+        <form action="#" method="post" novalidate="novalidate" #myForm="ngForm" (ngSubmit)="onSearch()">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12 p-0">
+                  <input type="text" class="form-control search-slt" placeholder="Job Title or Keyword" [(ngModel)]="titleSearch" name="titleSearch">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                  <input type="text" list="staticUserIds" class="form-control search-slt" placeholder="Enter city" [(ngModel)]="citySearch" name="citySearch" />
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+                  <input type="text" class="form-control search-slt" placeholder="Enter zip code" [(ngModel)]="zipSearch" name="zipSearch" />                 
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 p-0">            
+                  <select class="form-control search-slt" id="state" [(ngModel)]="stateSearch" name="stateSearch">
+                    >
+                    <option value="" selected disabled hidden>Choose any state</option>
+                    <option *ngFor="let x of stateList | keyvalue" value="{{x.key}}">{{x.value}}</option>
+                  </select>
+                </div>               
+                <div class="col-lg-2 col-md-3 col-sm-12 p-0">
+                  <button type="submit" class="btn btn-danger wrn-btn" *ngIf="!jobsSearchBtnSubmitted">Search Jobs</button>
+
+                  <div class="text-center mt-3" *ngIf="jobsSearchBtnSubmitted">
+                    <div class="spinner-border text-center" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>      
+        </form>
+      </section>
+
+
+    </div>
+
+
+
+  </div>
+  <br />
+  <!--<h2 class="text-center">Job Categories</h2>
+  <br />-->
+  <!--<div class="container">
+    <div class="row icon-boxes">
+      <div class="col-md-3 mb-5">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="card-title">Education</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Construction</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Healthcare</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Maintanence</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row icon-boxes">
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Manufacturing</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Food</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Information Technology</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Retail</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>-->
+  <br />
+  <h2 class="text-center">Latest Jobs</h2>
+  <br />
+  <div class="container" *ngIf="isRecentJobsLoaded">
+
+    <div class="row icon-boxes" *ngIf="!_noDataFound">
+
+      <div class="col-md-4 mb-5" *ngFor="let jobData of _recentJobsList">
+        <div class="card">
+          <div class="text-center">
+            <img class="card-img-top w-50 pt-4 img-h" src="{{jobData.company.logo}}" alt="Company Logo" style="object-fit:cover;" *ngIf="jobData.company.logo!='undefined'">
+            <img class="card-img-top w-50 pt-4 img-h" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="Company Logo" style="object-fit:cover;" *ngIf="jobData.company.logo=='undefined'">
+          
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title limit_char_show"><b>Job Title: </b>{{jobData.job.title}}</h5>
+            <p class="card-text limit_char_show"><b>Job Description: </b>{{jobData.job.description}}</p>
+            <p class="card-text limit_char_show"><b>Job Type: </b>{{jobData.job.jobType}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item limit_char_show"><b>Location: </b>{{jobData.job.location}}, <b>City: </b>{{jobData.job.city}}, <b>State: </b>{{jobData.job.state}}, <b>Zip: </b> {{jobData.job.zip}}</li>
+          </ul>
+          <div class="card-body text-center d-flex justify-content-around">
+            <a class="card-link btn btn-primary" [routerLink]="['/jobApply', jobData.job.id]" *ngIf="jobData.isJobApplied==false">Apply Job</a>
+            <span *ngIf="jobData.isJobApplied==true" style="font-weight: 500; background: green; padding: 10px; border-radius: 4px; color: #fff;">Applied</span>
+            <a class="card-link btn btn-warning" [routerLink]="['/job-detail', jobData.job.id]">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row icon-boxes" *ngIf="_noDataFound">
+      <div class="col-md-12 text-center">
+        <p class="text-center">No Search results found.</p>
+      </div>
+    </div>
+    
+    </div>
+
+    <div class="text-center mt-3" *ngIf="!isRecentJobsLoaded">
+      <div class="spinner-border text-center" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Footer -->
+
+    <app-footer></app-footer>
+    <!-- END: Footer -->
+
+</body>
+
+  <!--END: Page Content Start -->

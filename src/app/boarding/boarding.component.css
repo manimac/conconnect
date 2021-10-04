@@ -1,0 +1,162 @@
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 102px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+/*    padding: 12px 16px;*/
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.fileUpload {
+  background: #015495;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 35px;
+  margin-top: 10px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  width: 170px;
+}
+
+  .fileUpload:hover, .fileUpload:active, .fileUpload:focus {
+    background: #076fbf;
+    cursor: pointer;
+  }
+
+  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 148px;
+    height: 46px;
+    cursor: pointer;
+  }
+
+input[type="file"] {
+  position: fixed;
+  right: 100%;
+  bottom: 100%;
+}
+
+#file-upload-button {
+  background: #fff !important;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+
+.form-control {
+  height: 40px !important;
+  font: normal normal normal 25px/25px Poppins;
+  color: #1b1b1b !important;
+}
+
+.c-follow-h:hover {
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+/*----------------------responsive-----------------------------*/
+.d-flex-responsive{
+    display:flex;
+}
+@media (max-width:600px) {
+  .res-border-page {
+    padding-top: 25px;
+  }
+
+  .res-navigation-padding {
+    padding-top: 70px;
+  }
+
+  .boarding-pro-info-hdr {
+    font: 15px arial;
+  }
+  .d-flex-responsive {
+    display: none;
+  }
+  .dropdown-responsive-content {
+    margin-left: -47px;
+  }
+  .hide-responsive-li{
+      display:none;
+  }
+  .fileupload-responsive {
+    margin-left: 76px;
+  }
+}
+@media (max-width:415px) {
+  .fileupload-responsive {
+    margin-left: 110px;
+  }
+}
+@media (max-width:376px) {
+  .fileupload-responsive {
+    margin-left: 80px;
+  }
+}
+
+  @media (max-width:326px) {
+    .res-navigation-padding {
+      padding-top: 10px;
+    }
+
+    .fileupload-responsive {
+      margin-left: 60px;
+    }
+  }
+
+  /* Tooltip text */
+  .tooltip1 .tooltiptext1 {
+    background: transparent linear-gradient( 90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
+    visibility: hidden;
+    width: 106px;
+    color: #fff;
+    text-align: center;
+    padding: 6px 0px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 11px;
+  }
+
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+  }

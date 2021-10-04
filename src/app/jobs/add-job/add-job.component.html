@@ -1,0 +1,195 @@
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+  <app-header></app-header>
+  <div class="container-fluid" style="background:#F3F2EF;display:flow-root;">
+    <div class="container">
+      <div class="break-height"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <!--{{newJob.value | json}}-->
+            <div class="card-body">
+              <div class="cart-text"><h4 style="font: normal normal 600 1.5rem/1rem Open Sans;">Job posting</h4></div>
+              <div class="break-height"></div>
+              <div class="" *ngIf="isAddJobComponentLoaded">
+                <form [formGroup]="newJob" *ngIf="isCompanyAttach" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Job Title</label>
+                    <input type="text" formControlName="jobTitle" class="form-control" id="jobTitle" name="jobTitle" placeholder="Enter Job Title" [ngClass]="{'has-error': newJob.get('jobTitle').errors && (newJob.get('jobTitle').touched || newJob.get('jobTitle').dirty)}">
+                    <span class="help-block" *ngIf="newJob.get('jobTitle').errors && (newJob.get('jobTitle').touched || newJob.get('jobTitle').dirty)">
+                      <span class="text-danger" *ngIf="newJob.get('jobTitle').errors.required">
+                        Title is required
+                      </span>
+                      <span class="text-danger" *ngIf="newJob.get('jobTitle').errors.maxlength || newJob.get('jobTitle').errors.minlength">
+                        Please enter title min 2 to max 100 characters
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Company Name</label>
+                    <input type="text" class="form-control" id="companyName" formControlName="companyName" placeholder="Enter Companyname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">Job Type</label>
+                    <select class="form-control" formControlName="jobType" id="exampleFormControlSelect2" [ngClass]="{'has-error': newJob.get('jobType').errors && (newJob.get('jobType').touched || newJob.get('jobType').dirty)}">
+                      <option value="" selected disabled hidden>Choose Job Type</option>
+                      <option>Full Time</option>
+                      <option>Contracting</option>
+                      <option>Freelancing</option>
+                      <option>Other</option>
+                    </select>
+                    <span class="help-block" *ngIf="newJob.get('jobType').errors && (newJob.get('jobType').touched || newJob.get('jobType').dirty)">
+                      <span class="text-danger" *ngIf="newJob.get('jobType').errors.required">
+                        Please choose any job type
+                      </span>
+                    </span>
+                  </div>
+                  <!---->
+                  <div formArrayName="skills" *ngFor="let skill of getControls(); let i = index">
+                    <div class="form-group" [formGroupName]="i">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <label [for]="'skill'+i">Skill</label>
+                          <!--<input type="text" class="form-control" formControlName="skill" [id]="'skill'+i" placeholder="Enter Skill">-->
+                          <select class="form-control" formControlName="skill" [id]="'skill'+i" [ngClass]="{'has-error':skill.get('skill').errors && (skill.get('skill').touched || skill.get('skill').dirty)}">
+                            <option value="" selected disabled hidden>Choose any skill</option>
+                            <option *ngFor="let x of skills | keyvalue" value="{{x.key}}">{{x.value}}</option>
+                          </select>
+
+                          <span class="help-block" *ngIf="skill.get('skill').errors && (skill.get('skill').touched || skill.get('skill').dirty)">
+                            <span class="text-danger" *ngIf="skill.get('skill').errors.required">
+                              Please choose any skill
+                            </span>
+                          </span>
+                        </div>
+                        <div class="col-md-5">
+                          <label [for]="'experience'+i">Experience</label>
+                          <!--<input type="text" class="form-control" pattern="[0-9]+" formControlName="experience" [id]="'experience'+i" placeholder="Enter Experience" [ngClass]="{'has-error':skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)}">-->
+
+                          <select class="form-control" formControlName="experience" [id]="'experience'+i" placeholder="Enter Experience" [ngClass]="{'has-error':skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)}">
+                            <option value="" selected disabled hidden>Choose any experience</option>                         
+                            <option *ngFor="let number of experienceDropdown" [value]="number">{{number}}</option>
+                          </select>
+
+                          <span class="help-block" *ngIf="skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)">
+                            <span class="text-danger" *ngIf="skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)">
+                              Experience is required and it must be proper number
+                            </span>
+                            <span class="text-danger" *ngIf="skill.get('experience').errors.maxlength || skill.get('experience').errors.minlength">
+                              Please enter experience min 1 to max 2 characters length
+                            </span>
+                          </span>
+                        </div>
+                        <div class="col-md-2 text-right" *ngIf="getLength()>1">
+                          <a class="btn btn-danger" style="margin-top: 30px;" (click)="removeSkillButtonClick(i)">remove</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br />
+                  <div class="text-right"><button type="button" class="btn btn-primary text-right" (click)="addSkill()" [disabled]="newJob.get('skills').invalid">Add Skill</button></div>
+                  <div class="form-group">
+                    <div class="row">
+                      <!--<div class="col-md-6">
+                        <label for="exampleFormControlInput1">Location</label>
+      <input type="text" class="form-control" formControlName="location" id="location" placeholder="Enter Location" [ngClass]="{'has-error': newJob.get('location').errors && (newJob.get('location').touched || newJob.get('location').dirty)}">
+      <span class="help-block" *ngIf="newJob.get('location').errors && (newJob.get('location').touched || newJob.get('location').dirty)">
+        <span class="text-danger" *ngIf="newJob.get('location').errors.required">
+          Location is required
+        </span>
+        <span class="text-danger" *ngIf="newJob.get('location').errors.maxlength || newJob.get('location').errors.minlength">
+          Please enter location min 2 to max 100 characters
+        </span>
+      </span>
+                      </div>-->
+                      <div class="col-md-6">
+                        <label for="exampleFormControlInput1">Zip Code</label>
+                        <input type="text" class="form-control" pattern="[0-9]+" formControlName="zip" id="zip" placeholder="Enter Zip Code" [ngClass]="{'has-error':newJob.get('zip').errors && (newJob.get('zip').touched || newJob.get('zip').dirty)}">
+
+                        <span class="help-block" *ngIf="newJob.get('zip').errors && (newJob.get('zip').touched || newJob.get('zip').dirty)">
+                          <span class="text-danger" *ngIf="newJob.get('zip').errors && (newJob.get('zip').touched || newJob.get('zip').dirty)">
+                            zip code is required and it must be proper number
+                          </span>
+                          <span class="text-danger" *ngIf="newJob.get('zip').errors.maxlength || newJob.get('zip').errors.minlength">
+                            Please enter zip code min and max 5 characters length
+                          </span>
+                        </span>
+                      </div>
+                   
+                    <div class="col-md-6">
+                      <label for="exampleFormControlInput1">City</label>
+                      <input type="text" class="form-control" formControlName="city" id="city" placeholder="Enter City" [ngClass]="{'has-error': newJob.get('city').errors && (newJob.get('city').touched || newJob.get('city').dirty)}">
+                      <span class="help-block" *ngIf="newJob.get('city').errors && (newJob.get('city').touched || newJob.get('city').dirty)">
+                        <span class="text-danger" *ngIf="newJob.get('city').errors.required">
+                          City is required
+                        </span>
+                        <span class="text-danger" *ngIf="newJob.get('city').errors.maxlength || newJob.get('city').errors.minlength">
+                          Please enter city min 2 to max 100 characters
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                    </div>
+                  <div class="form-group">
+                    <div class="row">
+             
+                      <div class="col-md-6">
+                        <label for="state">State</label>
+                        <!--<input type="text" class="form-control" formControlName="state" id="state" placeholder="Enter State">-->
+                        <select class="form-control" formControlName="state" id="state" [ngClass]="{'has-error':newJob.get('state').errors && (newJob.get('state').touched || newJob.get('state').dirty)}">
+                          >
+                          <option value="" selected disabled hidden>Choose any state</option>
+                          <option *ngFor="let x of stateList | keyvalue" value="{{x.key}}">{{x.value}}</option>
+                        </select>
+                        <span class="help-block" *ngIf="newJob.get('state').errors && (newJob.get('state').touched || newJob.get('state').dirty)">
+                          <span class="text-danger" *ngIf="newJob.get('state').errors.required">
+                            Please choose any state
+                          </span>
+                        </span>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" formControlName="description" id="jobDescription" rows="3" [ngClass]="{'has-error': newJob.get('city').errors && (newJob.get('description').touched || newJob.get('description').dirty)}"></textarea>
+                        <span class="help-block" *ngIf="newJob.get('description').errors && (newJob.get('description').touched || newJob.get('description').dirty)">
+                          <span class="text-danger" *ngIf="newJob.get('description').errors.required">
+                            Description is required
+                          </span>
+                          <span class="text-danger" *ngIf="newJob.get('description').errors.maxlength || newJob.get('description').errors.minlength">
+                            Please enter description min 2 to max 500 characters
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="form-group">
+                 
+                  </div>-->
+                  <div class="text-right"> <button type="submit" class="btn btn-primary text-right" [disabled]="newJob.invalid" *ngIf="!addJobSubmitted">Submit</button> </div>
+
+                  <div class="text-center mt-3" *ngIf="addJobSubmitted">
+                    <div class="spinner-border text-center" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+              <div class="text-center mt-3" *ngIf="!isAddJobComponentLoaded">
+                <div class="spinner-border text-center" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div *ngIf="!isCompanyAttach && isAddJobComponentLoaded" class="text-center">
+                <h4 class="text-center">Please add company details into profile page and post the new job.</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+</body>
+
+

@@ -1,0 +1,808 @@
+
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+
+  <app-header></app-header>
+
+  <div class="boarding-page res-border-page">
+    <div class="boarding-content container mx-auto" aria-label="User boarding page division" style="margin-top: 40px;">
+
+      <div style="display: inline-block; text-align: center;">
+        <h1 class="boarding-page-hdr my-3 text-center text-md-left d-block" style="padding-top: 10px;">User Onboarding</h1>
+      </div>
+
+      <div class="boarding-page-layout d-md-grid">
+
+        <div class="boarding-pro-pic-div mb-5" aria-label="User profile picture division">
+          <div style="height: auto; background: white; padding: 10px 0px 10px 0px !important; border: 2px solid #fff; box-shadow: 0 0 2px #9b9a9a; border-radius: 10px;">
+            <div class="boarding-pro-img-div mx-auto">
+              <img src="{{_user.profilePic}}" width="200px" height="200px" alt="profile pic" class="boarding-pro-img" *ngIf="!defaultImageFlag" />
+
+              <div *ngIf="defaultImageFlag">
+                <img [src]="compressResultImage" width="200px" height="200px" alt="profile pic" class="boarding-pro-img" />
+              </div>
+            </div>
+
+
+            <div class="fileUpload fileupload-responsive">
+              <input type="file" (change)="onChange($event)" class="upload w-100 pro-pic-chng-pic mx-auto" />
+              <span>Upload</span>
+            </div>
+
+            <button *ngIf="saveImageFlag" class="pro-pic-rmv-pic fileupload-responsive" value="Save Picture" (click)="saveImage()"> Save Picture </button>
+            <div class="text-center mt-3" *ngIf="saveImageSubmitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="boarding-pro-info-div" aria-label="User's Personal Information">
+
+          <!--<div style="font-weight: 600;
+    text-align: center;
+    padding: 4px !important;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px #9b9a9a;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px !important;">
+            <a routerLink="/feed">Skip and go to feed page</a>
+          </div>-->
+
+          <form class="p-0 m-0 d-lg-grid" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px;margin-bottom:20px !important;">
+
+            <!--{{myForm.value |json}}-->
+
+            <h2 class="boarding-pro-info-hdr">Personal Information</h2>
+            <hr class="w-100 boarding-pro-info-hr my-0" />
+
+
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg" aria-label="User's name">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">First Name</label> <br />
+                <input type="text"
+                       maxlength="50"
+                       placeholder="Enter first name"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       id="pro-first-name"
+                       aria-labelledby="first-name-lbl"
+                       #firstName="ngModel"
+                       [class.is-invalid]="firstName.invalid && firstName.dirty"
+                       value="{{_user.firstName}}"
+                       name="firstName"
+                       [(ngModel)]="_user.firstName"
+                       required />
+                <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">
+                  First Name is Required
+                </small>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Last Name</label> <br />
+                <input type="text"
+                       placeholder="Enter last name"
+                       maxlength="50"
+                       #lastName="ngModel"
+                       [class.is-invalid]="lastName.invalid && lastName.dirty"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{_user.lastName}}" name="lastName" [(ngModel)]="_user.lastName" required />
+                <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">
+                  Last Name is Required
+                </small>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg" aria-label="User's Email address">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="email-lbl ">Email</label> <br />
+                <input type="email"
+                       placeholder="Enter email"
+                       maxlength="100"
+                       #email="ngModel"
+                       [class.is-invalid]="email.invalid && email.dirty"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                       class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                       id="pro-user-email"
+                       aria-labelledby="email-lbl"
+                       value="{{_user.email}}"
+                       name="userName"
+                       [(ngModel)]="_user.email"
+                       required />
+                <div *ngIf="email.errors && (email.invalid || email.untouched)">
+                  <small class="text-danger" *ngIf="email.errors.pattern">Email is Invalid</small>
+                  <small class="text-danger" *ngIf="email.errors.required">Email is Required</small>
+                </div>
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Phone</label> <br />
+                <input type="text"
+                       placeholder="Enter phone number"
+                       pattern="[0-9]+"
+                       maxlength="10"
+                       #phone="ngModel"
+                       [class.is-invalid]="phone.invalid && phone.dirty"
+                       class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{_user.phone}}" name="phone" [(ngModel)]="_user.phone" required />
+                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
+                  Phone number is required and its valid numbers
+                </small>
+              </div>
+            </div>
+
+
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+              <div class="w-md-48 float-left mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="gender-lbl ">Gender</label> <br />
+                <select #gender1="ngModel"
+                        (blur)="validateGender(gender1.value)"
+                        (change)="validateGender(gender1.value)"
+                        [class.is-invalid]="genderHasError && gender1.dirty"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-user-gender"
+                        aria-labelledby="gender-lbl"
+                        name="gender"
+                        [(ngModel)]="_user.gender" value="{{_user.gender}}" required>
+                  <option value="null" selected disabled hidden>Choose gender</option>
+                  <option *ngFor="let x of gender | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                </select>
+                <small class="text-danger" [class.d-none]="!genderHasError ||gender1.untouched">
+                  Please choose any gender
+                </small>
+
+              </div>
+              <div class="w-md-48 float-right mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="ethnicity-lbl">Ethnicity</label> <br />
+                <select #Ethnicity1="ngModel"
+                        (blur)="validateEthnicityHasError(Ethnicity1.value)"
+                        (change)="validateEthnicityHasError(Ethnicity1.value)"
+                        [class.is-invalid]="ethnicityHasError && Ethnicity1.dirty"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-user-ethnicity"
+                        aria-labelledby="ethnicity-lbl"
+                        name="ethnicity"
+                        [(ngModel)]="_user.ethnicity" value="{{_user.ethnicity}}" required>
+                  <option value="null" selected disabled hidden>Choose any ethnicity</option>
+                  <option *ngFor="let x of enthnicity | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                </select>
+                <small class="text-danger" [class.d-none]="!ethnicityHasError || Ethnicity1.untouched">
+                  Please choose any ethnicity
+                </small>
+              </div>
+            </div>
+            <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+              <div class="w-100 mt-2">
+                <label class="boarding-pro-info-lbl text-left" id="user-bio-lbl">Bio</label> <br />
+
+                <textarea type="text"
+                          cols="50" rows="3"
+                          maxlength="1000"
+                          #bio="ngModel"
+                          [class.is-invalid]="bio.invalid && bio.touched"
+                          class="form-control font-size-12"
+                          id="pro-user-bio"
+                          aria-labelledby="user-bio-lbl"
+                          name="bio" [(ngModel)]="_user.bio" value="{{_user.bio}}" style="height: 63px !important;">{{_user.bio}}</textarea>
+
+                <small class="text-danger" [class.d-none]="bio.valid || bio.untouched">
+                  Bio is Required
+                </small>
+              </div>
+            </div>
+            <div class="my-3 d-md-grid h-auto" *ngIf="!submitted">
+              <button [disabled]="myForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+            </div>
+            <div class="text-center mt-3" *ngIf="submitted">
+              <div class="spinner-border text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </form>
+
+          <form class="p-0 m-0 d-lg-grid" [formGroup]="newJob" (ngSubmit)="onUserSkillSubmit()" novalidate style="display: grid;
+    height: auto;
+    background: #F4F7FA 0% 0% no-repeat padding-box;
+    padding: 20px !important;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px #9b9a9a;
+    background: white;
+    border-radius: 10px;margin-bottom:20px !important;">
+            <div formArrayName="skills" *ngFor="let skill of getControls(); let i = index">
+              <div class="form-group" [formGroupName]="i">
+                <div class="row">
+                  <div class="col-md-5">
+                    <label [for]="'skill'+i">Skill</label>
+                    <!--<input type="text" class="form-control" formControlName="skill" [id]="'skill'+i" placeholder="Enter Skill">-->
+                    <select class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" formControlName="skill" [id]="'skill'+i" [ngClass]="{'has-error':skill.get('skill').errors && (skill.get('skill').touched || skill.get('skill').dirty)}">
+                      <option value="" selected disabled hidden>Choose any skill</option>
+                      <option *ngFor="let x of skills | keyvalue" value="{{x.key}}">{{x.value}}</option>
+                    </select>
+
+                    <span class="help-block" *ngIf="skill.get('skill').errors && (skill.get('skill').touched || skill.get('skill').dirty)">
+                      <span class="text-danger" *ngIf="skill.get('skill').errors.required">
+                        Please choose any skill
+                      </span>
+                    </span>
+                  </div>
+                  <div class="col-md-5">
+                    <label [for]="'experience'+i">Experience</label>
+                    <!--<input type="text" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" pattern="[0-9]+" formControlName="experience" [id]="'experience'+i" placeholder="Enter Experience" [ngClass]="{'has-error':skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)}">-->
+
+                    <select class="questionnaire-input-font boarding-pro-info-input form-control font-size-12 form-control" formControlName="experience" [id]="'experience'+i" placeholder="Enter Experience" [ngClass]="{'has-error':skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)}">
+                      <option value="" selected disabled hidden>Choose any experience</option>
+                      <!--<option *ngFor="let x of experienceDropdown" value="{{x}}">{{x}}</option>-->
+                      <option *ngFor="let number of experienceDropdown" [value]="number">{{number}}</option>
+                    </select>
+
+                    <span class="help-block" *ngIf="skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)">
+                      <span class="text-danger" *ngIf="skill.get('experience').errors && (skill.get('experience').touched || skill.get('experience').dirty)">
+                        Experience is required and it must be proper number
+                      </span>
+                      <span class="text-danger" *ngIf="skill.get('experience').errors.maxlength || skill.get('experience').errors.minlength">
+                        Please enter experience min 1 to max 2 characters length
+                      </span>
+                    </span>
+                  </div>
+                  <div class="col-md-2 text-right" *ngIf="getLength()>1">
+                    <a class="btn btn-danger" style="margin-top: 30px;" (click)="removeSkillButtonClick(i)">remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="text-right"><button type="button" class="btn btn-primary text-right" (click)="addSkill()" [disabled]="newJob.get('skills').invalid">Add Skill</button></div>
+            <div class="w-100 float-right mt-2">
+              <div class="my-3 d-md-grid h-auto" *ngIf="!skillSubmitted">
+                <button [disabled]="newJob.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+              </div>
+              <div class="text-center mt-3" *ngIf="skillSubmitted">
+                <div class="spinner-border text-center" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </form>
+              <!--<form class="p-0 m-0 d-lg-grid" #experienceForm="ngForm" (ngSubmit)="onUserSkillSubmit(experienceForm)" novalidate style="display: grid;
+      height: auto;
+      background: #F4F7FA 0% 0% no-repeat padding-box;
+      padding: 20px !important;
+      border: 2px solid #fff;
+      box-shadow: 0 0 2px #9b9a9a;
+      background: white;
+      border-radius: 10px;margin-bottom:20px !important;">
+      <h2 class="boarding-pro-info-hdr">Experience</h2>
+      <hr class="w-100 boarding-pro-info-hr my-0" />
+      <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+        <div class="w-md-48 float-left mt-2">
+          <label class="boarding-pro-info-lbl text-left" id="industry-lbl">Experience on Skill</label> <br />
+          <select #industry="ngModel"
+                  (blur)="validateIndustryHasError(industry.value)"
+                  (change)="validateIndustryHasError(industry.value)"
+                  [class.is-invalid]="industryHasError && industry.touched"
+                  class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                  id="pro-user-industry"
+                  aria-labelledby="industry-lbl"
+                  name="industry"
+                  [(ngModel)]="_user.experienceOnSkill" value="{{_user.experienceOnSkill}}" required>
+
+            <option value="" selected disabled hidden>Choose any skill</option>
+            <option *ngFor="let x of skills | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+          </select>
+          <small class="text-danger" [class.d-none]="!industryHasError || industry.untouched">
+            Please choose any skill
+          </small>
+        </div>
+        <div class="w-md-48 float-right mt-2">
+          <label class="boarding-pro-info-lbl text-left" id="last-name-lbl">Experience</label> <br />
+          <input type="text"
+                 min="0"
+                 max="99"
+                 maxlength="2"
+                 pattern="[0-9]+"
+                 placeholder="Enter experience"
+                 #experience="ngModel"
+                 [class.is-invalid]="experience.invalid && experience.touched"
+                 class="questionnaire-input-font boarding-pro-info-input form-control font-size-12" id="pro-last-name" aria-labelledby="last-name-lbl" value="{{_user.experience}}" name="experience" [(ngModel)]="_user.experience" required />
+          <small class="text-danger" [class.d-none]="experience.valid || experience.untouched">
+            Please give valid experience.
+          </small>
+          <small *ngIf="experience.value < 0" class="text-danger">Invalid experiene</small>
+          <small *ngIf="experience.value >99" class="text-danger">Please give proper experience.</small>
+        </div>
+      </div>
+      <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg mt-1">
+        <a class="text-left c-follow-h">+Add</a>
+      </div>
+
+      <div class="w-100 float-right mt-2">
+        <div class="my-3 d-md-grid h-auto" *ngIf="!skillSubmitted">
+          <button [disabled]="experienceForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+        </div>
+        <div class="text-center mt-3" *ngIf="skillSubmitted">
+          <div class="spinner-border text-center" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+
+      </div>
+
+    </form>-->
+
+
+              <form class="p-0 m-0 d-lg-grid" #addressForm="ngForm" (ngSubmit)="onUserAddressSubmit(addressForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px; margin-bottom:20px !important;">
+                <h2 class="boarding-pro-info-hdr">Current Address</h2>
+                <hr class="w-100 boarding-pro-info-hr my-0" />
+                <div class="w-100 d-sm-grid boarding-pro-info-flex-cg">
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Street</label> <br />
+                      <input type="text"
+                             placeholder="Enter street"
+                             maxlength="50"
+                             #street="ngModel"
+                             [class.is-invalid]="street.invalid && street.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="street"
+                             [(ngModel)]="_user.street" value="{{_user.street}}" style="letter-spacing: 0px !important;" />
+                      <small class="text-danger" [class.d-none]="street.valid">
+                        Street is Required
+                      </small>
+                    </div>
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Flat/apt no</label> <br />
+                      <input type="text"
+                             placeholder="Enter flat/apt no"
+                             maxlength="50"
+                             #flat="ngModel"
+                             [class.is-invalid]="flat.invalid && flat.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="flat"
+                             [(ngModel)]="_user.flat" value="{{_user.flat}}" />
+                      <small class="text-danger" [class.d-none]="flat.valid">
+                        Location is Required
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">City</label> <br />
+                      <input type="text"
+                             placeholder="Enter city"
+                             maxlength="50"
+                             #city="ngModel"
+                             [class.is-invalid]="city.invalid && city.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="city"
+                             [(ngModel)]="_user.city" required />
+                      <small class="text-danger" [class.d-none]="city.valid || !(city.dirty)">
+                        City is Required
+                      </small>
+                    </div>
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Zip</label> <br />
+                      <input type="text"
+                             placeholder="Enter zip"
+                             min="0"
+                             max="99"
+                             maxlength="5"
+                             pattern="[0-9]+"
+                             #zip="ngModel"
+                             [class.is-invalid]="zip.invalid && zip.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="zip"
+                             [(ngModel)]="_user.zip" required />
+                      <small class="text-danger" [class.d-none]="zip.valid || !(zip.dirty)">
+                        Zip is Required
+                      </small>
+                    </div>
+
+                  </div>
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-right" id="location-lbl">State</label> <br />
+                      <select #state="ngModel"
+                              maxlength="2"
+                              (change)="validateStateHasError(state.value)"
+                              [class.is-invalid]="stateHasError && state.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="pro-user-industry"
+                              aria-labelledby="industry-lbl"
+                              name="state"
+                              [(ngModel)]="_user.state" value="{{_user.state}}" required>
+
+                        <option value="null" selected disabled hidden>Choose any state</option>
+                        <option *ngFor="let x of stateList | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="!stateHasError || state.untouched">
+                        Please choose any state
+                      </small>
+
+                    </div>
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Country</label> <br />
+                      <select #country="ngModel"
+                              maxlength="2"
+                              (change)="validateCountryHasError(country.value)"
+                              [class.is-invalid]="countryHasError && country.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="pro-user-industry"
+                              aria-labelledby="industry-lbl"
+                              name="country"
+                              [(ngModel)]="_user.country" value="{{_user.country}}" required>
+                        <option value="null" selected disabled hidden>Choose any country</option>
+                        <option class="questionnaire-option" value="US" selected>United States of America</option>
+
+                      </select>
+                      <small class="text-danger" [class.d-none]="!countryHasError || country.untouched">
+                        Please choose any country
+                      </small>
+
+                    </div>
+                  </div>
+                  <div class="w-100 float-right mt-2">
+                    <div class="">
+                      <div class="my-3 d-md-grid h-auto" *ngIf="!locationSubmitted">
+                        <button [disabled]="addressForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+                      </div>
+                      <div class="text-center mt-3" *ngIf="locationSubmitted">
+                        <div class="spinner-border text-center" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+
+              <form class="p-0 m-0 d-lg-grid" #resumeForm="ngForm" (ngSubmit)="onUserResumeUpload(resumeForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px; margin-bottom:20px !important;">
+                <h2 class="boarding-pro-info-hdr">Resume Details</h2>
+                <hr class="w-100 boarding-pro-info-hr my-0" />
+                <div class="w-100 d-sm-grid boarding-pro-info-flex-cg">
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+                    <div class="w-100 my-2 float-right">
+                      <label class="boarding-pro-info-lbl text-left " id="user-resume-lbl">Upload Resume (Accepted File Formats : <b>pdf, doc & docx</b> , Accepted Size:<b> < 5mb</b>)</label> <br />
+                      <div class="file-upload-wrapper boarding-pro-user-resume">
+                        <div class="h-100 custom-file" style="padding-top: 38px;">
+
+                          <div class="fileUpload" style="margin:0 auto;">
+                            <input type="file"
+                                   #resume="ngModel"
+                                   (change)="onResumeChange($event)"
+                                   [class.is-invalid]="resumeHasError && resume.dirty"
+                                   class="upload form-group form-control-file file-upload boarding-pro-info-input w-100 h-100 form-control p-0"
+                                   id="pro-user-bio"
+                                   aria-labelledby="user-resume-lbl"
+                                   accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/docx,application/doc"
+                                   name="resumeUpload"
+                                   [(ngModel)]="userResumeModel" value="{{userResumeModel}}" required />
+
+                            <span>Upload</span>
+                          </div>
+
+                          <small class="text-danger" [class.d-none]="!resumeHasError || resume.untouched">
+                            Please choose resume
+                          </small>
+                          <div class="text-center" style="font-size: 15px;font-weight: bold;padding-top: 10px;">{{this.resumePath.name}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-100 my-2">
+                    <div class="my-3 d-md-grid h-auto" *ngIf="!resumeSubmitted">
+                      <button [disabled]="resumeForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+                    </div>
+                    <div class="text-center mt-3" *ngIf="resumeSubmitted">
+                      <div class="spinner-border text-center" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <form class="p-0 m-0 d-lg-grid" #questionnaireForm="ngForm" (ngSubmit)="onQuestionnaireSubmit(questionnaireForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px;margin-bottom:20px !important;">
+                <!--{{questionnaireForm.value |json}}-->
+                <div class="pt-3">
+                  <p class="boarding-questionnaire-hdr">
+                    Welcome To ConConnect. We built this questionnaire with one purpose in mind. To learn you and better help you succeed in your second life!(None of your info is shared with any state or government agencies)
+
+                  </p>
+                  <fieldset>
+                   
+                    <legend class="questionnaire-legend pt-3">
+                      Candidate Questionnaire
+                    </legend>
+                   
+                    <hr class="w-100 boarding-pro-info-hr my-2" />
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">1. How many years were you incarcerated?</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="99"
+                             maxlength="2"
+                             pattern="[0-9]+"
+                             placeholder="Enter the no of years incarcerated"
+                             #qAnswer8="ngModel"
+                             [class.is-invalid]="qAnswer8.invalid && qAnswer8.dirty"
+                             id="qA8" aria-labelledby="last-name-lbl" value="{{qAnsers.qA8}}" name="qA8" [(ngModel)]="qAnsers.qA8" />
+                      <small class="text-danger" [class.d-none]="qAnswer8.valid">
+                        Please give valid years incarcerated.
+                      </small>
+                    </div>
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">2. In what state were you incarcerated?</label>
+                      <select #state="ngModel"
+                              maxlength="2"
+                              (change)="validateStateHasError(state.value)"
+                              [class.is-invalid]="stateHasError && state.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="qA9"
+                              aria-labelledby="industry-lbl"
+                              name="qA9"
+                              [(ngModel)]="qAnsers.qA9" value="{{qAnsers.qA9}}"
+                              placeholder="Choose state">
+                        <option value="" selected disabled hidden>Choose any state</option>
+                        <option *ngFor="let x of stateList | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="!stateHasError || state.untouched">
+                        Please choose any state
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">3. Were you convicted of a violent crime? (We're not here to be in your business. The information provided to us will solely be used to assist your needs better.)</label>
+                      <select #crime="ngModel"
+                              maxlength="4"
+                              (change)="validateStateHasError(crime.value)"
+                              [class.is-invalid]="stateHasError && crime.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="qA11"
+                              aria-labelledby="industry-lbl"
+                              name="qA11"
+                              [(ngModel)]="qAnsers.qA11" value="{{qAnsers.qA11}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Yes">Yes</option>
+                        <option class="questionnaire-option" value="No">No</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="!stateHasError || crime.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">4. Are you currently on parole?</label>
+                      <select #isAnswer12="ngModel"
+                              maxlength="4"
+                              (change)="onViolentCrime(isAnswer12.value)"
+                              [class.is-invalid]="stateHasError && isAnswer12.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="isqA12"
+                              aria-labelledby="industry-lbl"
+                              name="isqA12"
+                              [(ngModel)]="qAnsers.isqA12" value="{{qAnsers.isqA12}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Yes">Yes</option>
+                        <option class="questionnaire-option" value="No">No</option>
+                      </select>
+
+                      <small class="text-danger" [class.d-none]="!stateHasError || isAnswer12.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+
+                    <div class="pt-2" *ngIf="isViolentCrime">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">4A. How many years do you have? (ConConnect aims to make sure you keep your freedom and don't violate the terms of parole.)</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="99"
+                             maxlength="2"
+                             pattern="[0-9]+"
+                             placeholder="Enter the no of years"
+                             #qAnswer12="ngModel"
+                             [class.is-invalid]="qAnswer12.invalid && qAnswer12.dirty"
+                             id="qA12" aria-labelledby="last-name-lbl" value="{{qAnsers.qA12}}" name="qA12" [(ngModel)]="qAnsers.qA12" />
+                      <small class="text-danger" [class.d-none]="qAnswer12.valid">
+                        Please give valid no.
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">5. Are you homeless or living in a shelter?</label>
+                      <select #qAnswer13="ngModel"
+                              maxlength="50"
+                              (change)="validateStateHasError(qAnswer13.value)"
+                              [class.is-invalid]="stateHasError && qAnswer13.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="qA13"
+                              aria-labelledby="industry-lbl"
+                              name="qA13"
+                              [(ngModel)]="qAnsers.qA13" value="{{qAnsers.qA13}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Homeless">Homeless</option>
+                        <option class="questionnaire-option" value="Living in a shelter">Living in a shelter</option>
+                      </select>
+
+                      <small class="text-danger" [class.d-none]="!stateHasError || qAnswer13.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">6. What is your household size, including dependents such as kids or family relying on your income? We'll provide insight into the desired income according to your household size.</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="99"
+                             maxlength="2"
+                             pattern="[0-9]+"
+                             placeholder="Enter the household size"
+                             #qAnswer14="ngModel"
+                             [class.is-invalid]="qAnswer14.invalid && qAnswer14.dirty"
+                             id="qA14" aria-labelledby="last-name-lbl" value="{{qAnsers.qA14}}" name="qA14" [(ngModel)]="qAnsers.qA14" />
+                      <small class="text-danger" [class.d-none]="qAnswer14.valid">
+                        Please give valid household size.
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">7. Have you created a plan to manage work, school, programs, and your personal life?</label>
+                      <select #isAnswer15="ngModel"
+                              maxlength="4"
+                              (change)="validateStateHasError(isAnswer15.value)"
+                              [class.is-invalid]="stateHasError && isAnswer15.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="qA15"
+                              aria-labelledby="industry-lbl"
+                              name="qA15"
+                              [(ngModel)]="qAnsers.qA15" value="{{qAnsers.qA15}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Yes">Yes</option>
+                        <option class="questionnaire-option" value="No">No</option>
+                      </select>
+
+                      <small class="text-danger" [class.d-none]="!stateHasError || isAnswer15.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">8. Do you know what industry you want to work in? <br />&nbsp;&nbsp;&nbsp;&nbsp;A. If yes, do you have the needed skills and knowledge to be successful?<br /> &nbsp;&nbsp;&nbsp;&nbsp;B. If no, in a few words please explain.?</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="999999"
+                             maxlength="500"
+                             placeholder="Enter the answer"
+                             #qAnswer16="ngModel"
+                             [class.is-invalid]="qAnswer16.invalid && qAnswer16.dirty"
+                             id="qA16" aria-labelledby="last-name-lbl" value="{{qAnsers.qA16}}" name="qA16" [(ngModel)]="qAnsers.qA16" />
+                      <small class="text-danger" [class.d-none]="qAnswer16.valid">
+                        Please give proper answer.
+                      </small>
+                    </div>
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">9. Do you suffer from any mental health or drug abuse issues?</label>
+                      <select #isAnswer17A="ngModel"
+                              maxlength="4"
+                              (change)="onMentalHealth(isAnswer17A.value)"
+                              [class.is-invalid]="stateHasError && isAnswer17A.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="isqA17A"
+                              aria-labelledby="industry-lbl"
+                              name="isqA17A"
+                              [(ngModel)]="qAnsers.isqA17A" value="{{qAnsers.isqA17A}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Yes">Yes</option>
+                        <option class="questionnaire-option" value="No">No</option>
+                      </select>
+
+                      <small class="text-danger" [class.d-none]="!stateHasError || isAnswer17A.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+                    <div class="pt-2" *ngIf="isMentalHealth">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">9A. Do you think prison may have affected your mental health or drug abuse issue? </label>
+                      <select #isAnswer17B="ngModel"
+                              maxlength="4"
+                              (change)="onDrugAbuse(isAnswer17B.value)"
+                              [class.is-invalid]="stateHasError && isAnswer17B.touched"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="isqA17B"
+                              aria-labelledby="industry-lbl"
+                              name="isqA17B"
+                              [(ngModel)]="qAnsers.isqA17B" value="{{qAnsers.isqA17B}}">
+                        <option value="" selected disabled hidden>Choose any option</option>
+                        <option class="questionnaire-option" value="Yes">Yes</option>
+                        <option class="questionnaire-option" value="No">No</option>
+                      </select>
+
+                      <small class="text-danger" [class.d-none]="!stateHasError || isAnswer17B.untouched">
+                        Please choose any option
+                      </small>
+                    </div>
+                    <div class="pt-2" *ngIf="isDrugAbuse">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">9B. Have you addressed your mental health or drug abuse issue? Please explain in a few words.?</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="999999"
+                             maxlength="500"
+                             placeholder="Enter the answer"
+                             #qAnswer17="ngModel"
+                             [class.is-invalid]="qAnswer17.invalid && qAnswer17.dirty"
+                             id="qA17" aria-labelledby="last-name-lbl" value="{{qAnsers.qA17}}" name="qA17" [(ngModel)]="qAnsers.qA17" />
+                      <small class="text-danger" [class.d-none]="qAnswer17.valid">
+                        Please give proper answer.
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">10. What skills, knowledge, or connections would you like to see on ConConnect to help you be successful?</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="999999"
+                             maxlength="500"
+                             placeholder="Enter the answer"
+                             #qAnswer18="ngModel"
+                             [class.is-invalid]="qAnswer18.invalid && qAnswer18.dirty"
+                             id="qA18" aria-labelledby="last-name-lbl" value="{{qAnsers.qA18}}" name="qA18" [(ngModel)]="qAnsers.qA18" />
+                      <small class="text-danger" [class.d-none]="qAnswer18.valid">
+                        Please give proper answer.
+                      </small>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="my-3 d-md-grid h-auto" *ngIf="!questionnarySubmitted">
+                  <button [disabled]="questionnaireForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+                </div>
+                <div class="text-center mt-3" *ngIf="questionnarySubmitted">
+                  <div class="spinner-border text-center" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+</div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</body>
+

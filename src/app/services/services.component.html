@@ -1,0 +1,153 @@
+<!-- Page Content Start -->
+
+<body class="body-container text-center mx-auto">
+
+  <app-header></app-header>
+
+  <div class="container-fluid main-section">
+    <div class="container">
+      <div class="row mt-4" *ngIf="isConnect">
+        <div class="col-md-4"></div><div class="col-md-5"></div><div class="col-lg-3 col-md-3 col-sm-3 p-0 text-right">
+          <button type="button" class="btn btn-primary wrn-btn service-btn" routerLink="/addservice">Add New Service</button>
+        </div>
+      </div>
+    </div>
+   
+    <p class="landing-bnr-h2 d-flex justify-content-center align-items-en">Our Services</p>
+
+    <div class="centered container">
+      <section class="search-sec">
+        <!--<form action="#" method="post" novalidate="novalidate">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                <select class="form-control search-slt" id="exampleFormControlSelect2">
+                  <option>Location</option>
+                  <option>Visakhapatnam</option>
+                  <option>Bangalore</option>
+                  <option>Hyderabad</option>
+                  <option>Pune</option>
+                  <option>Chennai</option>
+                  <option>Mumbai</option>
+                </select>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                <select class="form-control search-slt" id="exampleFormControlSelect1">
+                  <option>Category</option>
+                  <option>Construction</option>
+                  <option>Healthcare</option>
+                  <option>Maintanence</option>
+                  <option>Manufacturing</option>
+                  <option>Food</option>
+                  <option>Information Technology</option>
+                  <option>Retail</option>
+                  <option>Education</option>
+                </select>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                <button type="button" class="btn btn-danger wrn-btn">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4" *ngIf="isConnect">
+          <div class="col-md-4"></div><div class="col-md-4"></div><div class="col-lg-4 col-md-4 col-sm-4 p-0 text-right">
+            <button type="button" class="btn btn-primary wrn-btn" routerLink="/addservice">Add New Service</button>
+          </div>
+        </div>
+      </form>-->
+
+        <form action="#" method="post" novalidate="novalidate" #myForm="ngForm" (ngSubmit)="onSearch()">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12 p-0">
+                  <select class="form-control search-slt" id="CategorySearch" [(ngModel)]="CategorySearch" name="CategorySearch">
+                    >
+                    <option value="null" selected disabled hidden>Choose any category</option>
+                    <option *ngFor="let x of categoryList" value="{{x.id}}">{{x.name}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                  <input type="text" list="staticUserIds" class="form-control search-slt" placeholder="Enter city" [(ngModel)]="citySearch" name="citySearch" />
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-12 p-0">
+                  <input type="text" class="form-control search-slt" placeholder="Enter zip code" [(ngModel)]="zipSearch" name="zipSearch" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+                  <select class="form-control search-slt" id="state" [(ngModel)]="stateSearch" name="stateSearch">
+                    >
+                    <option value="" selected disabled hidden>Choose any state</option>
+                    <option *ngFor="let x of stateList | keyvalue" value="{{x.key}}">{{x.value}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 p-0">
+                  <button type="submit" class="btn btn-danger wrn-btn" *ngIf="!jobsSearchBtnSubmitted">Search </button>
+
+                  <div class="text-center mt-3" *ngIf="jobsSearchBtnSubmitted">
+                    <div class="spinner-border text-center" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+  </div>
+  <br />
+
+  <div class="container">
+    <br />
+    <h2 class="text-center">Latest Services</h2>
+    <br />
+    <div *ngIf="isRecentServicesLoaded">
+
+      <div class="row icon-boxes" *ngIf="!_noDataFound">
+        <div class="col-md-4 mb-5" *ngFor="let serviceData of _recentServiceList">
+          <div class="card text-center bg-white ser-card">
+            <img class="bg-white" src="{{serviceData.logo}}" alt="service-logo" style="height: 200px; object-fit: cover;" *ngIf="serviceData.logo!='undefined'">
+
+            <img class="bg-white" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="service-logo" style="height: 200px; object-fit: cover;" *ngIf="serviceData.logo=='undefined'">
+
+            <div class="card-body">
+              <h3 class="card-title limit_char_show">{{serviceData.title}}</h3>
+              <p style="word-break:break-word;" [ngClass]="{'p-height-s' :isPHeightS}">
+                <!--{{serviceData.description}}-->
+                {{  (serviceData.description.length>serviceData.firstCount) ? (serviceData.description | slice:0:serviceData.counter)+'..':(serviceData.description) }}
+                <span class="redTxt" *ngIf="(serviceData.description.length>150)" (click)="toggleServiceDescription(serviceData.id)" style="cursor:pointer;color:red">
+                  {{serviceData.showTxt}}
+                </span>
+
+              </p>
+              <p style="word-break:break-word"><b>PostedOn: </b>{{serviceData.dateCreatedOn | dateAgo}}</p>
+              <p><a class="btn btn-success" href="{{serviceData.url}}" target="_blank">Register Service</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row icon-boxes" *ngIf="_noDataFound">
+        <div class="col-md-12 text-center">
+          <p class="text-center">No Search results found.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-3" *ngIf="!isRecentServicesLoaded">
+      <div class="spinner-border text-center" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</body>
+
+
+

@@ -1,0 +1,13 @@
+.service-btn {
+  position: absolute;
+  top: -120px;
+  left: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .service-btn {
+    position: absolute;
+    top: -63px;
+    left: 0;
+  }
+}

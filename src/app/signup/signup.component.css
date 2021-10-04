@@ -1,0 +1,37 @@
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: #fff !important;
+    /* background-color:#149f9a !important; */
+    background: transparent linear-gradient(90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
+    border-color:  1px solid #149f9a !important;
+  }
+
+
+.cocon-spinner {
+  height: 100vh
+}
+
+  .cocon-spinner .spinner-border {
+    width:4em;
+    height: 4em;
+    margin: auto;
+  }
+
+.input-group-append-1 {
+  margin-left: -6px;
+}
+
+.cus-pass {
+  display: flex;
+}
+.responsive-google-button {
+  width: 282px;
+}
+@media (max-width:600px) {
+  .responsive-toggle-button {
+    margin-left: -28px;
+  }
+  .responsive-google-button{
+      width:226px;
+  }
+}

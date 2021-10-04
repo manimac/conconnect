@@ -1,0 +1,405 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body class="body-container text-center mx-auto" style="overflow-x:hidden">
+  <div class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="1"
+       [infiniteScrollThrottle]="3000"
+       (scrolled)="onScrollDown()">
+
+    <app-header></app-header>
+
+    <div class="container gedf-wrapper resposive-gedf-wraffer">
+      <div class="row">
+        <div id="profileHide" class="col-md-3 d-md-block d-lg-block mb-4">
+          <div class="">
+            <div class="card-body" style="background: #fff; border: none !important; border-radius: 10px; box-shadow: 0 0 2px #9b9a9a;">
+              <div class="feed-profile_img mx-auto">
+                <img src="{{profileImage}}" alt="profile pic" class="d-block feed-profile_display_picture m-2 img-fluid" id="feed_profile_display_picture" />
+              </div>
+              <div class="text-muted" routerLink="{{userProfileType}}" style="cursor: pointer;"><h4 style="word-break: break-word; font-size: 24px !important;">{{firstName}}<br />{{lastName}}</h4><!--<h4 style="word-break: break-word;"></h4>--></div>
+              <div class="h7" style="word-break: break-word;">
+                {{userBio}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 gedf-main">
+          <div class="container mb-5">
+            <div class="d-flex justify-content-center row">
+              <div class="col-md-12">
+                <div class="feed row d-flex justify-content-between" style="margin-bottom: 8px;">
+                  <div class="col-md-4 tooltip1" style="padding-bottom:10px;cursor:pointer" routerLink="/jobs">
+                    <div class="background0">
+                      <!--<span class="tooltiptext2">Launching soon...</span>-->
+                      <img class="img-back" src=".\assets\img\courses\jobs.png" alt="Jobs" style="opacity: 1.4;">
+                      <div class="transparentbox">
+                        <p>Jobs</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 tooltip1" style="padding-bottom: 10px; cursor: pointer">
+                    <a href="https://concourses.education/" target="_blank">
+                      <div class="background1">
+                        <!--<span class="tooltiptext2">Launching soon...</span>-->
+                        <img class="img-back" src=".\assets\img\courses\courses.png" alt="Courses" style="opacity: 1.4;border-radius:5px;">
+                        <div class="transparentbox">
+                          <p>Courses</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-md-4 tooltip1" style="padding-bottom: 10px; cursor: pointer" routerLink="/services">
+                    <div class="background2">
+                      <!--<span class="tooltiptext2">Launching soon...</span>-->
+                      <img class="img-back" src=".\assets\img\courses\services.png" alt="Services" style="opacity: 1.4; border-radius: 5px;">
+                      <div class="transparentbox">
+                        <p>Services</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <form class="p-0 m-0 d-lg-grid feed" enctype="multipart/form-data" #feedForm="ngForm" (ngSubmit)="feedSubmit(feedForm)" novalidate>
+                  <div class="feed-main_posts">
+                    <div class="row">
+                      <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                            <div class="form-group padding-10">
+                              <label class="sr-only" for="message">post</label>
+                              <!--[disabled]="!feedImageShow"-->
+                              <textarea #startPosting="ngModel" maxlength="3000" class="form-control post-box-cus-style font-size-12" id="message" rows="3" placeholder="Start posting" name="feedTest" [(ngModel)]="feedTest" style="padding-top: 0px; font-size: 14px !important;" [required]="feedImageShow==false && feedVideoShow==false">start posting</textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 text-left" style="padding-left: 27px; line-height: 30px;">
+                            <div class="">
+                              <div class="i-u-p-st" style="cursor:pointer">
+                                <input type="file" #postImageClear name="postImageClear" class="image-upload-input text-left" (change)="onChange($event)" style="cursor:pointer" />
+                                <img src="../../assets/img/post-photo-24px.svg" alt="upload image icon" width="18" />&nbsp;<span class="font-size-12" style="cursor:pointer">Photo&nbsp;&nbsp;&nbsp;</span>
+                              </div>
+                              <span style="cursor:pointer">
+                                <input type="file" #postVideoClear name="postVideoClear" class="text-left" (change)="onVideoChange($event)" style="cursor:pointer;position: absolute !important;
+    font-size: 5px;
+    opacity: 0 !important;
+    top: 6px !important;" />
+                                <img class="mr-1" src="../assets/img/post-video-24px.svg" width="18" alt="Upload Video icon" />
+                                <span class="font-size-12" style="margin-left: -3px;">&nbsp;Video&nbsp;&nbsp;&nbsp;</span>
+                              </span>
+                              <span style="cursor:pointer" routerLink="/addjob" *ngIf="isConnect">
+                                <img class="" src="../assets/img/post-job-24px.svg" width="20" alt="Create a job icon" style="margin-top:-1px;" />
+                                <span class="font-size-12" style="margin-left: -2px;">
+                                  &nbsp;Post a job&nbsp;&nbsp;
+                                </span>
+                              </span>
+                              <span style="cursor:pointer" routerLink="/jobs" *ngIf="!isConnect">
+                                <img class="mr-1" src="../assets/img/find-job-24px.svg" width="18" alt="Find a job icon" />
+                                <span class="font-size-12" style="margin-left: -4px;">&nbsp;Looking for job&nbsp;&nbsp;</span>
+                              </span>
+                            </div>
+
+                          </div>
+
+                          <div class="col-md-2">
+                            <div class="text-right">
+                              <button [disabled]="feedForm.form.invalid" type="submit" class="questionnaire-form-btn text-center float-right ml-lg-auto responsive-post-feed-button" *ngIf="!feedSubmitted">Post</button>
+                              <div class="text-center mt-3" *ngIf="feedSubmitted">
+                                <div class="spinner-border text-center" role="status">
+                                  <span class="sr-only">Loading...</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <span class="close img-close-post" *ngIf="feedImageShow" (click)="imageClose()">
+                              <span (click)="postImageClear.value = ''">&times;</span>
+                            </span>
+                            <img src="{{compressResultImage}}" alt="profile pic" class="feed-profile_display_picture-1 m-2" id="feed_profile_display_picture" *ngIf="feedImageShow" />
+                          </div>
+
+                          <div class="col-md-12 mt-2">
+                            <span class="close img-close-post" *ngIf="feedVideoShow" (click)="videoClose()" style="left: 267px; z-index: 1000;">
+                              <span (click)="postVideoClear.value = ''">&times;</span>
+                            </span>
+                            <video [src]="videoPreview" height="180" controls *ngIf="feedVideoShow"></video>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div *ngIf="feedShow">
+                  <div class="feed" *ngFor="let feed1 of feedData">
+                    <div class="bg-white mt-2" *ngFor="let feed of feed1;let j = index" style="border-radius: 10px; box-shadow: 0 0 2px #9b9a9a;">
+                      <div>
+                        <div class="d-flex flex-row justify-content-between align-items-center p-2">
+                          <div class="d-flex flex-row align-items-center feed-text px-2" style="margin-left: 0px;">
+                            <img class="rounded-circle" [src]="feed.userNameNavigation.userDetails.photo" width="40" height="40" *ngIf="feed.userNameNavigation.userDetails.photo!=null" style="object-fit: cover;" />
+                            <img class="rounded-circle" src="{{profileImage}}" width="40" height="40" *ngIf="feed.userNameNavigation.userDetails.photo==null" style="object-fit: cover;" />
+                            <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold res-word-break" style="word-break: break-word;">{{feed.userNameNavigation.userDetails.firstName}}&nbsp;{{feed.userNameNavigation.userDetails.lastName}}</span><span class="text-black-50 time text-left">{{feed.createdDate | dateAgo}}</span></div>
+                          </div>
+                          <div class="feed-icon px-2 responsive-follow">
+                            <a class="text-primary c-follow-h c-follow-h-responsive" (click)="onFollow(feed.userName)" *ngIf="feed.isFollow==false">+ Follow</a>
+                            <!--<span class="text-success" *ngIf="feed.isFollow==true">
+
+                            </span>
+                            <span class="text-success" *ngIf="feedTempFollowFlag">
+
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+
+                            <i class="fa fa-ellipsis-v text-black-50 dropdown d-none" style="cursor:pointer;">
+                              <div class="dropdown-content dropdown-responsive-content" style="width: 191px; right: -16px; text-align: left;">
+                                <a style="padding: 10px;" (click)="onDeleteFeed(feed.id, feed.userName);">Delete Feed</a>
+                              </div>
+                            </i>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-bottom:12px;">
+                        <div class="p-2 px-3" style="word-break:break-word;line-height: 24px; font-size: 14px; text-align: left; margin-left: 0px;">
+                          <p class="clearfix" *ngIf="feed.textdescription!=null">
+                            <span class="collapsable float-left">
+                              {{  (feed.textdescription.length>feed.firstCount) ? (feed.textdescription | slice:0:feed.counter)+'..':(feed.textdescription) }}
+                              <span class="redTxt" *ngIf="(feed.textdescription.length>150)" (click)="toggleSkil(feed.id)" style="cursor:pointer;color:red">
+                                {{feed.showTxt}}
+                              </span>
+                            </span>
+                          </p>
+
+                          <!--<span *ngIf="feed.textdescription!=null"> {{feed.textdescription}}</span>-->
+                          <!--<a (click)="seeMore();" style="color: #1167A5; text-align: right; float: right;" *ngIf="feed.textdescription!=null && feed.textdescription.length > 224">see more</a>-->
+                        </div>
+                        <div class="feed-image"><img class="img-fluid img-responsive" [src]="feed.imageDescription" style="object-fit:cover"></div>
+
+                        <div class="feed-image" *ngIf="feed.isVideo">
+                          <video [src]="feed.video" class="video-s-h-w" (playing)="onPlayingVideo($event)" controls></video>
+                        </div>
+
+                      </div>
+                      <div class="box-body text-left row">
+                        <div style="display:contents;">
+                          <div class="justify-content-end socials col-md-8" style="display: inline; padding-left: 21px; ">
+                            <div class="" style="display:inline;">
+                              <a class="c-follow-h" data-toggle="modal" (click)="OnLikeSumit(1,feed.id,feed.userName)" *ngIf="!feed.isLikeShow" style="">
+                                <img src="../../assets/img/courses/like.svg" width="21" style="margin-top: -9px; margin-right: 3px;" /><span class="like-span">Like</span>
+                              </a>
+                              <a class="c-follow-h" (click)="likeDelete(feed.id,feed.userName)" *ngIf="feed.isLikeShow" style="">
+                                <img src="../../assets/img/courses/like (1).svg" width="21" style="margin-top: -9px; margin-right: 3px;" /><span class="like-span" style="color:#1167A5">Unlike</span>
+                              </a>
+                            </div>
+                            <div class="" style="display:inline;padding-left:15px;">
+                              <a class="c-follow-h" (click)="commentClick();" *ngIf="!commnetClickFlag">
+                                <img src="../../assets/img/courses/comment.svg" width="20" style="margin-right: 3px;" /><span class="like-span">Comment</span>
+                              </a>
+                              <a class="c-follow-h" (click)="unCommentClick();" *ngIf="commnetClickFlag">
+                                <img src="../../assets/img/courses/comment (1).svg" width="20" style="margin-right: 3px;" /><span class="like-span" style="color: #1167A5">Comment</span>
+                              </a>
+                            </div>
+                            <div style="display: inline;padding-left:15px;">
+                              <a class="c-follow-h"><img src="../../assets/img/courses/outline-share-24px.svg" width="20" style="margin-right: 3px; margin-top: -5px;" /><span class="like-span">Share</span></a>
+                            </div>
+                          </div>
+                          <div class="col-md-4 text-right">
+                            <div *ngIf="feed.likes.length && feed.comments.length" class="responsive-comment-count"> <span class="pull-right text-muted"><span (click)="loadMoreLike(feed.id)" data-toggle="modal" data-target="#likesPopUpModel" style="cursor:pointer">{{feed.likes.length}} likes </span> {{feed.postType}} comments</span></div>
+                            <div *ngIf="!feed.likes.length && feed.comments.length" class="responsive-comment-count"> <span class="pull-right text-muted">no likes  {{feed.postType}} comments</span></div>
+                            <div *ngIf="feed.likes.length && !feed.comments.length" class="responsive-comment-count"> <span class="pull-right text-muted"><span (click)="loadMoreLike(feed.id)" data-toggle="modal" data-target="#likesPopUpModel" style="cursor:pointer">{{feed.likes.length}} likes </span> no comments</span></div>
+                          </div>
+
+                          <div class="modal fade" id="likesPopUpModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Likes</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                  <div *ngIf="isLoadMoreLikes">
+                                    <div class="box-comment" *ngFor="let com of loadMoreLikes">
+                                      <div class="row d-flex justify-content-around">
+                                        <div class="" style="display:flex;">
+                                          <img src="{{com.userNameNavigation.userDetails.photo}}" style=" width: 36px !important; height: 36px !important;border-radius:20px;object-fit:cover;" />
+                                          <div class="comment-text text-left" style="margin-left:10px; padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
+                                            <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} </span>
+                                          </div>
+                                        </div>
+                                        <!--<div class="">
+
+                                        </div>-->
+                                        <div class=""><span class="text-muted pull-right">{{com.createdDate | dateAgo}}</span> </div>
+                                      </div>
+                                      <hr />
+
+                                    </div>
+                                  </div>
+                                  <div class="text-center mt-3" *ngIf="!isLoadMoreLikes" style=" display: contents; position: absolute; right: 0px;">
+                                    <div class="spinner-border text-center" role="status">
+                                      <span class="sr-only">Loading...</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                        <div class="col-md-12" style="margin-top: 30px;">
+                          <div class="d-flex bd-highlight">
+                            <div class="p-1">
+                              <!--<img class="rounded-circle" [src]="feed.userNameNavigation.userDetails.photo" style="width: 36px; height: 36px; margin-top: 2px;" *ngIf="feed.userNameNavigation.userDetails.photo!=null" />-->
+                              <img class="rounded-circle" src="{{profileImage}}" style="object-fit: cover; width: 36px; height: 36px; margin-top: 2px;" /><!--*ngIf="feed.userNameNavigation.userDetails.photo==null"-->
+                            </div>
+                            <div class="p-1 flex-fill bd-highlight">
+                              <div class="input-group mb-3">
+                                <input type="text" #commentFeed="ngModel" class="form-control" placeholder="Add a comment" aria-label="comment" aria-describedby="comment" name="{{feed.id}}" [(ngModel)]="feed.answer" maxlength="2000" style="font-size: 13px; height: 40px; border-radius: 6px;margin-left:4px;">
+
+                                <div class="text-center mt-3" *ngIf="onCommentSubmitted && feed.commentLoader" style=" display: contents; position: absolute; right: 0px;">
+                                  <div class="spinner-border text-center" role="status" style=" display: inline; position: absolute; right: 10px; top:10px; width: 20px; height: 20px;">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                </div>
+                                <div class="input-group-append" *ngIf="!onCommentSubmitted">
+                                  <a class="" id="basic-addon2" (click)="onCommentSubmit(feed.id,feed.userName,feed.answer)"><img class="rounded-circle" src="./assets/img/courses/send.svg" style="z-index: 10; position: absolute; right: 5px; height: 25px; width: 28px; height: 25px; top:6px; " /></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--../../assets/img/courses/user (1).svg-->
+                      <div class="box-footer box-comments" style="background:#fff;border-radius:10px;">
+                        <div class="box-comment" *ngFor="let com of feed.comments">
+                          <img src="{{com.userNameNavigation.userDetails.photo}}" style=" margin-left: 6px; width: 36px !important; height: 36px !important;border-radius:20px;object-fit:cover;" />
+                          <div class="comment-text text-left" style="margin-left: 48px; padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
+                            <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} <span class="text-muted pull-right">{{com.createdDate | dateAgo}}</span> </span>
+
+                            <!--<span style="font-size:12px;">{{com.description}}</span>-->
+
+                            <p class="clearfix" *ngIf="com.description!=null" style="word-break:break-word">
+                              <span class="collapsable float-left" style="font-size:12px;">
+                                {{  (com.description.length>com.firstCount) ? (com.description | slice:0:com.counter)+'..':(com.description) }}
+                                <span class="redTxt" *ngIf="(com.description.length>150)" (click)="toggleSkil_c(feed.id,com.id)" style="cursor:pointer;color:red">
+                                  {{com.showTxt}}
+                                </span>
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                        <br />
+                        <!--*ngIf="feed.comments.length>0"-->
+                        <div class="text-center"></div>
+
+
+                        <a (click)="loadMoreComments(feed.id)" data-toggle="modal" data-target="#commentsPopUpModel" style="color:Highlight;cursor:pointer;font-size:13px;">See More</a>
+
+                        <div class="modal fade" #model1 id="commentsPopUpModel" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="commentModalLabel">Comments</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body text-center">
+                                <div *ngIf="isLoadMoreComments">
+                                  <div class="box-comment" *ngFor="let com of loadMoreCommentsList">
+                                    <div class="row">
+                                      <div class="col-md-1 col-sm-1">           <img src="{{com.userNameNavigation.userDetails.photo}}" style=" margin-left: 6px; width: 36px !important; height: 36px !important;border-radius:20px;object-fit:cover;" /></div>
+                                      <div class="col-md-11 col-sm-11">
+                                        <div class="comment-text text-left" style="padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
+
+                                          <div class="row">
+                                            <div class="col-md-8 col-sm-8">
+                                              <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} </span>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4"><span class="text-muted font-size-12 pull-right">{{com.createdDate | dateAgo}}</span> </div>
+                                          </div>
+
+                                          <!--<p>{{com.description}}</p-->
+                                          <br />
+                                          <p class="clearfix" *ngIf="com.description!=null" style="word-break:break-word">
+                                            <span class="collapsable float-left" style="font-size:12px;">
+                                              {{ (com.description.length>com.firstCount) ? (com.description | slice:0:com.counter)+'..':(com.description) }}
+                                              <span class="redTxt" *ngIf="(com.description.length>150)" (click)="toggleSkil_c_p(feed.id,com.id)" style="cursor:pointer;color:red">
+                                                {{com.showTxt}}
+                                              </span>
+                                            </span>
+                                          </p>
+                                        </div>
+
+                                      </div>
+
+                                    </div>
+
+                                    <hr />
+
+                                  </div>
+                                </div>
+                                <div class="text-center mt-3" *ngIf="!isLoadMoreComments" style=" display: contents; position: absolute; right: 0px;">
+                                  <div class="spinner-border text-center" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-3" *ngIf="!feedShow">
+                  <div class="spinner-border text-center" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <br />
+              <div class="text-center mt-3" *ngIf="isNextFeedLoaded">
+                <div class="spinner-border text-center" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="profileHide" class="col-md-3 d-md-block d-lg-block mb-4">
+          <div class="">
+            <div class="card-body" style="background: #fff; border: none !important; border-radius: 10px; box-shadow: 0 0 2px #9b9a9a;">
+              <button class="btn btn-outline-primary" routerLink="/connections" style="background: transparent linear-gradient(
+90deg
+ , #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
+    color: #fff !important;
+    font-size: 14px;">
+                Click to follow users
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-footer></app-footer>
+
+  </div>
+</body>
+

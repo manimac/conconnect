@@ -1,0 +1,11 @@
+.logo_s {
+  object-fit: cover;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width:600px) {
+  .detail-block-res-cus {
+    margin-top: 100px;
+  }
+}

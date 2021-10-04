@@ -1,0 +1,111 @@
+<body class="boarding-bg boarding-page-body" style="overflow-x:hidden">
+  <app-header></app-header>
+
+  <div class="container-fluid" style="background:#F3F2EF;display:flow-root;">
+    <div class="container">
+      <div class="break-height"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+
+            <div class="card-body">
+              <div class="cart-text"><h4 style="font: normal normal 600 1.5rem/1rem Open Sans;">Apply Job</h4></div>
+              <div class="break-height"></div>
+
+              <form [formGroup]="applyJob" (ngSubmit)="onSubmit()">
+                <!--{{applyJob.value | json}}-->
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" formControlName="phone" pattern="[0-9]+" class="form-control" id="phone" name="phone" placeholder="Enter phone no" [ngClass]="{'has-error': applyJob.get('phone').errors && (applyJob.get('phone').touched || applyJob.get('phone').dirty)}" />
+
+                  <span class="help-block" *ngIf="applyJob.get('phone').errors && (applyJob.get('phone').touched || applyJob.get('phone').dirty)">
+                    <span class="text-danger" *ngIf="applyJob.get('phone').errors && (applyJob.get('phone').touched || applyJob.get('phone').dirty)">
+                      Phone no is required and must be proper value
+                    </span>
+                    <span class="text-danger" *ngIf="applyJob.get('phone').errors.maxlength || applyJob.get('phone').errors.minlength">
+                      Please enter phone no min 5 to max 15 characters
+                    </span>
+                  </span>
+
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" placeholder="Enter email" [ngClass]="{'has-error': applyJob.get('email').errors && (applyJob.get('email').touched || applyJob.get('email').dirty)}" />
+
+                  <span class="help-block" *ngIf="applyJob.get('email').errors && (applyJob.get('email').touched || applyJob.get('email').dirty)">
+                    <span class="text-danger" *ngIf="applyJob.get('email').errors && (applyJob.get('email').touched || applyJob.get('email').dirty)">
+                      Email is required and must be a proper formate.
+                    </span>
+                    <span class="text-danger" *ngIf="applyJob.get('email').errors.maxlength || applyJob.get('email').errors.minlength">
+                      Please enter phone no min 2 to max 50 characters
+                    </span>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" formControlName="description" id="description" rows="3" [ngClass]="{'has-error': applyJob.get('description').errors && (applyJob.get('description').touched || applyJob.get('description').dirty)}"> </textarea>
+
+                  <span class="help-block" *ngIf="applyJob.get('description').errors && (applyJob.get('description').touched || applyJob.get('description').dirty)">
+                    <span class="text-danger" *ngIf="applyJob.get('description').errors.required">
+                      Description is required
+                    </span>
+                    <span class="text-danger" *ngIf="applyJob.get('description').errors.maxlength || applyJob.get('description').errors.minlength">
+                      Please enter phone no min 2 to max 500 characters
+                    </span>
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="description">Resume</label>
+                      <div class="row" *ngIf="resumeGet!=null">
+                        <div class="col-md-6">
+                          <br />
+                          <div class="text-center">
+                            <p>Existing Resume Link</p>
+                            <a href="{{resumeGet}}" style="border: 1px solid #d5d6d7; border-radius: 10px; padding: 10px; text-decoration: none;" target="_blank" class="btn btn-success">View</a>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <br />
+                          <br />
+                          <div class="form-check">
+                            <input class="form-check-input" formControlName="isChecked" name="isChecked" type="checkbox" value="" id="isChecked" (change)="checkValue(isChecked?'A':'B')">
+                            <label class="form-check-label" for="flexCheckChecked">
+                              Use Existing Resume
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 ">
+                      <br />
+                      <p>Please upload recent resume. <b>Supported Formats</b> are pdf, doc and docx. <b>Size:</b> < 5 mb</p>
+                      <div class="fileUpload">
+                        <input type="file" class="form-control btn-file" formControlName="resume" id="resume" name="resume" placeholder="Enter resume" accept="application/pdf" (change)="onResumeChange($event)" required style=" cursor: pointer; position: absolute; opacity: 0 !important;" />Resume Upload
+                      </div>
+                      <p style="padding-left: 37px;">{{resumePath.name}}</p>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-right"> <button type="submit" [disabled]="applyJob.invalid" class="btn btn-primary text-right" *ngIf="!applyJobSubmitted">Submit</button> </div>
+
+                <div class="text-center mt-3" *ngIf="applyJobSubmitted">
+                  <div class="spinner-border text-center" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+</body>

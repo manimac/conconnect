@@ -1,0 +1,131 @@
+
+
+.item {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.item-card {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.item-card-title {
+  font-size: 15px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+  .item-card-title i {
+    font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+    color: #ffa710
+  }
+
+.card-title i:hover {
+  transform: scale(1.25) rotate(100deg);
+  color: #41716a;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+
+.card-text {
+  height: 80px;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+
+.card::before {
+  transform-origin: left top;
+}
+
+.card::after {
+  transform-origin: right bottom;
+}
+
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+  transform: scale3d(1, 1, 1);
+}
+
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 102px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+ /*   padding: 12px 16px;*/
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media (max-width:600px) {
+  .dropdown-responsive-content {
+    margin-left: -47px;
+  }
+  .hide-responsive-li {
+    display: none;
+  }
+}
+@media (max-width:415px) {
+  .responsive-ul-below {
+    padding-top: 82px;
+  }
+}
+
+@media (max-width:380px) {
+  .responsive-ul-below {
+    padding-top: 16px;
+  }
+}
+
+
+/* Tooltip text */
+.tooltip1 .tooltiptext1 {
+  background: transparent linear-gradient( 90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
+  visibility: hidden;
+  width: 106px;
+  color: #fff;
+  text-align: center;
+  padding: 6px 0px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  font-size: 11px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}

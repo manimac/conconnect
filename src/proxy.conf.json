@@ -1,0 +1,6 @@
+{
+  "/oauth/v2/accessToken/*": {
+    "target": "https://www.linkedin.com/oauth/v2/accessToken/*",
+    "secure": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ConConnect",
+  "short_name": "ConConnect",
+  "theme_color": "#488aff",
+  "background_color": "#488aff",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./assets/conconnect-blk.png",
+      "sizes": "1219x143",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/conconnect-wht.png.png",
+      "sizes": "1219x143",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/conconnect-final.png.png",
+      "sizes": "1219x143",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+
+<!-- Header -->
+<header class="w-100 bg-white boarding-hdr header-height-cus">
+  <nav class="page-hdr w-80 container mx-auto">
+    <div class="site-logo h-100 float-left d-grid" style="padding-left: 21px;">
+      <img class="site-logo_img my-auto" src="./assets/img/logo copy.png" alt="Conconnect Logo" routerLink="/feed" style="cursor:pointer" />
+    </div>
+
+    <div class="text-right" style="padding-top:10px;">
+      <!--<li class="mx-3 active">
+
+      </li>-->
+      <div class="float-right res-navigation-padding">
+
+        <div class="page-hdr_nav my-2 scroll-horizontal-cus" role="navigation" >
+
+          <ul class="page-hdr_nav_links d-flex text-right p-0">
+
+            <li class="mx-3  active" routerLink="/feed" style="cursor:pointer">
+
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-home-24px.svg" alt="Home icon" />
+
+              Home
+
+            </li>
+            <!--hide-responsive-li-->
+            <li class="mx-3 tooltip1" style="cursor:pointer" routerLink="/jobs">
+              <!--<span class="tooltiptext1">Launching soon...</span>-->
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-jobs-24px.svg" alt="Jobs icon" />
+
+              Jobs
+
+            </li>
+
+            <li class="mx-3 tooltip1" style="cursor:pointer" routerLink="/services">
+              <!--<span class="tooltiptext1">Launching soon...</span>-->
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-services-24px.svg" alt="Services icon" />
+
+              Services
+
+            </li>
+            <a href="https://concourses.education/" target="_blank" style="list-style: none; display: block; color: #7A7A7A; text-decoration: none; ">
+            <li class="mx-3 tooltip1" style="cursor:pointer;">
+              <!--onclick="location.href='https://concourses.education/';" target="_blank"-->
+              <!--<span class="tooltiptext1">Launching soon...</span>-->
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-courses-24px.svg" alt="Courses icon" style="display:block;"/>
+
+              Courses
+
+            </li>
+            </a>
+            <li class="mx-3 tooltip1" style="cursor:pointer" routerLink="/connections">
+              <!--<span class="tooltiptext1">Launching soon...</span>-->
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-connections-24px.svg" alt="Connections icon" />
+
+              Connections
+
+            </li>
+            <div class="dropdown">
+            <li class="mx-3 tooltip1" style="cursor:pointer;text-align: center;
+    font: normal normal normal 14px Poppins;
+    color: #7A7A7A;
+    font: normal normal normal 14px Poppins;
+    display: grid;
+    ">
+              <span class="notif-span-count" *ngIf="!isCountZero">{{count}}</span>
+              <!--<span class="tooltiptext1">Launching soon...</span>-->
+              <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-notifications-24px.svg" alt="Notifications icon" />
+
+              Notifications
+
+            </li>
+            <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
+
+              <ul style="max-height: 300px; overflow-y: scroll; text-decoration: none; list-style: none; padding: 16px;">
+                <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id)" style="cursor:pointer;">
+                  {{notifData.description}}
+                  <hr />
+                </li>
+              </ul>
+            </div>
+</div>
+
+
+        <div class="dropdown">
+          <li class="mx-3" style="cursor:pointer;text-align: center;
+    font: normal normal normal 14px Poppins;
+    color: #7A7A7A;
+    font: normal normal normal 14px Poppins;
+    display: grid;
+    cursor: pointer;">
+            <img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-me-24px.svg" alt="My account icon" />
+            Me
+          </li>
+          <div class="dropdown-content dropdown-responsive-content" style="width: 191px; right: 0px; text-align: left;">
+            <a class="btn" (click)="onProfile()" style=""><img class="page-hdr_nav_icons mx-auto" src="./assets/img/nav-me-24px.svg" alt="My account icon" />&nbsp;&nbsp;Profile</a>
+
+            <button class="btn" (click)="onLogout()" style="margin-left: 8px;margin-bottom:5px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+              </svg>&nbsp;&nbsp;Logout
+            </button>
+          </div>
+        </div>
+        </ul>
+
+      </div>
+
+    </div>
+
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,49 @@
+<section class="w-100 common-section testimonial">
+        <div class="container">
+            <h3 class="m-0 mb-3 mb-md-4 text-center common-title xs">Testimonials</h3>
+            <!-- <div id="testimonialCarousel" class="mb-md-4 carousel slide" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item text-center active">
+                        <p class="m-0 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                        <p class="m-0 mb-1 testimonial-name">Aditi Shinde</p>
+                        <p class="m-0 testimonial-designation">Product Designer @ Arivu</p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="carousel-item owl-carousel owl-theme">
+                <div class="testimonial-block-two">
+                    <div class="inner-box">
+                        <div class="image">
+                        </div>
+                        <h3>author</h3>
+                        <div class="quote-icon">
+                            <span class="icon"><img src="assets/images/icons/quote-icon.png" alt="" /></span>
+                        </div>
+                        <div class="text">description</div>
+                    </div>
+                </div>
+                <div class="testimonial-block-two">
+                    <div class="inner-box">
+                        <div class="image">
+                        </div>
+                        <h3>author2</h3>
+                        <div class="quote-icon">
+                            <span class="icon"><img src="assets/images/icons/quote-icon.png" alt="" /></span>
+                        </div>
+                        <div class="text">description</div>
+                    </div>
+                </div>
+                <div class="testimonial-block-two">
+                    <div class="inner-box">
+                        <div class="image">
+                        </div>
+                        <h3>author3</h3>
+                        <div class="quote-icon">
+                            <span class="icon"><img src="assets/images/icons/quote-icon.png" alt="" /></span>
+                        </div>
+                        <div class="text">description</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

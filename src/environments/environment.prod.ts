@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://prodapi.conconnect.com'
+  baseUrl: 'https://testapi.conconnect.com'
+  // baseUrl: 'https://prodapi.conconnect.com'
 };

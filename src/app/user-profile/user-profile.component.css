@@ -95,17 +95,13 @@
 .profile-location img {
     width: 12px;
 }
-.profile-location span, .profile-followers span {
+.profile-location span {
     font-size: 14px;
     line-height: 19px;
     color: #696969;
     padding-left: 7px;
     margin: 0;
     font-weight: normal;
-}
-.followers-count{
-    color: #212529 !important;
-    padding-left: 0px !important;
 }
 .profile-user-info {
     display: flex;
@@ -147,7 +143,7 @@
     transition: all 0.3s ease-in-out;
 }
 .tags li:last-child {
-    /* margin: 0; */
+    margin: 0;
 }
 .tags li:hover {
     background-color: #c7d9ff;

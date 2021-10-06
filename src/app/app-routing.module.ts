@@ -24,8 +24,9 @@ import { AddJobComponent } from './jobs/add-job/add-job.component';
 import { AddServiceComponent } from './services/add-service/add-service.component';
 import { ApplyJobComponent } from './jobs/apply-job/apply-job.component';
 import { LandingPage2Component } from './landing-page2/landing-page2.component';
+import { RecruiterProfileComponent } from './recruiter-profile/recruiter-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -51,8 +52,9 @@ const routes: Routes = [
   { path: 'passwordreset', component: ResetPasswordComponent },
   { path: 'deactivate', component: DeactivateComponent, canActivate: [AuthGuard] },
   { path: 'landing-page', component: LandingPage2Component },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user/:name', component: UsersComponent },
+  { path: 'recruiter-profile/:name', component: RecruiterProfileComponent },
+  { path: 'user-profile/:name', component: UserProfileComponent },
+  { path: 'user/:name', component: ProfileComponent },
   {path:'',component:LandingPageComponent}
 ];
 

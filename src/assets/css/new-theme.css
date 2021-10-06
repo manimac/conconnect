@@ -1,5 +1,5 @@
 header {
-    padding: 20px;
+    /* padding: 20px; */
     height: 85px;
 }
 header.scrolled {
@@ -275,7 +275,6 @@ header.scrolled {
     display: block;
     height: 45px;
     z-index: 3;
-    
 }
 .notes .shapes .dots {
     position: absolute;
@@ -304,8 +303,37 @@ header.scrolled {
     background-size: 30px;
     display: block;
     height: 54px;
+    z-index: 3;    
+}
+.video .shapes .dots {
+    position: absolute;
+    bottom: 90px;
+    right: 32.5%;
+    max-width: 80px;
+}
+.video .shapes .semi {
+    position: absolute;
+    top: -55px;
+    left: -30px;
+    max-width: 60px !important;
+}
+.video .shapes .triangle {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    max-width: 50px;
+}
+.video .shapes .arrow {
+    position: absolute;
+    bottom: 150px;
+    left: 40px;
+    width: 90px;
+    background: url(../../assets/img/about/arrow.png) repeat;
+    background-size: 30px;
+    display: block;
+    height: 54px;
     z-index: 3;
-    
+    transform: rotate(180deg);   
 }
 /*Shapes CSS*/
 

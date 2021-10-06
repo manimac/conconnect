@@ -1,36 +1,30 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { profileService } from '../service/profile';
 declare var $: any;
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
 
   user: any;
   userShow = false;
-  constructor(public profile: profileService, private route: ActivatedRoute) {
-
+  constructor(public profile: profileService) {
+    this.getUser();
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const name = params.get('name');
-      if (name) {
-        this.getUserProfile(name);
-      }
-    });
+
   }
 
   ngAfterViewInit() {
     this.loadCarousel();
   }
 
-  getUserProfile(Name: any) {
-    this.profile.GetUserProfile(Name).subscribe(
+  getUser() {
+    this.profile.GetUser().subscribe(
       (data: any) => {
         console.log(data);
         this.user = data, this.userShow = true;

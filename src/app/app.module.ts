@@ -47,9 +47,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApplyJobComponent } from './jobs/apply-job/apply-job.component';
-import { ProfileComponent } from './profile/profile.component';
 import { LandingPage2Component } from './landing-page2/landing-page2.component';
-import { UsersComponent } from './users/users.component';
+import { RecruiterProfileComponent } from './recruiter-profile/recruiter-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -79,9 +80,10 @@ import { UsersComponent } from './users/users.component';
     HeaderComponent,
     FooterComponent,
     ApplyJobComponent,
-    ProfileComponent,
     LandingPage2Component,
-    UsersComponent
+    RecruiterProfileComponent,
+    UserProfileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

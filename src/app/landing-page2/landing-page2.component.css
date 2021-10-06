@@ -259,6 +259,29 @@ html, body, main {
     max-width: 70%;
     margin: 0 auto;
 }
+.community {
+    background: url(../../assets/img/community/bg.png) no-repeat;
+    background-size: 100% 700px;
+    background-position: center;
+}
+.community .shapes .semi {
+    max-width: 125px;
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+.community .shapes .semi.btm {
+    top: auto;
+    left: auto;
+    bottom: 40px;
+    right: 60px;
+}
+.community .shapes .dots {
+    position: absolute;
+    bottom: 115px;
+    right: 37.5%;
+    max-width: 100px;
+}
 .community .multi-image img:first-child {
     max-width: 175px;
     transform: translate(250px, -120px);
@@ -272,6 +295,18 @@ html, body, main {
     max-width: 225px;
     transform: translate(195px, -75px);
 }
+.community .shapes .arrow {
+    position: absolute;
+    top: -55px;
+    right: 100px;
+    width: 75px;
+    background: url(../../assets/img/about/arrow.png) repeat;
+    background-size: 25px;
+    display: block;
+    height: 45px;
+    z-index: 3;
+    transform: rotate(180deg);
+}
 .video .multi-image img:first-child {
     max-width: 325px;
     background: conic-gradient(from 243.98deg at 50% 50%, #000000 0deg, rgba(0, 0, 0, 0) 360deg), radial-gradient(50% 50% at 50% 50%, #272727 0%, rgba(39, 39, 39, 0.46) 100%);
@@ -280,6 +315,18 @@ html, body, main {
 .video .multi-image img:last-child {
     max-width: 250px;
     transform: translate(130px, -95px);
+}
+#bannerCarousel .carousel-indicators li {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #C7C7C7;
+    opacity: 1;
+    margin: 0 10px;
+}
+
+#bannerCarousel .carousel-indicators li.active {
+    background-color: #3E72DD;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -374,6 +421,12 @@ html, body, main {
     .community .multi-image img:last-child {
         transform: translate(-50px, 80px);
     }
+    .community .shapes .semi.btm {
+        top: 45%;
+        left: auto;
+        bottom: auto;
+        right: 60px;
+    }
 }
 @media only screen and (max-width: 767px) {
     .welcome {
@@ -415,6 +468,9 @@ html, body, main {
     }
     .community .multi-image img:last-child {
         transform: translate(150px, -50px);
+    }
+    .community .shapes .dots {
+        display: none;
     }
 }
 @media only screen and (max-width: 650px) {
@@ -464,5 +520,10 @@ html, body, main {
     }
     .community .multi-image img:last-child {
         transform: translate(30px, -50px);
+    }
+    #bannerCarousel .carousel-indicators li {
+        width: 14px;
+        height: 14px;
+        margin: 0 7px;
     }
 }

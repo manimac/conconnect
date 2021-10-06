@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { profileService } from '../service/profile';
-// import * as $ from 'jquery';
+import { user } from '../models/user';
 declare var $: any;
 
 @Component({
@@ -10,63 +11,84 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
 
-  user: any;
+  _user: any;
   userShow = false;
-  constructor(public profile: profileService) {
-    this.getUser();
+  constructor(public profile: profileService, private route: ActivatedRoute) { }
+
+  ngAfterViewInit() {
+    
   }
 
   ngOnInit(): void {
-
+    this.route.paramMap.subscribe(params => {
+      const name = params.get('name');
+      if (name) {
+        this.getUserProfile(name);
+      }
+    });
   }
 
-  ngAfterViewInit() {
-    this.loadCarousel();
+  menuToggle() {
+    if($(".menu").hasClass("open")) {
+      $(".menu").removeClass("open");
+    } else {
+      $(".menu").addClass("open");
+    }      
+  }
+  loadCarousel() {
+    var activitiesCarousel = $("#activitiesCarousel").owlCarousel({
+      loop: true, 
+      margin: 20, 
+      nav: true, 
+      dots: false, 
+      smartSpeed: 500, 
+      autoplay: true, 
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 1
+        },
+        767: {
+          items: 2.5
+        },
+        1200: {
+          items: 3.25
+        }
+      }
+    });
+
+    $(".activity .controls-block .right").click(function () {
+      console.log("in");
+      activitiesCarousel.trigger('next.owl.carousel', [300]);
+    });
+    $('.activity .controls-block .left').click(function () {
+      activitiesCarousel.trigger('prev.owl.carousel', [300]);
+    });
   }
 
-  getUser() {
-    this.profile.GetUser().subscribe(
+  getUserProfile(Name: any) {    
+    this.profile.GetUserProfile(Name).subscribe(
       (data: any) => {
-        console.log(data);
-        this.user = data, this.userShow = true;
+        if(data && Array.isArray(data) && (data.length>0)){
+          this._user = data[0];
+          this.userShow = true;
+          setTimeout(()=>{
+            this.loadCarousel();
+          })          
+        }
       },
       error => { console.log(error) }
     );
   }
 
-  menuToggle() {
-    // if($(".menu").hasClass("open")) {
-    //   $(".menu").removeClass("open");
-    // } else {
-    //   $(".menu").addClass("open");
-    // }      
+  isRecruiter(){
+    return (this._user.role == 2) ? true: false
   }
 
-  loadCarousel() {
-    if ($('.item').length) {
-      $('.item').owlCarousel({
-        loop: true, margin: 30, nav: true, smartSpeed: 500, autoplay: 5000, navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'], responsive: {
-          0: {
-            items: 1
-          },
-          600: {
-            items: 1
-          },
-          700: {
-            items: 2
-          },
-          800: {
-            items: 2
-          },
-          1024: {
-            items: 3
-          },
-          1200: {
-            items: 3
-          }
-        }
-      });
-    }
+  isUser(){
+    return (this._user.role == 1) ? true: false
   }
 
 }

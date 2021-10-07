@@ -197,7 +197,7 @@
     justify-content: center;
     border-radius: 50%;
 }
-.like-comments span {
+.like-comments span, .activity-content span {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -233,6 +233,39 @@ footer {
     color: #242424;
     padding-left: 10px;
 }
+
+
+.activity-wrapper {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.activity-wrapper figure {
+    flex: 1 0 45px;
+    max-width: 45px;
+}
+.activity-wrapper > div {
+    max-width: calc(100% - 45px);
+    flex: 1 0 calc(100% - 45px);
+    padding-left: 20px;
+}
+.activity-content a {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+.activity-content p {
+    display: block;
+    font-size: 14px !important;
+    opacity: 0.75;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
 @media screen and (max-width: 575px) {
     .profile-user-info .wrapper {
         max-width: 100%;
@@ -245,5 +278,15 @@ footer {
     .profile-empty, .profile-content {
         padding-left: 24px;
         padding-right: 24px;
+    }
+    .activity-wrapper figure {
+        flex: 1 0 35px;
+        max-width: 35px;
+        margin-bottom: 10px;
+    }
+    .activity-wrapper > div {
+        max-width: 100%;
+        flex: 1 0 100%;
+        padding-left: 0;
     }
 }

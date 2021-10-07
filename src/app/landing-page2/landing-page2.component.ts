@@ -17,14 +17,14 @@ export class LandingPage2Component implements OnInit {
 
   ngOnInit(): void {
     
-    // $(window).on("scroll", function () {
-    //   console.log("in");
-    //   if($(this).scrollTop() > 100) {
-    //     $(this).removeClass("scrolled");
-    //   } else {
-    //     $(this).addClass("scrolled");
-    //   }
-    // });
+    $(window).on("scroll", function () {
+      console.log("in");
+      if($(window).scrollTop() < 100) {
+        $("header").removeClass("scrolled");
+      } else {
+        $("header").addClass("scrolled");
+      }
+    });
   }
   menuToggle() {
     if($(".menu").hasClass("open")) {

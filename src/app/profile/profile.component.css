@@ -146,9 +146,6 @@
     margin-bottom: 10px;
     transition: all 0.3s ease-in-out;
 }
-.tags li:last-child {
-    /* margin: 0; */
-}
 .tags li:hover {
     background-color: #c7d9ff;
 }
@@ -201,7 +198,7 @@
     justify-content: center;
     border-radius: 50%;
 }
-.like-comments span {
+.like-comments span, .activity-content span {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -249,5 +246,15 @@ footer {
     .profile-empty, .profile-content {
         padding-left: 24px;
         padding-right: 24px;
+    }
+    .activity-wrapper figure {
+        flex: 1 0 35px;
+        max-width: 35px;
+        margin-bottom: 10px;
+    }
+    .activity-wrapper > div {
+        max-width: 100%;
+        flex: 1 0 100%;
+        padding-left: 0;
     }
 }

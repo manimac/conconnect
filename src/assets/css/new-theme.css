@@ -1,9 +1,17 @@
+@font-face {
+	font-family: 'Poppins';
+	src: url('../fonts/poppins-bold/Poppins-Bold.eot');
+	src: local('☺'), url('../fonts/poppins-bold/Poppins-Bold.woff') format('woff'), url('../fonts/poppins-bold/Poppins-Bold.ttf') format('truetype'), url('../fonts/poppins-bold/Poppins-Bold.svg') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
 header {
     /* padding: 20px; */
     height: 85px;
 }
 header.scrolled {
-    background-color: #fff;
+    background-color: #191919db;
 }
 .logo {
     max-width: 175px !important;

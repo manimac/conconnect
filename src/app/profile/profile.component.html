@@ -151,23 +151,131 @@
                             </span>
                         </div>
                     </h5>
-                    <div id="activitiesCarousel" class="owl-carousel">
-                        <div class="item">
-                            <p class="m-0 mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been...</p>
-                            <img src="../../assets/img/activities.png" alt="Activities" class="w-100">
-                            <div class="like-comments">
+                    <div class="row m-0 activity-feeds">
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
                                 <figure class="m-0 p-0">
-                                    <svg width="14" height="14" viewBox="0 0 10 10">
-                                        <path
-                                            d="M8.87492 4.19969C8.75784 4.05913 8.61134 3.94598 8.44575 3.86822C8.28016 3.79047 8.09952 3.75001 7.91659 3.74969H6.01659L6.24992 3.15386C6.34697 2.89298 6.3793 2.61244 6.34411 2.33633C6.30893 2.06021 6.20729 1.79675 6.04791 1.56854C5.88854 1.34033 5.67618 1.15419 5.42906 1.02609C5.18194 0.89798 4.90743 0.831733 4.62909 0.833026C4.54893 0.833194 4.47053 0.856474 4.40328 0.900078C4.33603 0.943681 4.28278 1.00576 4.24992 1.07886L3.06242 3.74969H2.08325C1.75173 3.74969 1.43379 3.88139 1.19937 4.11581C0.964948 4.35023 0.833252 4.66817 0.833252 4.99969V7.91636C0.833252 8.24788 0.964948 8.56582 1.19937 8.80024C1.43379 9.03466 1.75173 9.16636 2.08325 9.16636H7.38742C7.67984 9.16626 7.96297 9.06365 8.18755 8.87637C8.41213 8.68909 8.56395 8.429 8.61659 8.14136L9.14575 5.22469C9.17848 5.04443 9.17119 4.85918 9.12439 4.68206C9.07758 4.50493 8.99242 4.34026 8.87492 4.19969ZM2.91659 8.33303H2.08325C1.97275 8.33303 1.86676 8.28913 1.78862 8.21099C1.71048 8.13285 1.66659 8.02687 1.66659 7.91636V4.99969C1.66659 4.88919 1.71048 4.78321 1.78862 4.70507C1.86676 4.62693 1.97275 4.58303 2.08325 4.58303H2.91659V8.33303ZM8.33325 5.07469L7.80409 7.99136C7.78634 8.08843 7.73472 8.17604 7.65841 8.23861C7.58211 8.30118 7.48608 8.33464 7.38742 8.33303H3.74992V4.25386L4.88325 1.70386C4.99991 1.73787 5.10826 1.7957 5.20144 1.87369C5.29463 1.95168 5.37064 2.04814 5.42467 2.15698C5.4787 2.26583 5.50958 2.38469 5.51536 2.50607C5.52114 2.62745 5.50169 2.74871 5.45825 2.86219L5.23742 3.45803C5.19036 3.58397 5.17448 3.71942 5.19112 3.85283C5.20776 3.98624 5.25643 4.11364 5.33297 4.22417C5.40952 4.33469 5.51167 4.42505 5.63071 4.48754C5.74975 4.55003 5.88214 4.58279 6.01659 4.58303H7.91659C7.9778 4.58293 8.03828 4.59632 8.09373 4.62224C8.14918 4.64817 8.19824 4.68599 8.23742 4.73303C8.27756 4.77941 8.30696 4.83409 8.32353 4.89315C8.34009 4.95221 8.34341 5.0142 8.33325 5.07469Z"
-                                            fill="white" />
-                                    </svg>
-
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
                                 </figure>
-                                <span class="like-count">24</span>
-                                <span class="dot-seperator">.</span>
-                                <span class="comments-count">24 Comments</span>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="d-flex flex-wrap activity-wrapper">
+                                <figure class="m-0 p-0">
+                                    <img src="{{_user.photo}}" alt="Feeds Image" class="w-100">
+                                </figure>
+                                <div class="activity-content">
+                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
+                                    <p class="m-0">Nikita shared this</p>
+                                    <span class="like-count">24 Reaction</span>
+                                    <span class="dot-seperator">.</span>
+                                    <span class="comments-count">24 Comments</span>
+                                </div>
                             </div>
                         </div>
                     </div>

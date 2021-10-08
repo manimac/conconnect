@@ -214,27 +214,6 @@
 }
 
 
-footer {
-    background-color: #fff;
-}
-.footer-content {
-    text-align: center;
-    padding: 20px 0;
-}
-.footer-content img {
-    width: 150px;
-}
-.footer-content span {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
-    color: #242424;
-    padding-left: 10px;
-}
-
-
 .activity-wrapper {
     padding-bottom: 20px;
     margin-bottom: 20px;

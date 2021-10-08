@@ -20,10 +20,18 @@
       background-color: #ddd;
     }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .profile-menu:hover .dropdown-content {
   display: block;
 }
 
+.header-link + .dropdown-content {
+  min-width: 200px;
+  right: 0;
+  top: 45px;
+}
+.header-link + .dropdown-content > * {
+  display: block;
+}
 
 .fileUpload {
   background: #015495;

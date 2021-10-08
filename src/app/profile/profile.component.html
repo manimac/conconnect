@@ -1,89 +1,5 @@
-<header>
-    <div class="h-100 main-container">
-        <div class="row m-0 h-100">
-            <div class=" col-6 col-lg-2 pl-0 h-100">
-                <figure class="d-flex align-items-center m-0 p-0 h-100">
-                    <img src="../../assets/img/logo.jpg" alt="Logo Image" class="w-100 logo">
-                </figure>
-            </div>
-            <div class="col-2 pr-0 ml-auto menu-btn-block" (click)="menuToggle()">
-                <button class="btn menu-btn">
-                    <svg width="100%" height="100%" viewBox="0 0 612 612">
-                        <g>
-                            <path d="M581.4,520.199H30.6c-16.891,0-30.6,13.709-30.6,30.6C0,567.691,13.709,581.4,30.6,581.4h550.8
-				c16.891,0,30.6-13.709,30.6-30.602C612,533.908,598.291,520.199,581.4,520.199z" />
-                            <path d="M581.4,275.399H30.6C13.709,275.399,0,289.108,0,306s13.709,30.6,30.6,30.6h550.8
-				c16.891,0,30.6-13.709,30.6-30.6S598.291,275.399,581.4,275.399z" />
-                            <path d="M30.6,91.799h550.8
-				c16.891,0,30.6-13.708,30.6-30.6c0-16.892-13.709-30.6-30.6-30.6H30.6C13.709,30.6,0,44.308,0,61.2
-				C0,78.091,13.709,91.799,30.6,91.799z" />
-                        </g>
-                    </svg>
-                </button>
-            </div>
-            <div class="col-lg-10 menu">
-                <div class="row m-0">
-                    <div class="col-lg-8">
-                        <ul class="m-0 p-0 text-center header-list">
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/jobs.svg" alt="Jobs Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Jobs</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/services.svg" alt="Services Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Services</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/connection.svg" alt="Connections Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Connections</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/courses.svg" alt="Courses Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Courses</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 pr-0">
-                        <ul class="m-0 p-0 text-right header-list">
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Notifications</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="header-link">
-                                    <figure class="m-0 p-0">
-                                        <img src="../../assets/img/header/icons/profile.svg" alt="Profile Icon">
-                                    </figure>
-                                    <span class="d-block text-center">Profile</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+<app-header class="sub-page"></app-header>
+
 <section class="common-section profile" *ngIf="_user">
     <div class="main-container">
         <div class="profile-empty">
@@ -135,7 +51,7 @@
                 <div class="wrapper">
                     <h5 class="mb-4 profile-text title">
                         <span>Activity</span>
-                        <div class="controls-block">
+                        <!-- <div class="controls-block">
                             <a href="javascript:void(0)">See All</a>
                             <span class="controls left">
                                 <svg width="13" height="20" viewBox="0 0 13 20" fill="none">
@@ -147,7 +63,7 @@
                                     <path d="M0.490234 18.1296L2.26023 19.8996L12.1602 9.99961L2.26023 0.0996094L0.490234 1.86961L8.62023 9.99961L0.490234 18.1296Z" fill="#696969"/>
                                 </svg>
                             </span>
-                        </div>
+                        </div> -->
                     </h5>
                     <div class="row m-0 activity-feeds">
                         <div class="col-lg-6 col-xl-4">
@@ -283,4 +199,4 @@
     </div>
 </section>
 
-<app-footer></app-footer>
+<app-footer class="sub-page"></app-footer>

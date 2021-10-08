@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SignupService } from '../service/signup.service';
 import { ServiceService } from '../service/service.service';
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -98,6 +99,25 @@ export class HeaderComponent implements OnInit {
       },
       error => { console.log("Error update notification" + error) });
 
+  }
+
+  menuToggle() {
+    if($(".menu").hasClass("open")) {
+      $(".menu").removeClass("open");
+    } else {
+      $(".menu").addClass("open");
+    }      
+  }
+
+  subMenuToggle(e: any) {
+    console.log($(e.target).siblings(".sub-menu"));
+    if($(e.target).hasClass("open")) {
+      $(e.target).removeClass("open");
+      $(e.target).siblings(".sub-menu").removeClass("open");
+    } else {
+      $(e.target).addClass("open");
+      $(e.target).siblings(".sub-menu").addClass("open");
+    }
   }
 }
 

@@ -280,9 +280,9 @@ footer {
         padding-right: 24px;
     }
     .activity-wrapper figure {
-        flex: 1 0 35px;
-        max-width: 35px;
-        margin-bottom: 10px;
+        flex: 1 0 50px;
+        max-width: 50px;
+        margin-bottom: 10px !important;
     }
     .activity-wrapper > div {
         max-width: 100%;

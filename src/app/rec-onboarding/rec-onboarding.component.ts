@@ -32,15 +32,16 @@ export class RecOnboardingComponent implements OnInit {
   ProfileImage: any;
   onboardModel: any;
   companyLogo: any;
-
+  userAddress: any;
+  stateList!: Gender
   questionnaire: any = [];
   UserQuestionnaireData: any;
   getQuestionnaire: any;
-  company = new company(null,'', '', '', '', '', null, 0,'',null);
+  company = new company(null, '', '', '', '', '', null, 0, '', null);
   GetUserCompanyRoles: any
   GetCompanyDetails: any;
 
-  _user = new user('', '', '', null, null, '', '', 0, '', '', '', '', '', '', '', '','');
+  _user = new user('', '', '', null, null, '', '', 0, '', '', '', '', '', '', '', '', '');
 
   qAnsers = new questionAnswer('', '', '', '', '', '',
     '', '', '', '', '', '', '', '', '', '', '', '', '');
@@ -115,7 +116,10 @@ export class RecOnboardingComponent implements OnInit {
       }
 
     }
-
+    if (this.deCryptData != undefined)
+      this.userAddress = new address(JSON.parse(this.deCryptData || '').address.addressLine2, JSON.parse(this.deCryptData || '').address.addressLine1, JSON.parse(this.deCryptData || '').address.city, JSON.parse(this.deCryptData || '').address.state, JSON.parse(this.deCryptData || '').address.country, JSON.parse(this.deCryptData || '').address.zip);
+    else
+      this.userAddress = new address('', '', '', '', '', '');
 
 
     //if (localStorage.getItem('data') != undefined)
@@ -148,7 +152,7 @@ export class RecOnboardingComponent implements OnInit {
     if (this.deCryptData != undefined)
       this.onboardModel = new userDetail(JSON.parse(this.deCryptData || '').userDetails.firstName || '', JSON.parse(this.deCryptData || '').userDetails.lastName || '', JSON.parse(this.deCryptData || '').userName, JSON.parse(this.deCryptData || '').userDetails.gender, JSON.parse(this.deCryptData || '').userDetails.ethnicity, JSON.parse(this.deCryptData || '').userDetails.bio)
     else
-      this.onboardModel = new userDetail('', '', '', 0, 0,'')
+      this.onboardModel = new userDetail('', '', '', 0, 0, '')
 
     //this.signUpService.tokenCheck().subscribe(
     //  (data: any) => {
@@ -178,7 +182,7 @@ export class RecOnboardingComponent implements OnInit {
           this.GetCompanyDetails = data,
             this.company.Id = data.id,
             this.company.Logo = data.logo
-            this.company.CompanyName = data.companyName,
+          this.company.CompanyName = data.companyName,
             this.company.Email = data.email,
             this.company.UserName = data.userName,
             this.company.industry = data.industry,
@@ -190,10 +194,13 @@ export class RecOnboardingComponent implements OnInit {
         console.log(this.company)
       },
       error => { console.log(error) });
+    this.onboardService.GetStateList('US').subscribe(
+      (data: any) => { this.stateList = data },
+      error => { console.log("Error state Details" + error) });
 
   }
 
-   /*this.toastr.error(error, "Error GetCompanyDetails Details")*/
+  /*this.toastr.error(error, "Error GetCompanyDetails Details")*/
   questdatavalues: any;
   questBlock(data: any) {
     //console.log(data);
@@ -230,7 +237,7 @@ export class RecOnboardingComponent implements OnInit {
       }
       if (value1.questionId == 4) {
         this.qAnsers.qA4 = value1.answer
-      }   
+      }
       if (value1.questionId == 5) {
         this.qAnsers.qA5 = value1.answer
       }
@@ -239,7 +246,7 @@ export class RecOnboardingComponent implements OnInit {
       }
       if (value1.questionId == 7) {
         this.qAnsers.qA7 = value1.answer
-      }      
+      }
     })
   }
 
@@ -258,7 +265,7 @@ export class RecOnboardingComponent implements OnInit {
     localStorage.removeItem('data');
     localStorage.removeItem('signin');
     localStorage.removeItem('role');
-/*    localStorage.removeItem('imageData');*/
+    /*    localStorage.removeItem('imageData');*/
     localStorage.removeItem('user');
     this.router.navigate(['/home']);
     this.toastr.success("Logged out. Please click Login button if you want to use conconnect services. Thank you", "Logged Out !");
@@ -275,7 +282,18 @@ export class RecOnboardingComponent implements OnInit {
     }
   }
 
-  stateHasError:any
+  countryHasError = false;
+  stateHasError = false;
+  validateCountryHasError(value: any) {
+
+    if (value === 'default') {
+      this.countryHasError = true;
+    }
+    else {
+      this.countryHasError = false;
+    }
+  }
+
   validateStateHasError(value: any) {
     if (value === 'default') {
       this.stateHasError = true;
@@ -517,7 +535,7 @@ export class RecOnboardingComponent implements OnInit {
         }
         else {
           this.defaultImageFlag_logo = true;
-          this.saveImageFlag_logo = true;       
+          this.saveImageFlag_logo = true;
 
           var fileName: any;
           this.fileC_logo = $event.target.files[0];
@@ -593,9 +611,39 @@ export class RecOnboardingComponent implements OnInit {
     this.submitted = false;
     this.userRefresh();
   }
-  errorResult(error: any, form: NgForm) {    
+  errorResult(error: any, form: NgForm) {
     console.log(error);
     this.submitted = false;
+  }
+
+  locationSubmitted = false;
+  onUserAddressSubmit(form: NgForm) {
+    this.userAddress.addressLine2 = this._user.street;
+    this.userAddress.addressLine1 = this._user.flat;
+    this.userAddress.city = this._user.city;
+    this.userAddress.zip = this._user.zip;
+    this.userAddress.state = this._user.state;
+    this.userAddress.country = this._user.country;
+
+    localStorage.removeItem('user');
+    localStorage.setItem('user', window.btoa(JSON.stringify(this._user)));
+
+    console.log(this.userAddress);
+    this.locationSubmitted = true;
+    /*this.userAddress.zip = JSON.stringify(this.userAddress.zip);*/
+    return this.onboardService.userAddress(this.userAddress).subscribe(
+      data => this.userAddressSuccessResult(data, form),
+      error => this.userAddresserrorResult(error.error, form));
+  }
+  userAddressSuccessResult(data: any, form: NgForm) {
+    this.toastr.success("User Address Updated.");
+    this.locationSubmitted = false;
+    this.userRefresh();
+  }
+  userAddresserrorResult(error: any, form: NgForm) {
+
+    console.log(error);
+    this.locationSubmitted = false;
   }
   /*this.toastr.error(error, 'User Details Update Failed');*/
   //user detail block end
@@ -616,14 +664,14 @@ export class RecOnboardingComponent implements OnInit {
 
   userQuestSuccessResult(data: any, form: NgForm) {
     this.toastr.success("User Questionnaire Updated.");
-    this.questionnarySubmitted = false;  
+    this.questionnarySubmitted = false;
   }
   userQuesterrorResult(error: any, form: NgForm) {
-   
+
     console.log(error);
     this.questionnarySubmitted = false;
   }
-/*   this.toastr.error(error, 'User Questionnaire Update Failed');*/
+  /*   this.toastr.error(error, 'User Questionnaire Update Failed');*/
 
   //questionnaire block end
 
@@ -632,7 +680,7 @@ export class RecOnboardingComponent implements OnInit {
   companyDetailsSubmitted = false;
   onCompanySubmit(form: NgForm) {
     this.companyDetailsSubmitted = true;
-    console.log(form.value);   
+    console.log(form.value);
     this.company.UserName = this.onboardModel.userName;
     this.company.UserCompanyRole = Number(this.company.UserCompanyRole);
     this.company.Size = Number(this.company.Size);
@@ -640,23 +688,23 @@ export class RecOnboardingComponent implements OnInit {
 
     console.log(this.company);
 
-    return this.onboardService.postCompanyDetails(this.company,this.FinalFeedImage_logo).subscribe(
+    return this.onboardService.postCompanyDetails(this.company, this.FinalFeedImage_logo).subscribe(
       data => {
         this.toastr.success("User Company Details Updated."),
           this.companyDetailsSubmitted = false,
           this.userRefresh()
       },
       error => {
-      
-        console.log("companydetails error"+error.error),
-        this.questionnarySubmitted = false
+
+        console.log("companydetails error" + error.error),
+          this.questionnarySubmitted = false
       });
   }
-/*    this.toastr.error(error, 'User Company Details Update Failed'),*/
+  /*    this.toastr.error(error, 'User Company Details Update Failed'),*/
   //company details end
 
 
- //existing user refresh
+  //existing user refresh
   userRefresh() {
     //this.onboardService.loginEnroll().subscribe(
     //  (data: any) => {
@@ -667,7 +715,7 @@ export class RecOnboardingComponent implements OnInit {
     //  error => {  console.log("Existing user detail error"+error)});
   }
   //this.toastr.error(error, "Existing user detail error"),
- //end existing user refresh
+  //end existing user refresh
 
   onProfile() {
     console.log(JSON.stringify(JSON.parse(this.deCryptData || '').userRole[0].roleId));
@@ -678,7 +726,9 @@ export class RecOnboardingComponent implements OnInit {
   }
 
 
-  onLogoChange(event:any) {
+  onLogoChange(event: any) {
 
   }
+
+
 }

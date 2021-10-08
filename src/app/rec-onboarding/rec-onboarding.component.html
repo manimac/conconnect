@@ -142,6 +142,149 @@
 
           <!-- END: Profile Information division -->
 
+          <form class="p-0 m-0 d-lg-grid" #addressForm="ngForm" (ngSubmit)="onUserAddressSubmit(addressForm)" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px; margin-bottom:20px !important;">
+                <h2 class="boarding-pro-info-hdr">Current Address</h2>
+                <hr class="w-100 boarding-pro-info-hr my-0" />
+                <div class="w-100 d-sm-grid boarding-pro-info-flex-cg">
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Street</label> <br />
+                      <input type="text"
+                             placeholder="Enter street"
+                             maxlength="50"
+                             #street="ngModel"
+                             [class.is-invalid]="street.invalid && street.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="street"
+                             [(ngModel)]="_user.street" value="{{_user.street}}" style="letter-spacing: 0px !important;" />
+                      <small class="text-danger" [class.d-none]="street.valid">
+                        Street is Required
+                      </small>
+                    </div>
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Flat/apt no</label> <br />
+                      <input type="text"
+                             placeholder="Enter flat/apt no"
+                             maxlength="50"
+                             #flat="ngModel"
+                             [class.is-invalid]="flat.invalid && flat.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="flat"
+                             [(ngModel)]="_user.flat" value="{{_user.flat}}" />
+                      <small class="text-danger" [class.d-none]="flat.valid">
+                        Location is Required
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">City</label> <br />
+                      <input type="text"
+                             placeholder="Enter city"
+                             maxlength="50"
+                             #city="ngModel"
+                             [class.is-invalid]="city.invalid && city.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="city"
+                             [(ngModel)]="_user.city" required />
+                      <small class="text-danger" [class.d-none]="city.valid || !(city.dirty)">
+                        City is Required
+                      </small>
+                    </div>
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Zip</label> <br />
+                      <input type="text"
+                             placeholder="Enter zip"
+                             min="0"
+                             max="99"
+                             maxlength="5"
+                             pattern="[0-9]+"
+                             #zip="ngModel"
+                             [class.is-invalid]="zip.invalid && zip.dirty"
+                             class="questionnaire-input-font boarding-pro-info-input w-100 form-control font-size-12"
+                             id="pro-user-location"
+                             aria-labelledby="location-lbl"
+                             name="zip"
+                             [(ngModel)]="_user.zip" required />
+                      <small class="text-danger" [class.d-none]="zip.valid || !(zip.dirty)">
+                        Zip is Required
+                      </small>
+                    </div>
+
+                  </div>
+                  <div class="w-100 d-flex-responsive d-sm-grid boarding-pro-info-flex-cg">
+
+                    <div class="w-md-48 float-left mt-2">
+                      <label class="boarding-pro-info-lbl text-right" id="location-lbl">State</label> <br />
+                      <select #state="ngModel"
+                              maxlength="2"
+                              (change)="validateStateHasError(state.value)"
+                              [class.is-invalid]="stateHasError && state.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="pro-user-industry"
+                              aria-labelledby="industry-lbl"
+                              name="state"
+                              [(ngModel)]="_user.state" value="{{_user.state}}" required>
+
+                        <option value="null" selected disabled hidden>Choose any state</option>
+                        <option *ngFor="let x of stateList | keyvalue" class="questionnaire-option" value="{{x.key}}">{{x.value}}</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="!stateHasError || state.untouched">
+                        Please choose any state
+                      </small>
+
+                    </div>
+                    <div class="w-md-48 float-right mt-2">
+                      <label class="boarding-pro-info-lbl text-left" id="location-lbl">Country</label> <br />
+                      <select #country="ngModel"
+                              maxlength="2"
+                              (change)="validateCountryHasError(country.value)"
+                              [class.is-invalid]="countryHasError && country.dirty"
+                              class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                              id="pro-user-industry"
+                              aria-labelledby="industry-lbl"
+                              name="country"
+                              [(ngModel)]="_user.country" value="{{_user.country}}" required>
+                        <option value="null" selected disabled hidden>Choose any country</option>
+                        <option class="questionnaire-option" value="US" selected>United States of America</option>
+
+                      </select>
+                      <small class="text-danger" [class.d-none]="!countryHasError || country.untouched">
+                        Please choose any country
+                      </small>
+
+                    </div>
+                  </div>
+                  <div class="w-100 float-right mt-2">
+                    <div class="">
+                      <div class="my-3 d-md-grid h-auto" *ngIf="!locationSubmitted">
+                        <button [disabled]="addressForm.form.invalid" class="questionnaire-form-btn text-center float-right ml-lg-auto" type="submit" name="Continue"><span style="color:#fff">Update</span></button>
+                      </div>
+                      <div class="text-center mt-3" *ngIf="locationSubmitted">
+                        <div class="spinner-border text-center" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+
           <form class="p-0 m-0 d-lg-grid" #CompanyForm="ngForm" (ngSubmit)="onCompanySubmit(CompanyForm)" novalidate style="display: grid;
             height: auto;
             background: #F4F7FA 0% 0% no-repeat padding-box;

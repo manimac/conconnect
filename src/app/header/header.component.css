@@ -105,6 +105,21 @@ input[type="file"] {
   display: flex;
 }
 
+@media only screen and (max-width:991px) {
+  
+  .header-link + .dropdown-content {
+    position: static;
+  }
+
+  .header-link + .dropdown-content > * {
+      font-size: 12px;
+      padding: 14px 20px;
+      height: 46px;
+      display: block;
+      width: 100%;
+      text-align: left;
+  }
+}
 @media (max-width:600px) {
   .res-border-page {
     padding-top: 25px;

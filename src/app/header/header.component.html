@@ -61,13 +61,22 @@
           </div>
           <div class="col-lg-4 pr-0">
             <ul class="m-0 p-0 text-right header-list">
-              <li>
+              <li class="profile-menu">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
                   </figure>
                   <span class="d-block text-center">Notifications</span>
                 </a>
+                <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
+
+                  <ul style="max-height: 300px; overflow-y: scroll; text-decoration: none; list-style: none; padding: 16px;">
+                    <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id)" style="cursor:pointer;">
+                      {{notifData.description}}
+                      <hr />
+                    </li>
+                  </ul>
+                </div>
               </li>
               <li class="profile-menu">
                 <a href="javascript:void(0)" class="header-link">

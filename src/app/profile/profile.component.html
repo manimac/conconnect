@@ -1,5 +1,9 @@
 <app-header class="sub-page"></app-header>
-
+<div class="text-center mt-3" *ngIf="!_user">
+    <div class="spinner-border text-center" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 <section class="common-section profile" *ngIf="_user">
     <div class="main-container">
         <div class="profile-empty">
@@ -50,7 +54,8 @@
             <div class="w-100">
                 <div class="wrapper">
                     <h5 class="mb-4 profile-text title">
-                        <span>Activity</span>
+                        <span *ngIf="isUser()">Activity</span>
+                        <span *ngIf="isRecruiter()">Jobs & Services</span>
                         <!-- <div class="controls-block">
                             <a href="javascript:void(0)">See All</a>
                             <span class="controls left">
@@ -66,129 +71,17 @@
                         </div> -->
                     </h5>
                     <div class="row m-0 activity-feeds">
-                        <div class="col-lg-6 col-xl-4">
+                        <div class="col-lg-6 col-xl-4" *ngFor="let data of _user.activity">
                             <div class="d-flex flex-wrap activity-wrapper">
                                 <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
+                                    <img src="{{data.imageUrl}}" alt="Activity Image" class="w-100">
                                 </figure>
                                 <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
+                                    <a href="javascript:void(0)">{{data.description}}</a>
+                                    <!-- <p class="m-0">Nikita shared this</p>
                                     <span class="like-count">24 Reaction</span>
                                     <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam quisquam</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4">
-                            <div class="d-flex flex-wrap activity-wrapper">
-                                <figure class="m-0 p-0">
-                                    <img src="../../assets/img/akshay.png" alt="Feeds Image" class="w-100">
-                                </figure>
-                                <div class="activity-content">
-                                    <a href="javascript:void(0)">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</a>
-                                    <p class="m-0">Nikita shared this</p>
-                                    <span class="like-count">24 Reaction</span>
-                                    <span class="dot-seperator">.</span>
-                                    <span class="comments-count">24 Comments</span>
+                                    <span class="comments-count">24 Comments</span> -->
                                 </div>
                             </div>
                         </div>

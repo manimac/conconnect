@@ -3,7 +3,7 @@
     <div class="row m-0 h-100">
       <div class=" col-6 col-lg-2 pl-0 h-100">
         <figure class="d-flex align-items-center m-0 p-0 h-100">
-          <img src="../../assets/img/logo.jpg" alt="Logo Image" class="w-100 logo">
+          <img src="../../assets/img/logo.jpg" alt="Logo Image" class="w-100 logo" routerLink="/feed">
         </figure>
       </div>
       <div class="col-2 pr-0 ml-auto menu-btn-block" (click)="menuToggle()">
@@ -25,7 +25,7 @@
         <div class="row m-0">
           <div class="col-lg-8">
             <ul class="m-0 p-0 text-center header-list">
-              <li>
+              <li routerLink="/jobs">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/jobs.svg" alt="Jobs Icon">
@@ -33,7 +33,7 @@
                   <span class="d-block text-center">Jobs</span>
                 </a>
               </li>
-              <li>
+              <li routerLink="/services">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/services.svg" alt="Services Icon">
@@ -41,7 +41,7 @@
                   <span class="d-block text-center">Services</span>
                 </a>
               </li>
-              <li>
+              <li routerLink="/connections">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/connection.svg" alt="Connections Icon">
@@ -50,7 +50,7 @@
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)" class="header-link">
+                <a href="https://concourses.education/" class="header-link">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/courses.svg" alt="Courses Icon">
                   </figure>
@@ -77,10 +77,9 @@
                   <span class="d-block text-center">Profile</span>
                 </a>
                 <div class="dropdown-content dropdown-responsive-content">
-                  <a class="btn"><img
-                      src="./assets/img/nav-me-24px.svg" alt="My account icon"
-                      class="page-hdr_nav_icons mx-auto">&nbsp;&nbsp;Profile</a><button
-                    class="btn" style="margin-left: 8px; margin-bottom: 5px;"><svg
+                  <a class="btn" (click)="onProfile()"><img src="./assets/img/nav-me-24px.svg" alt="My account icon"
+                      class="page-hdr_nav_icons mx-auto">&nbsp;&nbsp;Profile</a><button class="btn"
+                    style="margin-left: 8px; margin-bottom: 5px;" (click)="onLogout()"><svg
                       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
                       class="bi bi-box-arrow-right">
                       <path fill-rule="evenodd"
@@ -89,7 +88,8 @@
                       <path fill-rule="evenodd"
                         d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z">
                       </path>
-                    </svg>&nbsp;&nbsp;Logout </button></div>
+                    </svg>&nbsp;&nbsp;Logout </button>
+                </div>
               </li>
             </ul>
           </div>

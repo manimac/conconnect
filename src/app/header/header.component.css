@@ -109,6 +109,8 @@ input[type="file"] {
   
   .header-link + .dropdown-content {
     position: static;
+    min-width: 100%;
+    margin: 0;
   }
 
   .header-link + .dropdown-content > * {

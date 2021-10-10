@@ -15,7 +15,7 @@ header {
     padding: 20px;
 }
 header.scrolled {
-    background-color: #191919db;
+    background-color: #191919db !important;
 }
 .logo {
     max-width: 175px !important;
@@ -503,5 +503,8 @@ header.scrolled {
     }
     .welcome-content h4 {
         font-size: 16px !important;
+    }
+    .common-section {
+        padding: 32px 20px;
     }
 }

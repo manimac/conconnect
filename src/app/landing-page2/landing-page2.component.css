@@ -3,6 +3,9 @@ html, body, main {
     min-height: 100vh;
 }
 
+header {
+    background-color: transparent;
+}
 /*Banner CSS*/
 .banner, .banner .carousel, .banner .carousel .carousel-inner, .banner .carousel .carousel-item {
     height: 100vh;
@@ -533,7 +536,4 @@ html, body, main {
         height: 14px;
         margin: 0 7px;
     }
-}
-header {
-    background-color: transparent;
 }

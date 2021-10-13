@@ -15,10 +15,15 @@ header {
     padding: 20px;
 }
 header.scrolled {
+    height: 4.5rem;
     background-color: #191919db !important;
 }
 .logo {
-    max-width: 175px !important;
+    max-width: 210px !important;
+    width: 210px !important;
+}
+header.main-header .menu-btn.menu-opened path {
+    fill: #3E72DD;
 }
 .main-header {
     position: fixed;
@@ -26,6 +31,7 @@ header.scrolled {
     left: 0;
     width: 100%;
     z-index: 10;
+    transition: all 0.3s ease-in-out;
 }
 .main-header .menu-btn path {
     fill: #fff;
@@ -34,7 +40,7 @@ header.scrolled {
     list-style: none;
     display: inline-block;
     vertical-align: middle;
-    min-width: 100px;
+    min-width: 95px;
     text-align: center;
 }
 .main-header .common-btn {
@@ -479,6 +485,12 @@ header.scrolled {
     }
 }
 
+@media only screen and (max-width: 575px) {
+    .testimonial .owl-nav .owl-prev, .testimonial .owl-nav .owl-next {
+        opacity: 0.35;
+        top: 80%;
+    }
+}
 @media only screen and (max-width: 600px) {
     .common-title {
         font-size: 28px !important;

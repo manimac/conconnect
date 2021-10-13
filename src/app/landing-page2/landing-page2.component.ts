@@ -29,8 +29,10 @@ export class LandingPage2Component implements OnInit {
   menuToggle() {
     if($(".menu").hasClass("open")) {
       $(".menu").removeClass("open");
+      $(".menu-btn").removeClass("menu-opened");
     } else {
       $(".menu").addClass("open");
+      $(".menu-btn").addClass("menu-opened");
     }      
   }
 

@@ -334,6 +334,9 @@ header {
 .video .multi-image {
     margin-left: 75px;
 }
+.carousel-indicators {
+    z-index: 9;
+}
 
 @media only screen and (max-width: 1200px) {
     .community .multi-image img:first-child {
@@ -437,6 +440,9 @@ header {
         bottom: auto;
         right: 60px;
     }
+    .welcome-block {
+        padding: 60px 0;
+    }
 }
 @media only screen and (max-width: 767px) {
     .welcome {
@@ -535,5 +541,8 @@ header {
         width: 14px;
         height: 14px;
         margin: 0 7px;
+    }
+    .main-header .container {
+        padding: 0;
     }
 }

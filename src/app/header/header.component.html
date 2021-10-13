@@ -79,8 +79,7 @@
                 <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
 
                   <ul style="max-height: 300px; overflow-y: scroll; text-decoration: none; list-style: none; padding: 16px;">
-                    <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id)" style="cursor:pointer;">
-                      {{notifData.description}}
+                    <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id, notifData)" style="cursor:pointer;" [innerHtml]="notifData.description">
                       <hr />
                     </li>
                   </ul>

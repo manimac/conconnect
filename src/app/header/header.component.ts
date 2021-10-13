@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit {
     else
       this.router.navigate(['/rec-boarding']);
   }
-  notifRead(id: number) {
+  notifRead(id: number, notificationData: any) {
     console.log(id);
 
     Object.entries<notification>(this._notificationList).forEach(([key, value]) => {
@@ -96,9 +96,22 @@ export class HeaderComponent implements OnInit {
     this.serviceService.ReadNotification(id).subscribe(
       (data: any) => {
         console.log("updated the notification.")
+        this.redirectPage(notificationData);
       },
       error => { console.log("Error update notification" + error) });
 
+  }
+
+  redirectPage(data: any){
+    if(data.notificationId == 3){
+      this.router.navigate(['/user/' + data.pageIdentifier]);
+    }
+    else if(data.notificationId == 6){
+      this.router.navigate(['/job-detail/' + data.pageIdentifier]);
+    }
+    else if(data.notificationId == 9){
+      this.router.navigate(['/jobApply/' + data.pageIdentifier]);
+    }
   }
 
   menuToggle() {

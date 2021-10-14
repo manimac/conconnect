@@ -4,7 +4,7 @@
   <app-header></app-header>
 
   <div class="boarding-page res-border-page">
-    <div class="boarding-content container mx-auto" aria-label="User boarding page division">
+    <div class="boarding-content container mx-auto" aria-label="User boarding page division" style="margin-top: 40px;">
 
       <div style="display: inline-block; text-align: center;">
         <h1 class="boarding-page-hdr my-3 text-center text-md-left d-block" style="padding-top: 10px;">User Onboarding</h1>
@@ -23,7 +23,7 @@
             </div>
 
 
-            <div class="fileUpload fileupload-responsive mx-auto">
+            <div class="fileUpload fileupload-responsive">
               <input type="file" (change)="onChange($event)" class="upload w-100 pro-pic-chng-pic mx-auto" />
               <span>Upload</span>
             </div>
@@ -546,11 +546,11 @@
 
                   </p>
                   <fieldset>
-                   
+
                     <legend class="questionnaire-legend pt-3">
                       Candidate Questionnaire
                     </legend>
-                   
+
                     <hr class="w-100 boarding-pro-info-hr my-2" />
 
                     <div class="pt-2">
@@ -783,6 +783,35 @@
                              [class.is-invalid]="qAnswer18.invalid && qAnswer18.dirty"
                              id="qA18" aria-labelledby="last-name-lbl" value="{{qAnsers.qA18}}" name="qA18" [(ngModel)]="qAnsers.qA18" />
                       <small class="text-danger" [class.d-none]="qAnswer18.valid">
+                        Please give proper answer.
+                      </small>
+                    </div>
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">11. Please tell  us about your recent accomplishments. (Ex:)</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="999999"
+                             maxlength="500"
+                             placeholder="Enter the answer"
+                             #qAnswer19="ngModel"
+                             [class.is-invalid]="qAnswer19.invalid && qAnswer19.dirty"
+                             id="qA19" aria-labelledby="last-name-lbl" value="{{qAnsers.qA19}}" name="qA19" [(ngModel)]="qAnsers.qA19" />
+                      <small class="text-danger" [class.d-none]="qAnswer19.valid">
+                        Please give proper answer.
+                      </small>
+                    </div>
+
+                    <div class="pt-2">
+                      <label class="questionnaire-ques w-100 " for="boarding-questionnaire-1">12. Please tell about your needs from conconnect(Ex: job, internship,services)</label>
+                      <input type="text" class="questionnaire-input mt-1 w-100 form-control font-size-12"
+                             min="0"
+                             max="999999"
+                             maxlength="500"
+                             placeholder="Enter the answer"
+                             #qAnswer20="ngModel"
+                             [class.is-invalid]="qAnswer20.invalid && qAnswer20.dirty"
+                             id="qA20" aria-labelledby="last-name-lbl" value="{{qAnsers.qA20}}" name="qA20" [(ngModel)]="qAnsers.qA20" />
+                      <small class="text-danger" [class.d-none]="qAnswer20.valid">
                         Please give proper answer.
                       </small>
                     </div>

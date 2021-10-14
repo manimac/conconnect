@@ -25,6 +25,9 @@ export class questionAnswer {
     public qA16: string,
     public qA17: string,
     public qA18: string,
+    public qA19: string,
+    public qA20: string,
+
 
 
     public isqA12: string,

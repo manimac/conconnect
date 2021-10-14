@@ -517,6 +517,24 @@ return headers
       this.finalQuestionnaireArray.push(this.finalQuestionnaire);
     }
 
+    if (data.qA19 != '') {
+      this.finalQuestionnaire = {
+        "UserName": this.UserName,
+        "QuestionID": 19,
+        "Answer": data.qA19
+      }
+      this.finalQuestionnaireArray.push(this.finalQuestionnaire);
+    }
+
+
+    if (data.qA20 != '') {
+      this.finalQuestionnaire = {
+        "UserName": this.UserName,
+        "QuestionID": 20,
+        "Answer": data.qA20
+      }
+      this.finalQuestionnaireArray.push(this.finalQuestionnaire);
+    }
 
 
 

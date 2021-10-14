@@ -54,7 +54,7 @@ export class BoardingComponent implements OnInit {
 
   _user = new user('', '', '', '','', '', '', 0, '', '', '', '', '', '', '', '','');
   qAnsers = new questionAnswer('', '', '', '', '', '',
-    '', '', '', '', '', '', '','','','','','','');
+    '', '', '', '', '', '', '','','','','','','','','');
 
 
   deCryptData: any
@@ -393,6 +393,13 @@ export class BoardingComponent implements OnInit {
 
       if (value1.questionId == 18) {
         this.qAnsers.qA18 = value1.answer
+      }
+      if (value1.questionId == 19) {
+        this.qAnsers.qA19 = value1.answer
+      }
+
+      if (value1.questionId == 20) {
+        this.qAnsers.qA20 = value1.answer
       }
     })
 

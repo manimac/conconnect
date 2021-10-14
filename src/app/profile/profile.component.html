@@ -18,7 +18,7 @@
                     <h5 class="profile-text profile-desgination" *ngIf="isUser()">{{_user.professionName}}</h5>
                     <h5 class="profile-text profile-desgination" *ngIf="isRecruiter()&&(_user.companyName&&_user.industry)">{{_user.companyName}} | {{_user.industry}}</h5>
                     <p class="m-0 profile-location" *ngIf="_user.city&&_user.state">
-                        <img src="../../assets/img/location.svg" alt="Location Icon">
+                        <img src="./assets/img/location.svg" alt="Location Icon">
                         <span class="profile-text">{{_user.city}} | {{_user.state}}, {{_user.country}}</span>
                     </p>
                     <p class="profile-followers" *ngIf="isRecruiter()"><span class="followers-count font-weight-bold">{{_user.followingCount}}</span> <span class="profile-text">Followers</span></p>

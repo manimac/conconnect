@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'course-category-listing', component: CourseCategoryListingComponent, canActivate: [AuthGuard]},
   { path: 'feed', component: FeedComponent, canActivate: [AuthGuard]},
   { path: 'confirm', component: EmailVerifyComponent },
-  { path: 'home', component: LandingPageComponent },
+  { path: 'home', component: LandingPage2Component },
   { path: 'linkedin', component: SocialLoginComponent },
   { path: 'connections', component: UserSearchComponent, canActivate: [AuthGuard] },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'deactivate', component: DeactivateComponent, canActivate: [AuthGuard] },
   { path: 'landing-page', component: LandingPage2Component },
   { path: 'user/:name', component: ProfileComponent, canActivate: [AuthGuard] },
-  {path:'',component:LandingPageComponent}
+  { path: '', component: LandingPage2Component}
 ];
 
 @NgModule({

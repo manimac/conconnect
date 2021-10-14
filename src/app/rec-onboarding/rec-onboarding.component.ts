@@ -44,7 +44,7 @@ export class RecOnboardingComponent implements OnInit {
   _user = new user('', '', '', null, null, '', '', 0, '', '', '', '', '', '', '', '', '');
 
   qAnsers = new questionAnswer('', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '', '', '', '');
+    '', '', '', '', '', '', '', '', '', '', '', '', '','','');
 
 
   deCryptData: any

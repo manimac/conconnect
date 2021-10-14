@@ -74,7 +74,6 @@ export class HeaderComponent implements OnInit {
 
 
   onProfile() {
-
     console.log(JSON.stringify(JSON.parse(this.deCryptData || '').userRole[0].roleId));
     if (JSON.stringify(JSON.parse(this.deCryptData || '').userRole[0].roleId) == "1")
       this.router.navigate(['/boarding']);
@@ -103,7 +102,7 @@ export class HeaderComponent implements OnInit {
   }
 
   redirectPage(data: any){
-    if(data.notificationId == 3){
+    if(data.notificationId == 4){
       this.router.navigate(['/user/' + data.pageIdentifier]);
     }
     else if(data.notificationId == 6){

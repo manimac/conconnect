@@ -58,7 +58,7 @@
                 </a>
               </li>
               <li>
-                <a href="https://concourses.education/" class="header-link">
+                <a href="https://concourses.education/" class="header-link" target="_blank">
                   <figure class="m-0 p-0">
                     <img src="../../assets/img/header/icons/courses.svg" alt="Courses Icon">
                   </figure>
@@ -72,6 +72,7 @@
               <li class="profile-menu">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
+                    <span class="notif-span-count" *ngIf="!isCountZero"><span class="notif-no">{{count}}</span></span>
                     <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
                   </figure>
                   <span class="d-block text-center">Notifications</span>

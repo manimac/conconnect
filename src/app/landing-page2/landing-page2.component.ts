@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 declare var $: any;
 
@@ -9,7 +11,7 @@ declare var $: any;
 })
 export class LandingPage2Component implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private location: Location) { }
 
   ngAfterViewInit() {
     this.loadCarousel();
@@ -29,10 +31,8 @@ export class LandingPage2Component implements OnInit {
   menuToggle() {
     if($(".menu").hasClass("open")) {
       $(".menu").removeClass("open");
-      $(".menu-btn").removeClass("menu-opened");
     } else {
       $(".menu").addClass("open");
-      $(".menu-btn").addClass("menu-opened");
     }      
   }
 
@@ -78,4 +78,13 @@ export class LandingPage2Component implements OnInit {
     }
   }
 
+  signupBtnClick() {
+    this.location.replaceState('/');
+    return this.router.navigateByUrl('/signup');
+  }
+
+  loginBtnClick() {
+    this.location.replaceState('/');
+    return this.router.navigateByUrl('/login');
+  }
 }

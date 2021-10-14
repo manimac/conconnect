@@ -98,7 +98,7 @@
         </div>
         <div class="col-md-4">
           <div class="bg-white" style="padding: 10px;text-align:center;">
-            <img class="" src="{{_jobDetail.company.logo}}" alt="Logo" style="padding: 20px; object-fit: cover; " *ngIf="_jobDetail.company.logo!='undefined'">
+            <img class="" src="{{_jobDetail.company.logo}}" alt="Logo" style="padding: 20px; object-fit: cover;width:180px; " *ngIf="_jobDetail.company.logo!='undefined'">
               <img class="" src="https://conconnect-objects.s3.amazonaws.com/images/profile/default-image.png" alt="Logo" style="padding: 20px; object-fit: cover; height: 120px;" *ngIf="_jobDetail.company.logo=='undefined'">
             <p class="p-5 text-justify" style="word-break:break-word"><b>About : </b>{{_jobDetail.company.about}}</p>
             <!--<a href="mailto:info@apple.com">

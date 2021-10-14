@@ -140,7 +140,7 @@
                           <div class="d-flex flex-row align-items-center feed-text px-2" style="margin-left: 0px;">
                             <img class="rounded-circle" [src]="feed.userNameNavigation.userDetails.photo" width="40" height="40" *ngIf="feed.userNameNavigation.userDetails.photo!=null" style="object-fit: cover;" />
                             <img class="rounded-circle" src="{{profileImage}}" width="40" height="40" *ngIf="feed.userNameNavigation.userDetails.photo==null" style="object-fit: cover;" />
-                            <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold res-word-break" style="word-break: break-word;">{{feed.userNameNavigation.userDetails.firstName}}&nbsp;{{feed.userNameNavigation.userDetails.lastName}}</span><span class="text-black-50 time text-left">{{feed.createdDate | dateAgo}}</span></div>
+                            <div class="d-flex flex-column flex-wrap ml-2 cursor-pointer" routerLink="/user/{{feed.userNameNavigation.userDetails.accountName}}"><span class="font-weight-bold res-word-break" style="word-break: break-word;">{{feed.userNameNavigation.userDetails.firstName}}&nbsp;{{feed.userNameNavigation.userDetails.lastName}}</span><span class="text-black-50 time text-left">{{feed.createdDate | dateAgo}}</span></div>
                           </div>
                           <div class="feed-icon px-2 responsive-follow">
                             <a class="text-primary c-follow-h c-follow-h-responsive" (click)="onFollow(feed.userName)" *ngIf="feed.isFollow==false">+ Follow</a>
@@ -225,7 +225,7 @@
                                       <div class="row d-flex justify-content-around">
                                         <div class="" style="display:flex;">
                                           <img src="{{com.userNameNavigation.userDetails.photo}}" style=" width: 36px !important; height: 36px !important;border-radius:20px;object-fit:cover;" />
-                                          <div class="comment-text text-left" style="margin-left:10px; padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
+                                          <div class="comment-text text-left cursor-pointer" style="margin-left:10px; padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;" routerLink="/user/{{com.userNameNavigation.userDetails.accountName}}">
                                             <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} </span>
                                           </div>
                                         </div>
@@ -281,7 +281,7 @@
                         <div class="box-comment" *ngFor="let com of feed.comments">
                           <img src="{{com.userNameNavigation.userDetails.photo}}" style=" margin-left: 6px; width: 36px !important; height: 36px !important;border-radius:20px;object-fit:cover;" />
                           <div class="comment-text text-left" style="margin-left: 48px; padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
-                            <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} <span class="text-muted pull-right">{{com.createdDate | dateAgo}}</span> </span>
+                            <span class="username cursor-pointer" style="font-size: 12px;" routerLink="/user/{{com.userNameNavigation.userDetails.accountName}}">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} <span class="text-muted pull-right">{{com.createdDate | dateAgo}}</span> </span>
 
                             <!--<span style="font-size:12px;">{{com.description}}</span>-->
 
@@ -320,7 +320,7 @@
                                         <div class="comment-text text-left" style="padding: 10px; background: #F3F3F3 0% 0% no-repeat padding-box; border-radius: 10px; line-height: 16px;">
 
                                           <div class="row">
-                                            <div class="col-md-8 col-sm-8">
+                                            <div class="col-md-8 col-sm-8 cursor-pointer" routerLink="/user/{{com.userNameNavigation.userDetails.accountName}}">
                                               <span class="username" style="font-size: 12px;">{{com.userNameNavigation.userDetails.firstName}}&nbsp;{{com.userNameNavigation.userDetails.lastName}} </span>
                                             </div>
                                             <div class="col-md-4 col-sm-4"><span class="text-muted font-size-12 pull-right">{{com.createdDate | dateAgo}}</span> </div>

@@ -25,6 +25,8 @@ import { AddServiceComponent } from './services/add-service/add-service.componen
 import { ApplyJobComponent } from './jobs/apply-job/apply-job.component';
 import { LandingPage2Component } from './landing-page2/landing-page2.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JoinTheNationalComponent } from './join-the-national/join-the-national.component';
+import { AdvertiseWithUsComponent } from './advertise-with-us/advertise-with-us.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -51,6 +53,8 @@ const routes: Routes = [
   { path: 'deactivate', component: DeactivateComponent, canActivate: [AuthGuard] },
   { path: 'landing-page', component: LandingPage2Component },
   { path: 'user/:name', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'join-the-national-reentry-round-table', component: JoinTheNationalComponent },
+  { path: 'advertise-with-us', component: AdvertiseWithUsComponent },
   { path: '', component: LandingPage2Component}
 ];
 

@@ -49,6 +49,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApplyJobComponent } from './jobs/apply-job/apply-job.component';
 import { LandingPage2Component } from './landing-page2/landing-page2.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JoinTheNationalComponent } from './join-the-national/join-the-national.component';
+import { AdvertiseWithUsComponent } from './advertise-with-us/advertise-with-us.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ProfileComponent } from './profile/profile.component';
     FooterComponent,
     ApplyJobComponent,
     LandingPage2Component,
-    ProfileComponent
+    ProfileComponent,
+    JoinTheNationalComponent,
+    AdvertiseWithUsComponent
   ],
   imports: [
     BrowserModule,

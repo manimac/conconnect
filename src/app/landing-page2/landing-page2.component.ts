@@ -18,10 +18,10 @@ export class LandingPage2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     $(window).on("scroll", function () {
       console.log("in");
-      if($(window).scrollTop() < 100) {
+      if ($(window).scrollTop() < 100) {
         $("header").removeClass("scrolled");
       } else {
         $("header").addClass("scrolled");
@@ -29,16 +29,16 @@ export class LandingPage2Component implements OnInit {
     });
   }
   menuToggle() {
-    if($(".menu").hasClass("open")) {
+    if ($(".menu").hasClass("open")) {
       $(".menu").removeClass("open");
     } else {
       $(".menu").addClass("open");
-    }      
+    }
   }
 
   subMenuToggle(e: any) {
     console.log($(e.target).siblings(".sub-menu"));
-    if($(e.target).hasClass("open")) {
+    if ($(e.target).hasClass("open")) {
       $(e.target).removeClass("open");
       $(e.target).siblings(".sub-menu").removeClass("open");
     } else {
@@ -50,12 +50,12 @@ export class LandingPage2Component implements OnInit {
   loadCarousel() {
     if ($('.carousel-item').length) {
       $("#testimonialCarousel").owlCarousel({
-        loop: true, 
-        margin: 0, 
-        nav: true, 
-        dots: false, 
-        smartSpeed: 500, 
-        autoplay: true, 
+        loop: true,
+        margin: 0,
+        nav: true,
+        dots: false,
+        smartSpeed: 500,
+        autoplay: true,
         navText: ['<img src="../../assets/img/landing/testimonial-arrow-left.png" alt="Prev Icon">', '<img src="../../assets/img/landing/testimonial-arrow-right.png" alt="Next Icon">'],
         responsive: {
           0: {
@@ -86,5 +86,9 @@ export class LandingPage2Component implements OnInit {
   loginBtnClick() {
     this.location.replaceState('/');
     return this.router.navigateByUrl('/login');
+  }
+
+  navigateToSection(section: HTMLElement) {
+    section.scrollIntoView();
   }
 }

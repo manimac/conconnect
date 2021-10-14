@@ -29,17 +29,17 @@
                                 <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">More</a>
                                 <ul class="m-0 p-0 sub-menu">
                                     <li>
-                                        <a href="javascript:void(0)">About Us</a>
+                                        <a href="javascript:void(0)" (click)="navigateToSection(aboutus)">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Testimonials</a>
+                                        <a href="javascript:void(0)" (click)="navigateToSection(testimonial)">Testimonials</a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0)" routerLink="/join-the-national-reentry-round-table">Join the national Reentry round table</a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="javascript:void(0)" routerLink="/advertise-with-us">Advertise with us</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                             <li>
@@ -182,7 +182,7 @@
         </div>
     </section>
 
-    <section class="w-100 common-section blue-bg about">
+    <section class="w-100 common-section blue-bg about" #aboutus>
         <div class="container position-relative">
             <div class="shapes">
                 <img src="./assets/img/about/dots.png" alt="Dots" class="dots">
@@ -291,7 +291,7 @@
             </div>
         </div>
     </section>
-    <section class="w-100 common-section testimonial">
+    <section class="w-100 common-section testimonial" #testimonial>
         <div class="container">
             <h3 class="m-0 mb-3 mb-md-4 text-center common-title xs">Testimonials</h3>
             <div id="testimonialCarousel" class="mb-md-4 owl-carousel">

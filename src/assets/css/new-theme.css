@@ -490,6 +490,9 @@ header.main-header .menu-btn.menu-opened path {
         opacity: 0.35;
         top: 80%;
     }
+    .main-header .menu-btn.menu-open path {
+        fill: #3E72DD;
+    }
 }
 @media only screen and (max-width: 600px) {
     .common-title {

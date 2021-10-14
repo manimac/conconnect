@@ -1,1 +1,181 @@
-<p>join-the-nationality works!</p>
+<header class="main-header">
+    <div class="h-100 container">
+        <div class="row m-0 align-items-center h-100">
+            <div class=" col-6 col-lg-2 pl-0 h-100">
+                <figure class="d-flex align-items-center m-0 p-0 h-100">
+                    <img src="./assets/img/logo_copy.png" alt="Logo Image" class="w-100 logo" style="cursor:pointer;">
+                </figure>
+            </div>
+            <div class="col-2 pr-0 ml-auto menu-btn-block" (click)="menuToggle()">
+                <button class="btn menu-btn">
+                    <svg width="100%" height="100%" viewBox="0 0 612 612">
+                        <g>
+                            <path d="M581.4,520.199H30.6c-16.891,0-30.6,13.709-30.6,30.6C0,567.691,13.709,581.4,30.6,581.4h550.8
+				c16.891,0,30.6-13.709,30.6-30.602C612,533.908,598.291,520.199,581.4,520.199z" />
+                            <path d="M581.4,275.399H30.6C13.709,275.399,0,289.108,0,306s13.709,30.6,30.6,30.6h550.8
+				c16.891,0,30.6-13.709,30.6-30.6S598.291,275.399,581.4,275.399z" />
+                            <path d="M30.6,91.799h550.8
+				c16.891,0,30.6-13.708,30.6-30.6c0-16.892-13.709-30.6-30.6-30.6H30.6C13.709,30.6,0,44.308,0,61.2
+				C0,78.091,13.709,91.799,30.6,91.799z" />
+                        </g>
+                    </svg>
+                </button>
+            </div>
+            <div class="col-lg-10 pr-0 menu">
+                <div class="row m-0">
+                    <div class="col-lg-10 text-lg-right p-0 ml-auto">
+                        <ul class="m-0 p-0 main-menu">
+                            <li>
+                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">More</a>
+                                <ul class="m-0 p-0 sub-menu">
+                                    <li>
+                                        <a href="javascript:void(0)">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">Testimonials</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" routerLink="/join-the-national-reentry-round-table">Join the national Reentry round table</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" routerLink="/advertise-with-us">Advertise with us</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Connections</a>
+                                <ul class="m-0 p-0 sub-menu">
+                                    <li>
+                                        <a href="javascript:void(0)">Basic Plan</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">Paid Plan</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">Premium Plan</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Job Seekers</a>
+                                <ul class="m-0 p-0 sub-menu">
+                                    <li>
+                                        <a href="javascript:void(0)">Job seekers</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">Jobs</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" (click)="loginBtnClick();">Sign In</a>
+                            </li>
+                            <li>
+                                <button class="ml-auto btn common-btn" (click)="signupBtnClick();">Join Now</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- <app-header></app-header> -->
+
+<div class="join-the-national">
+    <div class="h-100 container">
+        <h1 class="boarding-page-hdr my-3 text-left pl-0 d-block" style="padding-top: 10px;">Join the national reentry round table</h1>
+        <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        <form class="p-0 m-0 d-lg-grid" novalidate style="display: grid;
+            height: auto;
+            background: #F4F7FA 0% 0% no-repeat padding-box;
+            padding: 20px !important;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px #9b9a9a;
+            background: white;
+            border-radius: 10px;margin-bottom:20px !important;">
+
+            <div class="w-100 d-flex-responsive d-sm-grid" aria-label="User's name">
+                <div class="w-md-48 float-left mt-2">
+                    <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">First Name</label> <br />
+                    <input type="text"
+                        maxlength="50"
+                        placeholder="Enter First Name"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-first-name"
+                        value=""
+                        name="firstName"
+                        required />
+                    <small class="text-danger">
+                    First Name is Required
+                    </small>
+                </div>
+                <div class="w-md-48 float-right mt-2">
+                    <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">Last Name</label> <br />
+                    <input type="text"
+                        maxlength="50"
+                        placeholder="Enter Last Name"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-last-name"
+                        value=""
+                        name="lastName"
+                        required />
+                    <small class="text-danger">
+                    Last Name is Required
+                    </small>
+                </div>
+                <div class="w-md-48 float-left mt-2">
+                    <label class="boarding-pro-info-lbl text-left" id="email">Email</label> <br />
+                    <input type="text"
+                        maxlength="50"
+                        placeholder="Enter Email"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="email"
+                        value=""
+                        name="email"
+                        required />
+                    <small class="text-danger">
+                    Email is Required
+                    </small>
+                </div>
+                <div class="w-md-48 float-right mt-2">
+                    <label class="boarding-pro-info-lbl text-left" id="phone-no">Phone number</label> <br />
+                    <input type="text"
+                        maxlength="50"
+                        placeholder="Enter Phone Number"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-phoneNo"
+                        value=""
+                        name="phoneNo"
+                        required />
+                    <small class="text-danger">
+                    Phone Number is Required
+                    </small>
+                </div>
+                <div class="w-md-48 float-left mt-2">
+                    <label class="boarding-pro-info-lbl text-left" id="company-name">Company Name</label> <br />
+                    <input type="text"
+                        maxlength="50"
+                        placeholder="Enter Company Name"
+                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        id="pro-companyName"
+                        value=""
+                        name="companyName"
+                        required />
+                    <small class="text-danger">
+                    Company Name is Required
+                    </small>
+                </div>
+
+                <div class="w-100 float-left my-3 mt-4 d-md-grid h-auto">
+                    <button type="submit" name="Continue" class="questionnaire-form-btn text-center mx-auto" disabled="">
+                      <span style="color: #fff;">Send</span>
+                    </button>
+                </div>
+            </div>
+          </form>
+    </div>
+</div>
+
+<app-footer class="sub-page"></app-footer>

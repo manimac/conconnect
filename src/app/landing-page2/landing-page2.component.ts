@@ -31,13 +31,14 @@ export class LandingPage2Component implements OnInit {
   menuToggle() {
     if($(".menu").hasClass("open")) {
       $(".menu").removeClass("open");
+      $(".menu-btn").removeClass("menu-open");
     } else {
       $(".menu").addClass("open");
+      $(".menu-btn").addClass("menu-open");
     }      
   }
 
   subMenuToggle(e: any) {
-    console.log($(e.target).siblings(".sub-menu"));
     if($(e.target).hasClass("open")) {
       $(e.target).removeClass("open");
       $(e.target).siblings(".sub-menu").removeClass("open");

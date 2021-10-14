@@ -1,0 +1,12 @@
+header {
+    background-color: #191919db;
+}
+.join-the-national {
+    padding-top: 85px;
+    padding-bottom: 30px;
+    background-color: #F3F2EF;
+    min-height: calc(100vh - 4.25rem);
+}
+.join-the-national .boarding-page-hdr {
+    line-height: 32px;
+}

@@ -443,6 +443,9 @@ header {
     .welcome-block {
         padding: 60px 0;
     }
+    /* .main-header .menu-btn.menu-open path {
+        fill: #3E72DD;
+    } */
 }
 @media only screen and (max-width: 767px) {
     .welcome {
@@ -510,7 +513,7 @@ header {
 }
 @media only screen and (max-width: 575px) {
     #bannerCarousel .carousel-item {
-        padding-bottom: 50px;
+        padding-bottom: 70px;
     }
     .banner-title {
         font-size: 28px !important;
@@ -544,5 +547,20 @@ header {
     }
     .main-header .container {
         padding: 0;
+    }
+    .banner .carousel-item:first-child {
+        background: url(../../assets/img/mobile/1.png) no-repeat;
+        background-size: cover;
+    }
+    .banner .carousel-item:nth-child(2) {
+        background: url(../../assets/img/mobile/2.png) no-repeat;
+        background-size: cover;
+    }
+    .banner .carousel-item:last-child {
+        background: url(../../assets/img/mobile/3.png) no-repeat;
+        background-size: cover;
+    }
+    .banner, .banner .carousel, .banner .carousel .carousel-inner, .banner .carousel .carousel-item {
+        height: 465px;
     }
 }

@@ -70,8 +70,8 @@
     overflow: hidden;
     position: relative;
     bottom: -87.5px;
-    background-repeat: no-repeat;
-    background-size: contain;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
 }
 .profile-img img {
     opacity: 0;

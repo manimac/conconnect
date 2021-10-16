@@ -108,9 +108,6 @@ export class HeaderComponent implements OnInit {
     else if(data.notificationId == 6){
       this.router.navigate(['/job-detail/' + data.pageIdentifier]);
     }
-    else if(data.notificationId == 9){
-      this.router.navigate(['/jobApply/' + data.pageIdentifier]);
-    }
   }
 
   menuToggle() {

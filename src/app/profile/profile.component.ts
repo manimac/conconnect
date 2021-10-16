@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   constructor(public profile: profileService, private route: ActivatedRoute) { }
 
   ngAfterViewInit() {
-    
   }
 
   ngOnInit(): void {

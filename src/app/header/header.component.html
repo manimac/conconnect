@@ -25,10 +25,10 @@
         <div class="row m-0">
           <div class="col-lg-8">
             <ul class="m-0 p-0 text-center header-list">
-              <li routerLink="/jobs">
+              <li routerLink="/feed">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/jobs.svg" alt="Home Icon">
+                    <img src="../../assets/img/nav-home-24px.svg" alt="Home Icon">
                   </figure>
                   <span class="d-block text-center">Home</span>
                 </a>
@@ -72,14 +72,14 @@
               <li class="profile-menu">
                 <a href="javascript:void(0)" class="header-link">
                   <figure class="m-0 p-0">
-                    <span class="notif-span-count" *ngIf="!isCountZero"><span class="notif-no">{{count}}</span></span>
+                    <span class="notif-span-count" *ngIf="!isCountZero"><span class="w-100 text-center p-0 notif-no">{{count}}</span></span>
                     <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
                   </figure>
                   <span class="d-block text-center">Notifications</span>
                 </a>
                 <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
 
-                  <ul style="max-height: 300px; overflow-y: scroll; text-decoration: none; list-style: none; padding: 16px;">
+                  <ul style="text-decoration: none; list-style: none; padding: 16px;">
                     <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id, notifData)" style="cursor:pointer;" [innerHtml]="notifData.description">
                       <hr />
                     </li>

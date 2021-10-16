@@ -70,6 +70,11 @@
     overflow: hidden;
     position: relative;
     bottom: -87.5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.profile-img img {
+    opacity: 0;
 }
 .profile-text {
     font-family: Poppins;
@@ -267,9 +272,8 @@
         margin-bottom: 10px !important;
     }
     .activity-wrapper > div {
-        max-width: 100%;
-        flex: 1 0 100%;
-        padding-left: 0;
+        max-width: calc(100% - 50px);
+        flex: 1 0 calc(100% - 50px);
     }
     .title > span {
         font-size: 18px;
@@ -292,5 +296,9 @@
     }
     .activity-wrapper {
         margin-bottom: 0;
+        padding-bottom: 10px;
+    }
+    .activity-feeds > div {
+        padding: 0;
     }
 }

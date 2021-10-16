@@ -105,6 +105,49 @@ input[type="file"] {
   display: flex;
 }
 
+/* Tooltip text */
+.tooltip1 .tooltiptext1 {
+  background: transparent linear-gradient( 90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
+  visibility: hidden;
+  width: 106px;
+  color: #fff;
+  text-align: center;
+  padding: 6px 0px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  font-size: 11px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip1:hover .tooltiptext1 {
+  visibility: visible;
+}
+.notif-span-count {
+  position: absolute;
+  right: 49px;
+  top: -4px;
+  color: #fff;
+  font-size: 9px;
+  z-index: 1000;
+  border: 1px solid red;
+  border-radius: 16px;
+  background: red;
+  padding: 0px;
+  width: 14px;
+  height: 14px;
+  font-weight: bold;
+}
+.notif-mob {
+  width: 300px;
+  right: 0px;
+  text-align: left;
+}
+.notif-no {
+  line-height: 14px;
+  display: block;
+}
+
 @media only screen and (max-width:991px) {
   
   .header-link + .dropdown-content {
@@ -120,6 +163,26 @@ input[type="file"] {
       display: block;
       width: 100%;
       text-align: left;
+  }
+  .header-link + .dropdown-content.notif-mob > * { 
+    height: auto;
+  }
+  .notif-mob {
+    width: 100%;
+    overflow: auto;
+    max-height: 200px;
+  }
+  .notif-mob li {
+    min-width: 100%;
+    text-align: left;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .notif-mob li:last-child {
+    border: 0;
+    padding: 0;
+    margin: 0;
   }
 }
 @media (max-width:600px) {
@@ -162,46 +225,20 @@ input[type="file"] {
   }
 }
 
-/* Tooltip text */
-.tooltip1 .tooltiptext1 {
-  background: transparent linear-gradient( 90deg, #015095 0%, #09A19A 100%) 0% 0% no-repeat padding-box;
-  visibility: hidden;
-  width: 106px;
-  color: #fff;
-  text-align: center;
-  padding: 6px 0px;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  font-size: 11px;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip1:hover .tooltiptext1 {
-  visibility: visible;
-}
-.notif-span-count {
-  position: absolute;
-  right: 49px;
-  top: -4px;
-  color: #fff;
-  font-size: 9px;
-  z-index: 1000;
-  border: 1px solid red;
-  border-radius: 16px;
-  background: red;
-  padding: 0px;
-  width: 14px;
-  height: 14px;
-  font-weight: bold;
-}
-.notif-mob {
-  width: 300px;
-  right: 0px;
-  text-align: left;
+@media only screen and (max-width: 991px) {
+  .notif-span-count {
+    top: 50%;
+    right: 30px;
+    width: 20px;
+    transform: translate(0, -50%);
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 @media (max-width:600px) {
-  .notif-span-count {
+  /* .notif-span-count {
     position: absolute;
     right: 51px;
     top: 2px;
@@ -220,7 +257,7 @@ input[type="file"] {
     width: 300px;
     right: -59px;
     text-align: left;
-  }
+  } */
   .scroll-horizontal-cus {
     width: 320px;
     overflow-x: scroll;

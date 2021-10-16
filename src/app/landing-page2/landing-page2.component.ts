@@ -20,7 +20,6 @@ export class LandingPage2Component implements OnInit {
   ngOnInit(): void {
 
     $(window).on("scroll", function () {
-      console.log("in");
       if ($(window).scrollTop() < 100) {
         $("header").removeClass("scrolled");
       } else {

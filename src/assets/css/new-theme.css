@@ -379,6 +379,10 @@ header.main-header .menu-btn.menu-opened path {
 }
 /*Shapes CSS*/
 
+.main-header .menu-btn.menu-open path {
+    fill: #3E72DD;
+}
+
 @media screen and (min-width: 992px) {    
     .main-menu > li:hover .sub-menu {
         display: block;
@@ -440,12 +444,13 @@ header.main-header .menu-btn.menu-opened path {
         align-items: center;
         flex-wrap: wrap;
         padding: 14px 20px;
+        position: relative;
     }
     .header-link figure img {
         margin: 0;
     }
     
-    .header-link span {
+    .header-link > span {
         flex: 1 0 calc(100% - 25px);
         max-width: calc(100% - 25px);
         text-align: left !important;
@@ -483,15 +488,25 @@ header.main-header .menu-btn.menu-opened path {
         transform: none;        
         box-shadow: 0 4px 8px #ddd;
     }
+    .main-header .menu-btn.menu-open path:first-child {
+        transform-origin: center;
+        transform: translate(153px, -153px) rotate(45deg);
+    }
+    
+    .main-header .menu-btn.menu-open path:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .main-header .menu-btn.menu-open path:last-child {
+        transform-origin: center;
+        transform: translate(153px, 203px) rotate(-45deg);
+    }
 }
 
 @media only screen and (max-width: 575px) {
     .testimonial .owl-nav .owl-prev, .testimonial .owl-nav .owl-next {
         opacity: 0.35;
         top: 80%;
-    }
-    .main-header .menu-btn.menu-open path {
-        fill: #3E72DD;
     }
 }
 @media only screen and (max-width: 600px) {

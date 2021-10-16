@@ -72,6 +72,7 @@
     bottom: -87.5px;
     background-repeat: no-repeat !important;
     background-size: contain !important;
+    background-position: center !important;
 }
 .profile-img img {
     opacity: 0;

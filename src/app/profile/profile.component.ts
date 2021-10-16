@@ -34,9 +34,11 @@ export class ProfileComponent implements OnInit {
   menuToggle() {
     if ($(".menu").hasClass("open")) {
       $(".menu").removeClass("open");
+      $(".menu-btn").removeClass("menu-open");
     } else {
       $(".menu").addClass("open");
-    }
+      $(".menu-btn").addClass("menu-open");
+    }     
   }
   loadCarousel() {
     var activitiesCarousel = $("#activitiesCarousel").owlCarousel({

@@ -22,95 +22,87 @@
         </button>
       </div>
       <div class="col-lg-10 menu">
-        <div class="row m-0">
-          <div class="col-lg-8">
-            <ul class="m-0 p-0 text-center header-list">
-              <li routerLink="/feed">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/nav-home-24px.svg" alt="Home Icon">
-                  </figure>
-                  <span class="d-block text-center">Home</span>
-                </a>
-              </li>
-              <li routerLink="/jobs">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/jobs.svg" alt="Jobs Icon">
-                  </figure>
-                  <span class="d-block text-center">Jobs</span>
-                </a>
-              </li>
-              <li routerLink="/services">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/services.svg" alt="Services Icon">
-                  </figure>
-                  <span class="d-block text-center">Services</span>
-                </a>
-              </li>
-              <li routerLink="/connections">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/connection.svg" alt="Connections Icon">
-                  </figure>
-                  <span class="d-block text-center">Connections</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://concourses.education/" class="header-link" target="_blank">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/courses.svg" alt="Courses Icon">
-                  </figure>
-                  <span class="d-block text-center">Courses</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-4 pr-0">
-            <ul class="m-0 p-0 text-right header-list">
-              <li class="profile-menu">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <span class="notif-span-count" *ngIf="!isCountZero"><span class="w-100 text-center p-0 notif-no">{{count}}</span></span>
-                    <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
-                  </figure>
-                  <span class="d-block text-center">Notifications</span>
-                </a>
-                <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
+        <ul class="m-0 p-0 text-right header-list">
+          <li routerLink="/feed">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/nav-home-24px.svg" alt="Home Icon">
+              </figure>
+              <span class="d-block text-center">Home</span>
+            </a>
+          </li>
+          <li routerLink="/jobs">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/header/icons/jobs.svg" alt="Jobs Icon">
+              </figure>
+              <span class="d-block text-center">Jobs</span>
+            </a>
+          </li>
+          <li routerLink="/services">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/header/icons/services.svg" alt="Services Icon">
+              </figure>
+              <span class="d-block text-center">Services</span>
+            </a>
+          </li>
+          <li routerLink="/connections">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/header/icons/connection.svg" alt="Connections Icon">
+              </figure>
+              <span class="d-block text-center">Connections</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://concourses.education/" class="header-link" target="_blank">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/header/icons/courses.svg" alt="Courses Icon">
+              </figure>
+              <span class="d-block text-center">Courses</span>
+            </a>
+          </li>
+          <li class="profile-menu">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <span class="notif-span-count" *ngIf="!isCountZero"><span class="w-100 text-center p-0 notif-no">{{count}}</span></span>
+                <img src="../../assets/img/header/icons/bell.svg" alt="Notifications Icon">
+              </figure>
+              <span class="d-block text-center">Notifications</span>
+            </a>
+            <div class="dropdown-content dropdown-responsive-content notif-mob res-content_notif" *ngIf="!isCountZero">
 
-                  <ul style="text-decoration: none; list-style: none; padding: 16px;">
-                    <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id, notifData)" style="cursor:pointer;" [innerHtml]="notifData.description">
-                      <hr />
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="profile-menu">
-                <a href="javascript:void(0)" class="header-link">
-                  <figure class="m-0 p-0">
-                    <img src="../../assets/img/header/icons/profile.svg" alt="Profile Icon">
-                  </figure>
-                  <span class="d-block text-center">Profile</span>
-                </a>
-                <div class="dropdown-content dropdown-responsive-content">
-                  <a class="btn" (click)="onProfile()"><img src="./assets/img/nav-me-24px.svg" alt="My account icon"
-                      class="page-hdr_nav_icons mx-auto">&nbsp;&nbsp;Profile</a><button class="btn"
-                    style="margin-left: 8px; margin-bottom: 5px;" (click)="onLogout()"><svg
-                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
-                      class="bi bi-box-arrow-right">
-                      <path fill-rule="evenodd"
-                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z">
-                      </path>
-                      <path fill-rule="evenodd"
-                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z">
-                      </path>
-                    </svg>&nbsp;&nbsp;Logout </button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+              <ul style="text-decoration: none; list-style: none; padding: 16px;">
+                <li *ngFor="let notifData of _notificationList" (click)="notifRead(notifData.id, notifData)" style="cursor:pointer;" [innerHtml]="notifData.description">
+                  <hr />
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="profile-menu">
+            <a href="javascript:void(0)" class="header-link">
+              <figure class="m-0 p-0">
+                <img src="../../assets/img/header/icons/profile.svg" alt="Profile Icon">
+              </figure>
+              <span class="d-block text-center">Profile</span>
+            </a>
+            <div class="dropdown-content dropdown-responsive-content">
+              <a class="btn" (click)="onProfile()"><img src="./assets/img/nav-me-24px.svg" alt="My account icon"
+                  class="page-hdr_nav_icons mx-auto">&nbsp;&nbsp;Profile</a><button class="btn"
+                style="margin-left: 8px; margin-bottom: 5px;" (click)="onLogout()"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                  class="bi bi-box-arrow-right">
+                  <path fill-rule="evenodd"
+                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z">
+                  </path>
+                  <path fill-rule="evenodd"
+                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z">
+                  </path>
+                </svg>&nbsp;&nbsp;Logout </button>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

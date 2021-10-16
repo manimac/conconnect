@@ -119,6 +119,7 @@ header.main-header .menu-btn.menu-opened path {
     line-height: 18px;
     color: #696969;
     display: block;
+    position: relative;
     transition: all 0.3s ease-in-out;
 }
 .header-link:hover {
@@ -488,16 +489,16 @@ header.main-header .menu-btn.menu-opened path {
         transform: none;        
         box-shadow: 0 4px 8px #ddd;
     }
-    .main-header .menu-btn.menu-open path:first-child {
+    .menu-btn.menu-open path:first-child {
         transform-origin: center;
         transform: translate(153px, -153px) rotate(45deg);
     }
     
-    .main-header .menu-btn.menu-open path:nth-child(2) {
+    .menu-btn.menu-open path:nth-child(2) {
         opacity: 0;
     }
     
-    .main-header .menu-btn.menu-open path:last-child {
+    .menu-btn.menu-open path:last-child {
         transform-origin: center;
         transform: translate(153px, 203px) rotate(-45deg);
     }

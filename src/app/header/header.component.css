@@ -125,7 +125,7 @@ input[type="file"] {
 }
 .notif-span-count {
   position: absolute;
-  right: 49px;
+  right: 35px;
   top: -4px;
   color: #fff;
   font-size: 9px;
@@ -148,6 +148,27 @@ input[type="file"] {
   display: block;
 }
 
+
+.notif-mob {
+  width: 100%;
+  overflow: auto;
+  max-width: 300px;
+  max-height: 300px;
+}
+.notif-mob li {
+  min-width: 100%;
+  text-align: left;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+}
+.notif-mob li:last-child {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
 @media only screen and (max-width:991px) {
   
   .header-link + .dropdown-content {
@@ -166,23 +187,6 @@ input[type="file"] {
   }
   .header-link + .dropdown-content.notif-mob > * { 
     height: auto;
-  }
-  .notif-mob {
-    width: 100%;
-    overflow: auto;
-    max-height: 200px;
-  }
-  .notif-mob li {
-    min-width: 100%;
-    text-align: left;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  .notif-mob li:last-child {
-    border: 0;
-    padding: 0;
-    margin: 0;
   }
 }
 @media (max-width:600px) {

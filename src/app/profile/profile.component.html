@@ -1,10 +1,10 @@
 <app-header class="sub-page"></app-header>
-<div class="text-center mt-3" *ngIf="!_user">
+<div class="text-center mt-3" *ngIf="!userShow">
     <div class="spinner-border text-center" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-<section class="common-section profile" *ngIf="_user">
+<section class="common-section profile" *ngIf="userShow">
     <div class="main-container">
         <div class="profile-empty">
             <figure class="m-0 p-0 profile-img">
@@ -23,7 +23,7 @@
                     </p>
                     <p class="profile-followers" *ngIf="isRecruiter()"><span class="followers-count font-weight-bold">{{_user.followingCount}}</span> <span class="profile-text">Followers</span></p>
                 </div>
-                <button class="ml-auto btn common-btn">Follow</button>
+                <button class="ml-auto btn common-btn" *ngIf="_user.isFollow==false" (click)="onFollow(_user.userName)">Follow</button>
             </div>
             <div class="seperator"></div>
             <div class="w-100 profile-user-content">

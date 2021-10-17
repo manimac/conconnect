@@ -131,6 +131,28 @@ header.main-header .menu-btn.menu-opened path {
     max-width: 100%;
     margin-bottom: 10px;
 }
+.header-link figure svg {
+    width: 22px;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+.header-link figure svg.notify, .header-link figure svg.profile {
+    width: 16px;
+}
+.header-link path {
+    fill: #696969;
+    transition: all 0.3s ease-in-out;
+}
+.header-link path.b, .header-link path.courses {
+    fill: none;
+ }
+.header-link:hover path:not(.b) {
+    fill: #3E72DD;
+}
+.header-link:hover path.courses {
+    fill: none !important;
+    stroke: #3E72DD;
+}
 
 .header-link span {
     color: inherit;
@@ -447,7 +469,7 @@ header.main-header .menu-btn.menu-opened path {
         padding: 14px 20px;
         position: relative;
     }
-    .header-link figure img {
+    .header-link figure img, .header-link figure svg {
         margin: 0;
     }
     

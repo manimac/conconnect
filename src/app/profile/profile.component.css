@@ -304,3 +304,7 @@
         padding: 0;
     }
 }
+.activity-wrapper figure img {
+    height: 50px;
+    object-fit: cover;
+}

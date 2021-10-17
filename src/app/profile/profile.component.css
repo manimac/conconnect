@@ -75,7 +75,8 @@
     background-position: center !important;
 }
 .profile-img img {
-    opacity: 0;
+    object-fit: cover;
+    height: 100%;
 }
 .profile-text {
     font-family: Poppins;

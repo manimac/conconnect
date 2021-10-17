@@ -59,7 +59,7 @@
                     </h5>
                     <div class="row m-0 activity-feeds">
                         <div class="col-lg-6 col-xl-4" *ngFor="let data of _user.activity">
-                            <div class="d-flex flex-wrap activity-wrapper">
+                            <div class="d-flex flex-wrap activity-wrapper" (click)="navigateActivity(data)">
                                 <figure class="m-0 p-0">
                                     <img src="{{data.imageUrl}}" alt="Activity Image" class="w-100">
                                 </figure>

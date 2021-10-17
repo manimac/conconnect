@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-
+import {joinTheNational} from '../models/joinTheNational';
 declare var $: any;
 
 @Component({
@@ -11,6 +11,7 @@ declare var $: any;
 })
 export class JoinTheNationalComponent implements OnInit {
 
+  joinTheNationalModel = new joinTheNational('', '', '', '', '');
   constructor(private router: Router, private location: Location) { }
 
   ngOnInit(): void {

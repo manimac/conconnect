@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { profileService } from '../service/profile';
 import { user } from '../models/user';
 import { FeedService } from '../service/feed.service';
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   _user: any;
   userShow = false;
   deCryptData: any
-  constructor(public profile: profileService, private route: ActivatedRoute, public feed: FeedService) { }
+  constructor(public profile: profileService, private route: ActivatedRoute, public feed: FeedService, public router: Router) { }
 
   ngAfterViewInit() {
   }
@@ -124,6 +124,12 @@ export class ProfileComponent implements OnInit {
         console.log(error)
       }   
     );  
+  }
+
+  navigateActivity(data: any){
+    if(this.isRecruiter() && (data.activityType==0)){
+      this.router.navigate(['/job-detail/' + data.id]);
+    }
   }
 
 }

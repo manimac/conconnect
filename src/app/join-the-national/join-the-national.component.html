@@ -26,7 +26,8 @@
                     <div class="col-lg-10 text-lg-right p-0 ml-auto">
                         <ul class="m-0 p-0 main-menu">
                             <li>
-                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">More</a>
+                                <a href="javascript:void(0)" class="has-submenu"
+                                    (click)="subMenuToggle($event)">More</a>
                                 <ul class="m-0 p-0 sub-menu">
                                     <li>
                                         <a href="javascript:void(0)">About Us</a>
@@ -35,15 +36,19 @@
                                         <a href="javascript:void(0)">Testimonials</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" routerLink="/join-the-national-reentry-round-table">Join the national Reentry round table</a>
+                                        <a href="javascript:void(0)"
+                                            routerLink="/join-the-national-reentry-round-table">Join the national
+                                            Reentry round table</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" routerLink="/advertise-with-us">Advertise with us</a>
+                                        <a href="javascript:void(0)" routerLink="/advertise-with-us">Advertise with
+                                            us</a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Connections</a>
+                                <a href="javascript:void(0)" class="has-submenu"
+                                    (click)="subMenuToggle($event)">Connections</a>
                                 <ul class="m-0 p-0 sub-menu">
                                     <li>
                                         <a href="javascript:void(0)">Basic Plan</a>
@@ -57,7 +62,8 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Job Seekers</a>
+                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Job
+                                    Seekers</a>
                                 <ul class="m-0 p-0 sub-menu">
                                     <li>
                                         <a href="javascript:void(0)">Job seekers</a>
@@ -85,8 +91,10 @@
 
 <div class="join-the-national">
     <div class="h-100 container">
-        <h1 class="boarding-page-hdr my-3 text-left pl-0 d-block" style="padding-top: 10px;">Join the national reentry round table</h1>
-        <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        <h1 class="boarding-page-hdr my-3 text-left pl-0 d-block text-capitalize" style="padding-top: 10px;">Join the
+            national reentry round table</h1>
+        <p class="mb-4">Join Our Reentry Roundtable And Listen and Voice In On Advancing Reentry Through Technology,
+            Creating Pathways Towards Professional Employment For The Justice-Impacted and more.</p>
         <form class="p-0 m-0 d-lg-grid" novalidate style="display: grid;
             height: auto;
             background: #F4F7FA 0% 0% no-repeat padding-box;
@@ -99,82 +107,65 @@
             <div class="w-100 d-flex-responsive d-sm-grid" aria-label="User's name">
                 <div class="w-md-48 float-left mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">First Name</label> <br />
-                    <input type="text"
-                        maxlength="50"
-                        placeholder="Enter First Name"
+                    <input type="text" id="firstname" name="FirstName"
                         class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        id="pro-first-name"
-                        value=""
-                        name="firstName"
-                        required />
-                    <small class="text-danger">
-                    First Name is Required
-                    </small>
+                        maxlength="30" placeholder="First Name*" #firstName="ngModel"
+                        [class.is-invalid]="firstName.invalid && firstName.touched"
+                        [(ngModel)]="joinTheNationalModel.FirstName" required>
+                    <!-- <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">
+                        First Name is Required
+                    </small> -->
                 </div>
                 <div class="w-md-48 float-right mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">Last Name</label> <br />
-                    <input type="text"
-                        maxlength="50"
-                        placeholder="Enter Last Name"
+                    <input type="text" id="lastname" name="LastName" #lastName="ngModel" maxlength="30"
+                        [class.is-invalid]="lastName.invalid && lastName.touched"
                         class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        id="pro-last-name"
-                        value=""
-                        name="lastName"
-                        required />
-                    <small class="text-danger">
-                    Last Name is Required
-                    </small>
+                        placeholder="Last Name*" required [(ngModel)]="joinTheNationalModel.LastName">
+                    <!-- <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">
+                        Last Name is
+                        Required
+                    </small> -->
                 </div>
                 <div class="w-md-48 float-left mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="email">Email</label> <br />
-                    <input type="text"
-                        maxlength="50"
-                        placeholder="Enter Email"
-                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        id="email"
-                        value=""
-                        name="email"
-                        required />
-                    <small class="text-danger">
-                    Email is Required
-                    </small>
+                    <input type="email" id="inputEmail" name="UserName" #email="ngModel" maxlength="50"
+                        [class.is-invalid]="email.invalid && email.touched"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                        placeholder="Email address*" required [(ngModel)]="joinTheNationalModel.Email">
+                    <!-- <div *ngIf="email.errors && (email.invalid && email.touched)">
+                        <small class="text-danger" *ngIf="email.errors.pattern">Email is Invalid</small>
+                        <small class="text-danger" *ngIf="email.errors.required">Email is Required</small>
+                    </div> -->
                 </div>
                 <div class="w-md-48 float-right mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="phone-no">Phone number</label> <br />
-                    <input type="text"
-                        maxlength="50"
-                        placeholder="Enter Phone Number"
-                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        id="pro-phoneNo"
-                        value=""
-                        name="phoneNo"
-                        required />
-                    <small class="text-danger">
-                    Phone Number is Required
-                    </small>
+                    <input type="text" id="phone" name="Phone" #phone="ngModel" maxlength="10" pattern="[0-9]+" 
+                       [class.is-invalid]="phone.invalid && phone.touched" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       placeholder="Phone number*" required [(ngModel)]="joinTheNationalModel.Phone">
+                <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
+                Phone is required and its valid numbers
+                </small> -->
                 </div>
                 <div class="w-md-48 float-left mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="company-name">Company Name</label> <br />
-                    <input type="text"
-                        maxlength="50"
-                        placeholder="Enter Company Name"
-                        class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        id="pro-companyName"
-                        value=""
-                        name="companyName"
-                        required />
-                    <small class="text-danger">
-                    Company Name is Required
-                    </small>
+                    <input type="text" id="companyname" name="CompanyName" #companyName="ngModel" maxlength="30"
+                       [class.is-invalid]="companyName.invalid && companyName.touched" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       placeholder="Company Name*" required [(ngModel)]="joinTheNationalModel.CompanyName">
+                <!-- <small class="text-danger" [class.d-none]="companyName.valid || companyName.untouched">
+                  Company Name is
+                  Required
+                </small> -->
                 </div>
 
                 <div class="w-100 float-left my-3 mt-4 d-md-grid h-auto">
-                    <button type="submit" name="Continue" class="questionnaire-form-btn text-center mx-auto" disabled="">
-                      <span style="color: #fff;">Submit</span>
+                    <button type="submit" name="Continue" class="questionnaire-form-btn text-center mx-auto"
+                        disabled="">
+                        <span style="color: #fff;">Submit</span>
                     </button>
                 </div>
             </div>
-          </form>
+        </form>
     </div>
 </div>
 

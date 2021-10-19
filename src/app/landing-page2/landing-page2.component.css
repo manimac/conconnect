@@ -564,3 +564,13 @@ header {
         height: 465px;
     }
 }
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color:#000;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-right: 4px;
+  }

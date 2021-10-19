@@ -35,7 +35,7 @@
                                         <a href="javascript:void(0)" (click)="navigateToSection(testimonial)">Testimonials</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" routerLink="/join-the-national-reentry-round-table">Join the national Reentry round table</a>
+                                        <a href="javascript:void(0)" routerLink="/join-the-national-reentry-round-table">Join The National Reentry Round Table</a>
                                     </li>
                                     <!-- <li>
                                         <a href="javascript:void(0)" routerLink="/advertise-with-us">Advertise with us</a>
@@ -43,8 +43,8 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Connections</a>
-                                <ul class="m-0 p-0 sub-menu">
+                                <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)" routerLink="/login">Connections</a>
+                                <!-- <ul class="m-0 p-0 sub-menu">
                                     <li>
                                         <a href="javascript:void(0)">Basic Plan</a>
                                     </li>
@@ -54,16 +54,16 @@
                                     <li>
                                         <a href="javascript:void(0)">Premium Plan</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li>
                                 <a href="javascript:void(0)" class="has-submenu" (click)="subMenuToggle($event)">Job Seekers</a>
                                 <ul class="m-0 p-0 sub-menu">
                                     <li>
-                                        <a href="javascript:void(0)">Job seekers</a>
+                                        <a href="javascript:void(0)" routerLink="/login">Job seekers</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">Jobs</a>
+                                        <a href="javascript:void(0)" routerLink="/login">Jobs</a>
                                     </li>
                                 </ul>
                             </li>
@@ -135,11 +135,14 @@
                         <figure class="m-0 p-0 mb-4">
                             <img src="./assets/img/welcome/incarcerated.png" alt="Formerly Incarcerated Icon">
                         </figure>
-                        <h4 class="m-0 mb-4">Formerly Incarcerated</h4>
-                        <p class="m-0 mb-4">The Connected Professional Membership serves individuals affected by the
-                            justice system (formerly incarcerated), probation, and (or) parole. With this premium
-                            subscription, you‘ll be given exclusive access to create your professional profile on
-                            ConConnect and immediately have...</p>
+                        <h4 class="m-0 mb-4">Justice Impacted  </h4>
+                        <p class="m-0 mb-4"> <span class="dot"></span>Free Account <br>
+                            <span class="dot"></span>Access Reentry Service Instantly<br>
+                            <span class="dot"></span>Find Jobs And Careers<br>
+                            <span class="dot"></span>Online Community<br>
+                            <span class="dot"></span>Educational Tools<br>
+                            <span class="dot"></span>Resume Assistance <br>
+                            <span class="dot"></span>ConConnect Proffesional Pathway’s Tool</p>
                         <a href="javascript:void(0)">
                             <span>Read More</span>
                             <img src="./assets/img/welcome/arrow.png" alt="Read More Icon">
@@ -152,10 +155,14 @@
                             <img src="./assets/img/welcome/organization.png" alt="Organizations Icon">
                         </figure>
                         <h4 class="m-0 mb-4">Organizations</h4>
-                        <p class="m-0 mb-4">The Connected Professional Membership serves individuals affected by the
-                            justice system (formerly incarcerated), probation, and (or) parole. With this premium
-                            subscription, you‘ll be given exclusive access to create your professional profile on
-                            ConConnect and immediately have...</p>
+                        <p class="m-0 mb-4"> <span class="dot"></span>Post Service’s/RESOURCES <br>
+                            <span class="dot"></span>Direct access to justice-impacted community<br>
+                            <span class="dot"></span>Refer Clients To Organizations <br>
+                            <span class="dot"></span>Complete Wrap-Around Services Faster<br>
+                            <span class="dot"></span>Access To Employers <br>
+                            <span class="dot"></span>Community Of Reentry Professionals<br>
+                            <span class="dot"></span>Access To Educational Tools<br>
+                            <span class="dot"></span>View Profiles And See User Needs, Accomplishments and Reentry Plan.</p>
                         <a href="javascript:void(0)">
                             <span>Read More</span>
                             <img src="./assets/img/welcome/arrow.png" alt="Read More Icon">
@@ -168,10 +175,16 @@
                             <img src="./assets/img/welcome/employers.png" alt="Employers Icon">
                         </figure>
                         <h4 class="m-0 mb-4">Employers</h4>
-                        <p class="m-0 mb-4">The Connected Professional Membership serves individuals affected by the
-                            justice system (formerly incarcerated), probation, and (or) parole. With this premium
-                            subscription, you‘ll be given exclusive access to create your professional profile on
-                            ConConnect and immediately have...</p>
+                        <p class="m-0 mb-4">	
+                            <span class="dot"></span>Free Account <br>
+                           	
+                            <span class="dot"></span>Post Jobs<br>
+                            <span class="dot"></span> View User Profiles<br>
+                            <span class="dot"></span> Check WOTC Status <br>
+                            <span class="dot"></span> Features In Email and SMS Campaigns<br>
+                            <span class="dot"></span>Employee Referal (Hire Someone from ConConnect and also refer them to our  community partners in their community for personal or professional development)<br>
+                            <span class="dot"></span> ConAcademy (Educate Your staff in working alongside the formerly incarcerated or  advance your employee’s skills with courses tailored for success in the workforce)<br>
+                            <span class="dot"></span> Perform Social Good And DEI Responsibilities.</p>
                         <a href="javascript:void(0)">
                             <span>Read More</span>
                             <img src="./assets/img/welcome/arrow.png" alt="Read More Icon">
@@ -195,7 +208,7 @@
                 </div>
                 <div class="col-lg-6 p-0 pl-lg-4 mt-5 mt-lg-0">
                     <h3 class="m-0 mb-3 mb-md-4 common-title xs">About Us</h3>
-                    <p class="m-0 mb-3 mb-md-4">Since 2020 ConConnect has revolutionized the process of reentry for over 650,00- justice-impacted individuals getting released yearly, while assisting all 70 million at any stage of reentry with instant connections to professional services, resources, community, and most importantly, create you a pathway to professional or white-collar employment. </p>                  
+                    <p class="m-0 mb-3 mb-md-4">Since 2020 ConConnect has revolutionized the process of reentry by connecting formerly incarcerated people with services instantly. ConConnect provides the justice-impacted community with resources and tools to make a successful Reentry plan and create a pathway towards professional employment or opportunities through networking and building professional connections. </p>                  
                 </div>
             </div>
         </div>
@@ -286,7 +299,10 @@
                     <p class="m-0">Welcome to the future of Reentry</p>
                 </div>
                 <div class="col-lg-6 p-0 pl-lg-4 mb-5 mb-lg-0 text-center">
-                    <img src="./assets/img/landing/notes.png" alt="Founder Image" class="w-100">
+                    <video controls="controls" class="w-100">
+                        <source src="./assets/video/Founders-Note.mp4" type="video/mp4" />
+                      </video>
+                    <!-- <img src="./assets/img/landing/notes.png" alt="Founder Image" class="w-100"> -->
                 </div>
             </div>
         </div>

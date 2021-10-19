@@ -21,6 +21,7 @@ export class JobDetailComponent implements OnInit {
   deCryptSign: any
   deCryptRole: any
   deCryptUser: any
+  isConnect: boolean = false;
 
   ngOnInit() {
 
@@ -28,6 +29,15 @@ export class JobDetailComponent implements OnInit {
     if (localStorage.getItem('signin') != undefined) { this.deCryptSign = window.atob(localStorage.getItem('signin')) }
     if (localStorage.getItem('role') != undefined) { this.deCryptRole = window.atob(localStorage.getItem('role')) }
     if (localStorage.getItem('user') != undefined) { this.deCryptUser = window.atob(localStorage.getItem('user')) }
+
+    if (this.deCryptData != null) {
+      if (JSON.stringify(JSON.parse(this.deCryptData || '').userRole[0].roleId) == "2") {
+        this.isConnect = true;
+      }
+      else {
+        this.isConnect = false;
+      }
+    }
 
     //this.signUpService.tokenCheck().subscribe(
     //  (data: any) => {

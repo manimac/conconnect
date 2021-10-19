@@ -20,7 +20,7 @@
             <p class="" style="word-break:break-word"><b>Job Type: </b>{{_jobDetail.job.jobType}}</p>
           </div>
           <div class="col-md-3 text-center">
-            <button type="button" class="btn btn-primary btn-block mt-3" [routerLink]="['/jobApply', _jobDetail.job.id]" *ngIf="_jobDetail.isJobApplied==false">Apply</button>        
+            <button type="button" class="btn btn-primary btn-block mt-3" [routerLink]="['/jobApply', _jobDetail.job.id]" *ngIf="_jobDetail.isJobApplied==false && !isConnect">Apply</button>        
             <span *ngIf="_jobDetail.isJobApplied==true" style=" margin-top: 20px; font-weight: 500; background: green; padding: 10px; border-radius: 4px; color: #fff; display: block;">Applied</span>
           </div>
         </div>
@@ -155,7 +155,7 @@
               <li class="list-group-item limit_char_show"><b>Location: </b>{{jobData.job.location}}, <b>City: </b>{{jobData.job.city}}, <b>State: </b>{{jobData.job.state}}, <b>Zip: </b> {{jobData.job.zip}}</li>
             </ul>
             <div class="card-body text-center d-flex justify-content-around">
-              <a class="card-link btn btn-primary" [routerLink]="['/jobApply', jobData.job.id]" *ngIf="jobData.isJobApplied==false">Apply Job</a>
+              <a class="card-link btn btn-primary" [routerLink]="['/jobApply', jobData.job.id]" *ngIf="jobData.isJobApplied==false && !isConnect">Apply Job</a>
               <span *ngIf="jobData.isJobApplied==true" style="font-weight: 500; background: green; padding: 10px; border-radius: 4px; color: #fff;">Applied</span>
               <a class="card-link btn btn-warning" [routerLink]="['/job-detail', jobData.job.id]">View Details</a>
             </div>

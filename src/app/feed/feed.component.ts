@@ -618,7 +618,7 @@ export class FeedComponent implements OnInit {
       (data: feed) => {
         this.feedAddResult(data),
           this.feedData[0].splice(0, 0, data);
-          console.log("feed posted success."), this.feedTest = "", this.feedImageShow = false, this.feedVideoShow = false, this.FinalFeedImage = "", this.base64String = "", this.postImageClear.nativeElement.value = "", this.feedSubmitted = false,
+          console.log("feed posted success."), this.feedTest = "", this.feedImageShow = false, this.feedVideoShow = false, this.FinalFeedImage = "",this.videoPath="", this.base64String = "", this.postImageClear.nativeElement.value = "", this.feedSubmitted = false,
           this.feedDescriptionClear(),
           this.feedVideoShowForNew = false
       },

@@ -2,8 +2,8 @@
     <div class="h-100 container">
         <div class="row m-0 align-items-center h-100">
             <div class=" col-6 col-lg-2 pl-0 h-100">
-                <figure class="d-flex align-items-center m-0 p-0 h-100">
-                    <img src="./assets/img/logo_copy_2.svg" alt="Logo Image" class="w-100 logo" style="cursor:pointer;">
+                <figure class="d-flex align-items-center m-0 p-0 h-100" routerLink="/">
+                    <img src="./assets/img/logo_copy.png" alt="Logo Image" class="w-100 logo" style="cursor:pointer;">
                 </figure>
             </div>
             <div class="col-2 pr-0 ml-auto menu-btn-block" (click)="menuToggle()">
@@ -102,7 +102,7 @@
             border: 2px solid #fff;
             box-shadow: 0 0 2px #9b9a9a;
             background: white;
-            border-radius: 10px;margin-bottom:20px !important;">
+            border-radius: 10px;margin-bottom:20px !important;" #myForm="ngForm" (ngSubmit)="onSubmit()">
 
             <div class="w-100 d-flex-responsive d-sm-grid" aria-label="User's name">
                 <div class="w-md-48 float-left mt-2">
@@ -110,11 +110,11 @@
                     <input type="text" id="firstname" name="FirstName"
                         class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
                         maxlength="30" placeholder="First Name*" #firstName="ngModel"
-                        [class.is-invalid]="firstName.invalid && firstName.touched"
+                        [class.is-invalid]="firstName.invalid && (firstName.touched)"
                         [(ngModel)]="joinTheNationalModel.FirstName" required>
-                    <!-- <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">
+                    <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">
                         First Name is Required
-                    </small> -->
+                    </small>
                 </div>
                 <div class="w-md-48 float-right mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="first-name-lbl">Last Name</label> <br />
@@ -122,36 +122,35 @@
                         [class.is-invalid]="lastName.invalid && lastName.touched"
                         class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
                         placeholder="Last Name*" required [(ngModel)]="joinTheNationalModel.LastName">
-                    <!-- <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">
+                    <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">
                         Last Name is
                         Required
-                    </small> -->
+                    </small>
                 </div>
                 <div class="w-md-48 float-left mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="email">Email</label> <br />
-                    <input type="email" id="inputEmail" name="UserName" #email="ngModel" maxlength="50"
+                    <input type="email" id="inputEmail" name="EmailId" #email="ngModel" maxlength="50"
                         [class.is-invalid]="email.invalid && email.touched"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                        placeholder="Email address*" required [(ngModel)]="joinTheNationalModel.Email">
-                    <!-- <div *ngIf="email.errors && (email.invalid && email.touched)">
+                        placeholder="Email address*" required [(ngModel)]="joinTheNationalModel.EmailId">
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
                         <small class="text-danger" *ngIf="email.errors.pattern">Email is Invalid</small>
                         <small class="text-danger" *ngIf="email.errors.required">Email is Required</small>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="w-md-48 float-right mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="phone-no">Phone number</label> <br />
-                    <input type="text" id="phone" name="Phone" #phone="ngModel" maxlength="10" pattern="[0-9]+" 
+                    <input type="text" id="phone" name="PhoneNumber" #phone="ngModel" maxlength="10" pattern="[0-9]+" 
                        [class.is-invalid]="phone.invalid && phone.touched" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                       placeholder="Phone number*" required [(ngModel)]="joinTheNationalModel.Phone">
-                <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
+                       placeholder="Phone number*" required [(ngModel)]="joinTheNationalModel.PhoneNumber">
+                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
                 Phone is required and its valid numbers
-                </small> -->
+                </small>
                 </div>
                 <div class="w-md-48 float-left mt-2">
                     <label class="boarding-pro-info-lbl text-left" id="company-name">Company Name</label> <br />
-                    <input type="text" id="companyname" name="CompanyName" #companyName="ngModel" maxlength="30"
-                       [class.is-invalid]="companyName.invalid && companyName.touched" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
-                       placeholder="Company Name*" required [(ngModel)]="joinTheNationalModel.CompanyName">
+                    <input type="text" id="companyname" name="CompanyName" #companyName="ngModel" maxlength="30" class="questionnaire-input-font boarding-pro-info-input form-control font-size-12"
+                       placeholder="Company Name*" [(ngModel)]="joinTheNationalModel.CompanyName">
                 <!-- <small class="text-danger" [class.d-none]="companyName.valid || companyName.untouched">
                   Company Name is
                   Required
@@ -159,8 +158,7 @@
                 </div>
 
                 <div class="w-100 float-left my-3 mt-4 d-md-grid h-auto">
-                    <button type="submit" name="Continue" class="questionnaire-form-btn text-center mx-auto"
-                        disabled="">
+                    <button type="submit" name="Continue" class="questionnaire-form-btn text-center mx-auto" [disabled]="myForm.form.invalid">
                         <span style="color: #fff;">Submit</span>
                     </button>
                 </div>

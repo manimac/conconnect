@@ -119,10 +119,12 @@ header {
 }
 .welcome-content {
     background-color: #fff;
-    padding: 20px;
+    padding: 20px 20px 80px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    position: relative;
 }
 .welcome-content figure {
     background-color: #3E72DD;
@@ -145,7 +147,7 @@ header {
     letter-spacing: 0.02em;
     color: #242424;
 }
-.welcome-content p {
+.welcome-content p, .welcome-content ul li {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -153,6 +155,27 @@ header {
     line-height: 24px;
     letter-spacing: 0.02em;
     color: #696969;
+}
+.welcome-content ul li {
+    list-style: none;
+    margin-bottom: 7px;
+    padding-left: 20px;
+    position: relative;
+}
+.welcome-content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.welcome-content ul li:before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    background-color: #333;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0.65;
 }
 .welcome-content a {
     font-family: Montserrat;
@@ -162,6 +185,11 @@ header {
     line-height: 22px;
     letter-spacing: 0.02em;
     color: #3E72DD;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
 }
 .welcome-content a img {
     margin-left: 7px;

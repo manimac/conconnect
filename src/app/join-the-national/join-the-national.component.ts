@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import {joinTheNational} from '../models/joinTheNational';
+import { NgForm } from '@angular/forms';
+import { JoinTheNationalService } from '../service/join-the-national.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 
 @Component({
@@ -12,7 +15,7 @@ declare var $: any;
 export class JoinTheNationalComponent implements OnInit {
 
   joinTheNationalModel = new joinTheNational('', '', '', '', '');
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location, private joinTheNationService: JoinTheNationalService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     
@@ -54,6 +57,24 @@ export class JoinTheNationalComponent implements OnInit {
   loginBtnClick() {
     this.location.replaceState('/');
     return this.router.navigateByUrl('/login');
+  }
+
+  onSubmit() {
+    let params = {
+      "FirstName": this.joinTheNationalModel.FirstName,
+      "LastName": this.joinTheNationalModel.LastName,
+      "EmailId": this.joinTheNationalModel.EmailId,
+      "PhoneNumber": this.joinTheNationalModel.PhoneNumber,
+      "CompanyName": this.joinTheNationalModel.CompanyName,
+    }
+    this.joinTheNationService.postNationalReEntry(params).subscribe(
+      (data: any) => {
+        this.toastr.success("Thanks for your interest in joining our National Reentry Round Table. Please provide below details and our team will reach out to you for next steps.", "Success !");
+      },
+      error => {
+        console.log(error)
+      }   
+    );  
   }
 
 }

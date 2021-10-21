@@ -10,3 +10,6 @@ header {
 .join-the-national .boarding-page-hdr {
     line-height: 32px;
 }
+.clear-both {
+    clear: both;
+}

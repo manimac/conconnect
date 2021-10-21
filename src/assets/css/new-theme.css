@@ -405,6 +405,11 @@ header.main-header .menu-btn.menu-opened path {
 .main-header .menu-btn.menu-open path {
     fill: #3E72DD;
 }
+.tooltip-inner {
+    font-size: 12px;
+    padding: 7px 10px 10px;
+    text-align: center;
+}
 
 @media screen and (min-width: 992px) {    
     .main-menu > li:hover .sub-menu {

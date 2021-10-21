@@ -26,6 +26,8 @@ export class LandingPage2Component implements OnInit {
         $("header").addClass("scrolled");
       }
     });
+
+    $("[data-toggle='tooltip']").tooltip({trigger: "click"});
   }
   menuToggle() {
     if ($(".menu").hasClass("open")) {
